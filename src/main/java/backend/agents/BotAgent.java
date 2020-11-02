@@ -1,4 +1,4 @@
-package backend.agents;
+package main.java.backend.agents;
 
 import backend.GameState;
 
@@ -6,7 +6,5 @@ abstract public class BotAgent extends Agent {
 
     public BotAgent() {}
 
-    public void updateGameState(GameState gameState) {
-
-    }
+    abstract public void updateGameState(GameState gameState);
 }

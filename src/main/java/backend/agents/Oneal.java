@@ -1,10 +1,10 @@
-package backend.agents;
+package main.java.backend.agents;
 
 import backend.GameState;
 
 public class Oneal extends BotAgent {
-
     public Oneal() {}
 
-    public void updateGameState(GameState gameState) {}
+    public void updateGameState(GameState gameState) {
+    }
 }

@@ -1,4 +1,4 @@
-package backend;
+package main.java.backend;
 
 public abstract class Entity {
     protected float coordinateX;

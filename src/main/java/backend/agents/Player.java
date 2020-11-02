@@ -1,4 +1,4 @@
-package backend.agents;
+package main.java.backend.agents;
 
 import backend.GameState;
 
