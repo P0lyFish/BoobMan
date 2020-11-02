@@ -1,4 +1,4 @@
-package backend.static_entities.items;
+package main.java.backend.static_entities.items;
 
 public class Item {
 }
