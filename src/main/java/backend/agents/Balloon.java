@@ -1,10 +1,10 @@
 package main.java.backend.agents;
 
 
-import backend.GameState;
+import main.java.backend.GameState;
 
 
-public class Balloon extends backend.agents.BotAgent {
+public class Balloon extends BotAgent {
 
     public Balloon() {}
 

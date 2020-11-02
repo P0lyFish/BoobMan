@@ -1,6 +1,6 @@
-package backend.static_entities;
+package main.java.backend.static_entities;
 
-import backend.Entity;
+import main.java.backend.Entity;
 
 abstract public class StaticEntity extends Entity {
 }

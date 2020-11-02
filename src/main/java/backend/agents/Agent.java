@@ -1,8 +1,8 @@
 package main.java.backend.agents;
 
-import backend.Entity;
-import backend.GameState;
-import utils.Direction;
+import main.java.backend.Entity;
+import main.java.backend.GameState;
+import main.java.utils.Direction;
 
 abstract public class Agent extends Entity {
     protected float speed;

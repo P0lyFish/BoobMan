@@ -1,6 +1,6 @@
-package backend.static_entities;
+package main.java.backend.static_entities;
 
-import backend.GameState;
+import main.java.backend.GameState;
 
 public class Bomb extends StaticEntity {
     private float timer;
