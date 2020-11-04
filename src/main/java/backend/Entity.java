@@ -1,38 +1,38 @@
 package main.java.backend;
 
+import main.java.utils.GridPosition;
+
 public abstract class Entity {
-    protected float coordinateX;
-    protected float coordinateY;
+    protected GridPosition position;
     protected boolean isVisible;
-    protected boolean isDestroyed;
 
     public Entity() {}
 
-    public float getCoordinateX() {
-        return coordinateX;
+    public GridPosition getPosition() {
+        return this.position;
     }
 
-    public void setCoordinateX(int coordinateX) {
-        this.coordinateX = coordinateX;
+    public void setPosition(GridPosition position) {
+        this.position = position;
     }
 
-    public void destroy() {
-        this.isDestroyed = true;
+    public float getPositionX() {
+        return position.getX();
     }
 
-    public boolean stillAvailable() {
-        return !isDestroyed;
+    public void setPositionX(int coordinateX) {
+        position.setX(coordinateX);
     }
 
-    public float getCoordinateY() {
-        return coordinateY;
+    public float getPositionY() {
+        return position.getY();
     }
 
-    public void setCoordinateY(float coordinateY) {
-        this.coordinateY = coordinateY;
+    public void setPositionY(float coordinateY) {
+        position.setY(coordinateY);
     }
 
-    public boolean getVisible() {
+    public boolean isVisible() {
         return this.isVisible;
     }
 
