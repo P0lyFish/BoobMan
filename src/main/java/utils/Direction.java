@@ -1,2 +1,5 @@
-package main.java.utils;public class Direction {
+package main.java.utils;
+
+public enum Direction {
+        WEST, NORTH, EAST, SOUTH;
 }
