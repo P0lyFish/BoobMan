@@ -1,15 +1,2 @@
-package main.java.utils;
-
-public class Direction {
-    public enum PossibleDirection {
-        WEST, NORTH, EAST, SOUTH;
-    }
-
-    void counterClockwiseTurn() {
-
-    }
-
-    void clockWiseTurn() {
-
-    }
+package main.java.utils;public class Direction {
 }
