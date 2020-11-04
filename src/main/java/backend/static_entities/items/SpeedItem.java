@@ -1,4 +1,9 @@
 package main.java.backend.static_entities.items;
 
-public class SpeedItem {
+import main.java.backend.GameState;
+
+public class SpeedItem extends Item {
+    public void updateGameState(GameState gameState) {
+
+    }
 }
