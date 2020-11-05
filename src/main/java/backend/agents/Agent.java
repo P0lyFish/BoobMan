@@ -1,5 +1,6 @@
 package main.java.backend.agents;
 
+import javafx.scene.image.Image;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
 import main.java.backend.static_entities.StaticEntity;
@@ -51,6 +52,11 @@ abstract public class Agent extends Entity {
         }
 
         return validMove;
+    }
+
+    public Image getCurrentTexture() {
+        return new Image(String.format("src/main/resoures/%s_%s1.png", entityType.toString(),
+                currentDirection.toString()));
     }
 
     public Direction getCurrentDirection() {
