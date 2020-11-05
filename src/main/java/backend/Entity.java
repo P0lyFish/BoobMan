@@ -20,6 +20,7 @@ public abstract class Entity {
     protected boolean destroyable;
     protected Status status = Status.normal;
     protected float timeUntilVanish;
+    protected EntityType entityType;
 
     public Entity() {}
 
