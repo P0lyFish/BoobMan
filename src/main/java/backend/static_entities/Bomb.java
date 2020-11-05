@@ -19,10 +19,20 @@ public class Bomb extends StaticEntity {
     }
 
     public void updateGameState(GameState gameState) {
-
     }
 
     public Image getCurrentTexture() {
-        return new Image("");
+        if(timer <= REMAINING_TIME_MAX && timer > REMAINING_TIME_MID) {
+            return new Image(".\\image\\sprites\\bomb.png");
+        }
+        else if(timer > REMAINING_TIME_MIN && timer <= REMAINING_TIME_MID) {
+            return new Image(".\\image\\sprites\\bomb_1.png");
+        }
+        else if(timer > 0 && timer <= REMAINING_TIME_MIN) {
+            return new Image(".\\image\\sprites\\bomb_2.png");
+        }
+        else {
+            return new Image(".\\image\\sprites\\grass.png");
+        }
     }
 }
