@@ -1,5 +1,6 @@
 package main.java.backend.static_entities;
 
+import javafx.scene.image.Image;
 import main.java.backend.GameState;
 
 public class Brick extends StaticEntity {
@@ -7,5 +8,9 @@ public class Brick extends StaticEntity {
 
     public void updateGameState(GameState gameState) {
 
+    }
+
+    public Image getCurrentTexture() {
+        return new Image("");
     }
 }

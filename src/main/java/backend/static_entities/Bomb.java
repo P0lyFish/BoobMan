@@ -1,5 +1,6 @@
 package main.java.backend.static_entities;
 
+import javafx.scene.image.Image;
 import main.java.backend.GameState;
 import main.java.backend.agents.Agent;
 
@@ -19,5 +20,9 @@ public class Bomb extends StaticEntity {
 
     public void updateGameState(GameState gameState) {
 
+    }
+
+    public Image getCurrentTexture() {
+        return new Image("");
     }
 }

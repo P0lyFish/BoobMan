@@ -1,11 +1,14 @@
 package main.java.backend.static_entities;
 
-import main.java.backend.GameState;
+import javafx.scene.image.Image;
+import main.java.backend.static_entities.flames.Flame;
 
-public class CenterFlame extends StaticEntity {
-    CenterFlame() {}
+public class CenterFlame extends Flame {
+    CenterFlame(float remainingTime) {
+        super(remainingTime);
+    }
 
-    public void updateGameState(GameState gameState) {
-
+    public Image getCurrentTexture() {
+        return new Image("");
     }
 }
