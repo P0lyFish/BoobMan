@@ -23,6 +23,11 @@ public class PlayerAgent extends BomberMan {
     }
 
     public void updateGameState(GameState gameState) {
+        if (getStatus() == Status.vanished) {
+            gameState.removeEntity(this);
+            return;
+        }
+
         if (position.isLatticePoint()) {
             if (gameState.inputStackIsEmpty()) {
                 return;
@@ -56,11 +61,11 @@ public class PlayerAgent extends BomberMan {
         for (Entity entity : gameState.getEntityList()) {
             float d = this.getPosition().distance(entity.getPosition());
             if (entity != this && entity instanceof Agent && d < 1) {
-                death = true;
+                destroy();
                 break;
             }
             if (entity instanceof Flame && d < 1) {
-                death = true;
+                destroy();
                 break;
             }
         }

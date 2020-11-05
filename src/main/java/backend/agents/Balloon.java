@@ -2,6 +2,7 @@ package main.java.backend.agents;
 
 
 import javafx.scene.image.Image;
+import main.java.backend.Entity;
 import main.java.backend.GameState;
 import main.java.utils.Direction;
 
@@ -14,10 +15,29 @@ public class Balloon extends Agent {
     }
 
     public void updateGameState(GameState gameState) {
-        int pick = new Random().nextInt(Direction.values().length);
-        Direction randomDir = Direction.values()[pick];
+        if (getStatus() == Status.vanished) {
+            gameState.removeEntity(this);
+            return;
+        }
 
-        this.move(randomDir, gameState);
+        Direction dir;
+
+        if (position.isLatticePoint()) {
+            int pick = new Random().nextInt(Direction.values().length);
+            dir = Direction.values()[pick];
+        }
+        else {
+            dir = currentDirection;
+        }
+
+        this.move(dir, gameState);
+
+        for (Entity e : gameState.getEntityList()) {
+            float d = position.distance(e.getPosition());
+            if (d < 1 && e instanceof PlayerAgent) {
+                e.destroy();
+            }
+        }
     }
 
     public Image getCurrentTexture() {
