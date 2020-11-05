@@ -41,7 +41,7 @@ abstract public class Agent extends Entity {
         boolean validMove = true;
         for (Entity e : gameState.getEntityList()) {
             float d = newPosition.distance(e.getPosition());
-            if (d < 1 && e instanceof StaticEntity) {
+            if (d < 1 && e.isBlocked()) {
                 validMove = false;
             }
         }

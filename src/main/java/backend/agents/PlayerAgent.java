@@ -1,15 +1,25 @@
 package main.java.backend.agents;
 
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
-import main.java.backend.static_entities.StaticEntity;
+import main.java.backend.static_entities.flames.Flame;
 import main.java.utils.Direction;
-import main.java.utils.GridPosition;
 
 public class PlayerAgent extends BomberMan {
+    private boolean death;
+
     public PlayerAgent(float speed, float blastRange) {
         super(speed, blastRange);
+    }
+
+    public boolean isDeath() {
+        return death;
+    }
+
+    public Image getCurrentTexture() {
+        return new Image("");
     }
 
     public void updateGameState(GameState gameState) {
@@ -41,6 +51,18 @@ public class PlayerAgent extends BomberMan {
         }
         else {
             move(currentDirection, gameState);
+        }
+
+        for (Entity entity : gameState.getEntityList()) {
+            float d = this.getPosition().distance(entity.getPosition());
+            if (entity != this && entity instanceof Agent && d < 1) {
+                death = true;
+                break;
+            }
+            if (entity instanceof Flame && d < 1) {
+                death = true;
+                break;
+            }
         }
     }
 }

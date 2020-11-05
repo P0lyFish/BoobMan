@@ -5,7 +5,7 @@ import main.java.backend.static_entities.Bomb;
 
 abstract public class BomberMan extends Agent {
     protected float blastRange;
-    protected int remainingBomb;
+    protected int remainingBombs;
 
     public BomberMan(float speed, float blastRange) {
         super(speed);
@@ -21,7 +21,7 @@ abstract public class BomberMan extends Agent {
     }
 
     public void setBomb(GameState gameState) {
-        remainingBomb -= 1;
+        remainingBombs -= 1;
         gameState.addEntity(new Bomb(gameState.BOMB_EXPLOSION_TIME, this));
     }
 }

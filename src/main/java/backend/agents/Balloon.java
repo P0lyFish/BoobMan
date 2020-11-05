@@ -1,6 +1,7 @@
 package main.java.backend.agents;
 
 
+import javafx.scene.image.Image;
 import main.java.backend.GameState;
 import main.java.utils.Direction;
 
@@ -17,5 +18,9 @@ public class Balloon extends Agent {
         Direction randomDir = Direction.values()[pick];
 
         this.move(randomDir, gameState);
+    }
+
+    public Image getCurrentTexture() {
+        return new Image("");
     }
 }
