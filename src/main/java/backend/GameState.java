@@ -12,13 +12,17 @@ import java.util.Stack;
 public class GameState {
     public final float BOMB_EXPLOSION_TIME = 0;
     public final float DEFAULT_BLAST_RANGE = 0;
+    private final float REMAINING_TIME_MAX = 2000;
+    private final float REMAINING_TIME_MID = 1300;
+    private final float REMAINING_TIME_MIN = 600;
+
     private GameStatus status = GameStatus.PLAYING;
     private int mapID;
     private int numRows;
     private int numCols;
 
-    List<Entity> entities;
-    Stack<KeyEvent> playerInputStack;
+    private List<Entity> entities;
+    private Stack<KeyEvent> playerInputStack;
 
     public GameState() {
     }
@@ -36,6 +40,10 @@ public class GameState {
 
     public void addEntity(Entity e) {
         entities.add(e);
+    }
+
+    public void removeEntity(Entity e) {
+        entities.remove(e);
     }
 
     public List<Entity> getEntityList() {
