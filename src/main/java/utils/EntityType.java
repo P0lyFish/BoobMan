@@ -1,0 +1,8 @@
+package main.java.utils;
+
+public enum EntityType {
+    BRICK, WALL, PORTAL, BOMB,
+    FLAME_ITEM, BOMB_ITEM, SPEED_ITEM,
+    CENTER_FLAME, VERTICAL_FLAME, HORIZONTAL_FLAME,
+    ONEAL, BALLOON, PLAYER_AGENT
+}
