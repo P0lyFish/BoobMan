@@ -3,6 +3,7 @@ package main.java.backend.static_entities;
 import javafx.scene.image.Image;
 import main.java.backend.GameState;
 import main.java.backend.agents.Agent;
+import main.java.utils.EntityType;
 
 public class Bomb extends StaticEntity {
     private float timer;
@@ -16,6 +17,7 @@ public class Bomb extends StaticEntity {
 
     public void decreaseTimer(float delta) {
         timer -= delta;
+
     }
 
     public void updateGameState(GameState gameState) {

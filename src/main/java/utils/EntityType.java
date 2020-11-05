@@ -1,8 +1,10 @@
 package main.java.utils;
 
 public enum EntityType {
-    BRICK, WALL, PORTAL, BOMB,
-    FLAME_ITEM, BOMB_ITEM, SPEED_ITEM,
-    CENTER_FLAME, VERTICAL_FLAME, HORIZONTAL_FLAME,
+    brick, brick_exploded, wall, portal, bomb,
+    flame_item, bomb_item, speed_item, pass_flame_item,
+    bomb_exploded, explosion_vertical, explosion_horizontal,
+    explosion_horizontal_left_last, explosion_horizontal_right_last,
+    explosion_vertical_down_last, explosion_vertical_top_last, grass,
     ONEAL, BALLOON, PLAYER_AGENT
 }
