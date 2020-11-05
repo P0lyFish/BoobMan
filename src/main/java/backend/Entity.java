@@ -1,10 +1,14 @@
 package main.java.backend;
 
+import javafx.scene.image.Image;
+import main.java.utils.EntityType;
 import main.java.utils.GridPosition;
+
 
 public abstract class Entity {
     protected GridPosition position;
-    protected boolean isVisible;
+    protected boolean visible;
+    protected boolean blocked;
 
     public Entity() {}
 
@@ -12,33 +16,27 @@ public abstract class Entity {
         return this.position;
     }
 
-    public void setPosition(GridPosition position) {
+    protected void setPosition(GridPosition position) {
         this.position = position;
     }
 
-    public float getPositionX() {
-        return position.getX();
-    }
-
-    public void setPositionX(int coordinateX) {
-        position.setX(coordinateX);
-    }
-
-    public float getPositionY() {
-        return position.getY();
-    }
-
-    public void setPositionY(float coordinateY) {
-        position.setY(coordinateY);
-    }
-
     public boolean isVisible() {
-        return this.isVisible;
+        return this.visible;
     }
 
-    public void setVisible(boolean isVisible) {
-        this.isVisible = isVisible;
+    protected void setVisible(boolean isVisible) {
+        this.visible = isVisible;
     }
+
+    public boolean isBlocked() {
+        return this.blocked;
+    }
+
+    protected void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+
+    abstract protected Image getCurrentTexture();
 
     abstract public void updateGameState(GameState gameState);
 }
