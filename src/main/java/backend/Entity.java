@@ -6,9 +6,9 @@ import main.java.utils.GridPosition;
 
 
 public abstract class Entity {
-    protected final float REMAINING_TIME_MAX = 2000;
-    protected final float REMAINING_TIME_MID = 1300;
-    protected final float REMAINING_TIME_MIN = 600;
+    protected static final float REMAINING_TIME_MAX = 2000;
+    protected static final float REMAINING_TIME_MID = 1300;
+    protected static final float REMAINING_TIME_MIN = 600;
 
     protected enum Status {
         normal, vanishing, vanished;
