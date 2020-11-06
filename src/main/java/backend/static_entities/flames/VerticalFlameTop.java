@@ -1,4 +1,9 @@
 package main.java.backend.static_entities.flames;
 
-public class VerticalFlameTop {
+import main.java.utils.EntityType;
+
+public class VerticalFlameTop extends Flame {
+    public VerticalFlameTop() {
+        this.entityType = EntityType.explosion_vertical_top_last;
+    }
 }
