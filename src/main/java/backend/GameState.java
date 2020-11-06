@@ -79,7 +79,7 @@ public class GameState {
                 status = GameStatus.WIN;
                 break;
             }
-            if (e instanceof PlayerAgent && ((PlayerAgent) e).isDeath()) {
+            if (e instanceof PlayerAgent && ((PlayerAgent) e).isVanished()) {
                 status = GameStatus.LOSE;
                 break;
             }
