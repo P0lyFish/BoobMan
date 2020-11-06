@@ -6,16 +6,11 @@ import main.java.backend.Entity;
 import main.java.backend.GameState;
 import main.java.backend.static_entities.flames.Flame;
 import main.java.utils.Direction;
+import main.java.utils.GridPosition;
 
 public class PlayerAgent extends BomberMan {
-    private boolean death;
-
-    public PlayerAgent(float speed, float blastRange) {
-        super(speed, blastRange);
-    }
-
-    public boolean isDeath() {
-        return death;
+    public PlayerAgent(GridPosition position, float speed, float blastRange) {
+        super(position, speed, blastRange);
     }
 
     public Image getCurrentTexture() {
@@ -23,13 +18,14 @@ public class PlayerAgent extends BomberMan {
     }
 
     public void updateGameState(GameState gameState) {
-        if (getStatus() == Status.vanished) {
+        if (isVanished()) {
             gameState.removeEntity(this);
             return;
         }
 
         if (position.isLatticePoint()) {
             if (gameState.inputStackIsEmpty()) {
+                movingType = MovingType.STOP;
                 return;
             }
             KeyEvent playerInput = gameState.popPlayerInputStack();
@@ -37,20 +33,25 @@ public class PlayerAgent extends BomberMan {
                 case LEFT:
                     move(Direction.WEST, gameState);
                     currentDirection = Direction.WEST;
+                    movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
                     break;
                 case UP:
                     move(Direction.NORTH, gameState);
                     currentDirection = Direction.NORTH;
+                    movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
                     break;
                 case RIGHT:
                     move(Direction.EAST, gameState);
                     currentDirection = Direction.EAST;
+                    movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
                     break;
                 case DOWN:
                     move(Direction.SOUTH, gameState);
                     currentDirection = Direction.SOUTH;
+                    movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
                     break;
                 case SPACE:
+                    movingType = MovingType.STOP;
                     setBomb(gameState);
             }
         }

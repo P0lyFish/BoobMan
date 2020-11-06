@@ -10,10 +10,16 @@ import main.java.utils.GridPosition;
 import java.util.Random;
 
 abstract public class Agent extends Entity {
+    protected enum MovingType {
+        STOP, STEP_LEFT, STEP_RIGHT
+    }
+
     protected float speed;
     protected Direction currentDirection;
+    protected MovingType movingType = MovingType.STOP;
 
-    public Agent(float speed) {
+    public Agent(GridPosition position, float speed) {
+        super(position, true, false, true, REMAINING_TIME_MAX);
         this.speed = speed;
         int pick = new Random().nextInt(Direction.values().length);
         currentDirection = Direction.values()[pick];
@@ -55,8 +61,15 @@ abstract public class Agent extends Entity {
     }
 
     public Image getCurrentTexture() {
-        return new Image(String.format("src/main/resoures/%s_%s1.png", entityType.toString(),
-                currentDirection.toString()));
+        if (isNormal()) {
+            return new Image(String.format("src/main/resources/%s_%s_%s.png", entityType.toString(),
+                    currentDirection.toString(), movingType.toString()));
+        }
+        else if (isVanishing()) {
+            if(timeUntilVanish <= REMAINING_TIME_MAX && timeUntilVanish > REMAINING_TIME_MID) {
+
+            }
+        }
     }
 
     public Direction getCurrentDirection() {

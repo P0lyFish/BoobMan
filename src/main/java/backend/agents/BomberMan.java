@@ -2,14 +2,17 @@ package main.java.backend.agents;
 
 import main.java.backend.GameState;
 import main.java.backend.static_entities.Bomb;
+import main.java.utils.EntityType;
+import main.java.utils.GridPosition;
 
 abstract public class BomberMan extends Agent {
     protected float blastRange;
     protected int remainingBombs;
 
-    public BomberMan(float speed, float blastRange) {
-        super(speed);
+    public BomberMan(GridPosition position, float speed, float blastRange) {
+        super(position, speed);
         this.blastRange = blastRange;
+        entityType = EntityType.bomberman;
     }
 
     public float getBlastRange() {
