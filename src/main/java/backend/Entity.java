@@ -42,7 +42,7 @@ public abstract class Entity {
         }
     }
 
-    protected Status getStatus() {
+    public Status getStatus() {
         return status;
     }
 
@@ -54,7 +54,7 @@ public abstract class Entity {
         return this.position;
     }
 
-    protected void setPosition(GridPosition position) {
+    public void setPosition(GridPosition position) {
         this.position = position;
     }
 
@@ -70,10 +70,17 @@ public abstract class Entity {
         return this.blocked;
     }
 
-    protected void setBlocked(boolean blocked) {
+    public void setBlocked(boolean blocked) {
         this.blocked = blocked;
     }
 
+    public boolean isDestroyable() {
+        return this.destroyable;
+    }
+
+    protected void setDestroyable(boolean destroyable) {
+        this.destroyable = destroyable;
+    }
     abstract protected Image getCurrentTexture();
 
     abstract public void updateGameState(GameState gameState);
