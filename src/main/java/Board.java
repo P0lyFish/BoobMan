@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import main.java.backend.Entity;
 import main.java.backend.static_entities.StaticEntity;
 import main.java.backend.static_entities.Wall;
+import main.java.utils.GridPosition;
 
 
 import java.io.*;
@@ -55,7 +56,7 @@ public class Board extends Application {
         };
         timer.start();
 
-        //testCreateMap();
+        testCreateMap();
 
     }
 
@@ -101,6 +102,7 @@ public class Board extends Application {
             for (int j=0; j<HEIGHT; j++) {
                 if (Character.compare(map[i][j], '#') == 0) {
                     object = new Wall();
+                    object.setPosition(new GridPosition(i, j));
                     entities.add(object);
                 }
             }
