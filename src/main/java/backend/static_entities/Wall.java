@@ -5,8 +5,11 @@ import main.java.backend.Entity;
 import main.java.backend.GameState;
 import main.java.utils.EntityType;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 public class Wall extends StaticEntity {
-    Wall() {
+    public Wall() {
         this.entityType = EntityType.wall;
     }
 
@@ -14,7 +17,13 @@ public class Wall extends StaticEntity {
     }
 
     public Image getCurrentTexture() {
-        return new Image(String.format("main\\resources\\sprites\\%s.png", entityType.toString()));
+        String filePath = "src\\main\\resources\\sprites\\" + entityType.toString() +".png";
+        try {
+            return new Image(new FileInputStream(filePath));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void updateGameState(GameState gameState) {

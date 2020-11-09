@@ -12,11 +12,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.java.backend.Entity;
+import main.java.backend.static_entities.StaticEntity;
+import main.java.backend.static_entities.Wall;
 
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,31 +29,6 @@ public class Board extends Application {
     private GraphicsContext gc;
     private Canvas canvas;
     private List<Entity> entities = new ArrayList<>();
-
-    public void render() throws FileNotFoundException {
-        // clear
-        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
-        // Grass
-        for (int i=0; i<WIDTH; i++) {
-            for (int j=0; j<HEIGHT; j++) {
-                Image img = new Image(new FileInputStream("src\\main\\resources\\sprites\\grass.png"));
-                SnapshotParameters params = new SnapshotParameters();
-                params.setFill(Color.TRANSPARENT);
-                ImageView iv = new ImageView(img);
-                Image base = iv.snapshot(params, null);
-                gc.drawImage(base, i * DEFAULT_SIZE, j * DEFAULT_SIZE);
-            }
-        }
-
-        // List Entities
-        entities.forEach(g -> g.render(gc));
-    }
-
-    public void testCreateMap() {
-        //testloadLevel
-
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -80,9 +55,56 @@ public class Board extends Application {
         };
         timer.start();
 
+        //testCreateMap();
+
     }
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public void render() throws FileNotFoundException {
+        // clear
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
+        // Grass
+        for (int i=0; i<WIDTH; i++) {
+            for (int j=0; j<HEIGHT; j++) {
+                Image img = new Image(new FileInputStream("src\\main\\resources\\sprites\\grass.png"));
+                SnapshotParameters params = new SnapshotParameters();
+                params.setFill(Color.TRANSPARENT);
+                ImageView iv = new ImageView(img);
+                Image base = iv.snapshot(params, null);
+                gc.drawImage(base, i * DEFAULT_SIZE, j * DEFAULT_SIZE);
+            }
+        }
+
+        // List Entities
+        entities.forEach(g -> g.render(gc));
+    }
+
+    public void testCreateMap() throws IOException {
+
+        //testloadLevel
+        char[][] map = new char[WIDTH][HEIGHT];
+        BufferedReader br = new BufferedReader(new FileReader("src\\main\\resources\\levels\\Level1.txt"));
+        String line;
+        int rowNum = 0;
+        while ((line = br.readLine()) != null) {
+            for(int i = 0; i < line.length(); i++) {
+                map[i][rowNum] = line.charAt(i);
+            }
+            rowNum++;
+        }
+        Entity object;
+        for (int i=0; i<WIDTH; i++) {
+            for (int j=0; j<HEIGHT; j++) {
+                if (Character.compare(map[i][j], '#') == 0) {
+                    object = new Wall();
+                    entities.add(object);
+                }
+            }
+        }
+
     }
 }
