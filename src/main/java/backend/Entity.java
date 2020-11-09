@@ -114,6 +114,6 @@ public abstract class Entity {
         ImageView iv = new ImageView(img);
         Image base = iv.snapshot(params, null);
 
-        gc.drawImage(base, x * Board.DEFAULT_SIZE, y * Board.DEFAULT_SIZE);
+        gc.drawImage(base, x * Board.SCALED_SIZE, y * Board.SCALED_SIZE);
     }
 }
