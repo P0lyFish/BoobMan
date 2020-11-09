@@ -38,8 +38,4 @@ public class Oneal extends Agent {
             }
         }
     }
-
-    public Image getCurrentTexture() {
-        return new Image("");
-    }
 }

@@ -6,21 +6,29 @@ import main.java.utils.EntityType;
 import main.java.utils.GridPosition;
 
 abstract public class BomberMan extends Agent {
-    protected float blastRange;
+    protected int blastRange;
     protected int remainingBombs;
 
-    public BomberMan(GridPosition position, float speed, float blastRange) {
+    public BomberMan(GridPosition position, float speed, int blastRange) {
         super(position, speed);
         this.blastRange = blastRange;
         entityType = EntityType.bomberman;
     }
 
-    public float getBlastRange() {
+    public int getBlastRange() {
         return blastRange;
     }
 
     public void setBlastRange(int blastRange) {
         this.blastRange = blastRange;
+    }
+
+    public int getRemainingBombs() {
+        return remainingBombs;
+    }
+
+    public void setRemainingBombs(int remainingBombs) {
+        this.remainingBombs = remainingBombs;
     }
 
     public void setBomb(GameState gameState) {

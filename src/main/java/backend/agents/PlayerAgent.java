@@ -9,12 +9,8 @@ import main.java.utils.Direction;
 import main.java.utils.GridPosition;
 
 public class PlayerAgent extends BomberMan {
-    public PlayerAgent(GridPosition position, float speed, float blastRange) {
+    public PlayerAgent(GridPosition position, float speed, int blastRange) {
         super(position, speed, blastRange);
-    }
-
-    public Image getCurrentTexture() {
-        return new Image("");
     }
 
     public void updateGameState(GameState gameState) {

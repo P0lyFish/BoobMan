@@ -42,8 +42,4 @@ public class Balloon extends Agent {
             }
         }
     }
-
-    public Image getCurrentTexture() {
-        return new Image("");
-    }
 }

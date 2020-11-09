@@ -65,9 +65,15 @@ abstract public class Agent extends Entity {
             return new Image(String.format("src/main/resources/%s_%s_%s.png", entityType.toString(),
                     currentDirection.toString(), movingType.toString()));
         }
-        else if (isVanishing()) {
-            if(timeUntilVanish <= REMAINING_TIME_MAX && timeUntilVanish > REMAINING_TIME_MID) {
-
+        else {
+            if (timeUntilVanish > REMAINING_TIME_MID) {
+                return new Image(String.format("src/main/resources/%s_1.png", entityType.toString()));
+            }
+            if (REMAINING_TIME_MIN <= timeUntilVanish && timeUntilVanish < REMAINING_TIME_MID) {
+                return new Image(String.format("src/main/resources/%s_2.png", entityType.toString()));
+            }
+            else {
+                return new Image(String.format("src/main/resources/%s_3.png", entityType.toString()));
             }
         }
     }
