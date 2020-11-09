@@ -1,6 +1,11 @@
 package main.java.backend;
 
+import javafx.scene.SnapshotParameters;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import main.java.Board;
 import main.java.utils.EntityType;
 import main.java.utils.GridPosition;
 
@@ -96,4 +101,19 @@ public abstract class Entity {
     abstract protected Image getCurrentTexture();
 
     abstract public void updateGameState(GameState gameState);
+
+    public void render(GraphicsContext gc) {
+
+        float x = position.getX();
+        float y = position.getY();
+        Image img = getCurrentTexture();
+
+        SnapshotParameters params = new SnapshotParameters();
+        params.setFill(Color.TRANSPARENT);
+
+        ImageView iv = new ImageView(img);
+        Image base = iv.snapshot(params, null);
+
+        gc.drawImage(base, x * Board.DEFAULT_SIZE, y * Board.DEFAULT_SIZE);
+    }
 }
