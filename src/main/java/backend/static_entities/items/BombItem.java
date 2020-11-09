@@ -21,7 +21,8 @@ public class BombItem extends Item {
                 this.visible = true;
             }
             if(this.visible && e instanceof BomberMan && e.getPosition().distance(this.getPosition()) < 1) {
-                e.setRemainingBombs(e.getRemainingBombs() + EXTRA_BOMB);
+                BomberMan d = (BomberMan) e;
+                d.setRemainingBombs(d.getRemainingBombs() + EXTRA_BOMB);
             }
         }
     }
