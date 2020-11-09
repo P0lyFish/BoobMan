@@ -46,6 +46,18 @@ public abstract class Entity {
         return status;
     }
 
+    public boolean isNormal() {
+        return status == Status.normal;
+    }
+
+    public boolean isVanishing() {
+        return status == Status.vanishing;
+    }
+
+    public boolean isVanished() {
+        return status == Status.vanished;
+    }
+
     public void destroy() {
         status = Status.vanishing;
     }
