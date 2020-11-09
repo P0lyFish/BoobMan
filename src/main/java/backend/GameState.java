@@ -10,11 +10,8 @@ import java.util.List;
 import java.util.Stack;
 
 public class GameState {
-    public final float BOMB_EXPLOSION_TIME = 0;
+    public final float BOMB_EXPLOSION_TIME = 2000;
     public final float DEFAULT_BLAST_RANGE = 2;
-    private final float REMAINING_TIME_MAX = 2000;
-    private final float REMAINING_TIME_MID = 1300;
-    private final float REMAINING_TIME_MIN = 600;
 
     private GameStatus status = GameStatus.PLAYING;
     private int mapID;
