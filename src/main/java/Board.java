@@ -43,21 +43,10 @@ public class Board extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.show();
-
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long l) {
-                try {
-                    render();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        timer.start();
-
+        
         testCreateMap();
 
+        render();
     }
 
     public static void main(String[] args) {

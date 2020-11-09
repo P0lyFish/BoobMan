@@ -17,6 +17,8 @@ public class Wall extends StaticEntity {
     }
 
     public Image getCurrentTexture() {
+
+        //fix filePath
         String filePath = "src\\main\\resources\\sprites\\" + entityType.toString() +".png";
         try {
             return new Image(new FileInputStream(filePath));
