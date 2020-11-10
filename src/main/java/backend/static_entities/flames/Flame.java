@@ -6,6 +6,9 @@ import main.java.backend.GameState;
 import main.java.backend.static_entities.StaticEntity;
 import main.java.utils.EntityType;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 abstract public class Flame extends StaticEntity {
     public Flame() {}
 
@@ -19,17 +22,38 @@ abstract public class Flame extends StaticEntity {
     }
 
     public Image getCurrentTexture() {
+        String filePath = "";
         if(timeUntilVanish <= REMAINING_TIME_MAX && timeUntilVanish > REMAINING_TIME_MID) {
-            return new Image(String.format("main\\resources\\sprites\\%s2.png", entityType.toString()));
+            filePath = String.format("main\\resources\\sprites\\%s2.png", entityType.toString());
+            try {
+                return new Image(new FileInputStream(filePath));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
         else if(timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
-            return new Image(String.format("main\\resources\\sprites\\%s1.png", entityType.toString()));
+            filePath = String.format("main\\resources\\sprites\\%s1.png", entityType.toString());
+            try {
+                return new Image(new FileInputStream(filePath));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
         else if(timeUntilVanish > 0 && timeUntilVanish <= REMAINING_TIME_MIN) {
-            return new Image(String.format("main\\resources\\sprites\\%s0.png", entityType.toString()));
+            filePath = String.format("main\\resources\\sprites\\%s0.png", entityType.toString());
+            try {
+                return new Image(new FileInputStream(filePath));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
-        else {
-            return new Image("main\\resources\\sprites\\grass.png");
+        filePath = "main\\resources\\sprites\\grass.png";
+        FileInputStream f = null;
+        try {
+            f = new FileInputStream(filePath);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+        return new Image(f);
     }
 }
