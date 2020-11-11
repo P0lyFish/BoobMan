@@ -3,15 +3,19 @@ package main.java.backend;
 import javafx.scene.input.KeyEvent;
 import main.java.backend.agents.PlayerAgent;
 import main.java.backend.static_entities.Portal;
+import main.java.backend.static_entities.Wall;
 import main.java.utils.GameStatus;
+import main.java.utils.GridPosition;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
 public class GameState {
     public final float BOMB_EXPLOSION_TIME = 2000;
-    public final float DEFAULT_BLAST_RANGE = 2;
+    public final int DEFAULT_BLAST_RANGE = 2;
+    public final float DEFAULT_SPEED = 1;
 
     private GameStatus status = GameStatus.PLAYING;
     private int mapID;
@@ -25,10 +29,28 @@ public class GameState {
     }
 
     public GameState(String mapPath) throws IOException {
-        File mapFile = new File(mapPath);
+        entities = new ArrayList<>();
         try {
+            File mapFile = new File(mapPath);
             FileReader fin = new FileReader(mapFile);
             BufferedReader reader = new BufferedReader(fin);
+
+            String line;
+            int curY = 0;
+            while ((line = reader.readLine()) != null) {
+                Entity entity;
+                for (int curX = 0; curX < line.length(); ++curX) {
+                    if (line.charAt(curX) == ' ') {
+                        continue;
+                    }
+                    if (line.charAt(curX) == '#') {
+                        entity = new Wall();
+                        entity.setPosition(new GridPosition(curX, curY));
+                        entities.add(entity);
+                    }
+                }
+                curY += 1;
+            }
         } catch (IOException e) {
             e.printStackTrace();
             throw e;
