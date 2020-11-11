@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.java.backend.Entity;
+import main.java.backend.GameState;
 import main.java.backend.agents.PlayerAgent;
 import main.java.backend.static_entities.Grass;
 import main.java.backend.static_entities.StaticEntity;
@@ -32,8 +33,7 @@ public class Board extends Application {
 
     private GraphicsContext gc;
     private Canvas canvas;
-    private List<Entity> listGrass = new ArrayList<>();
-    private List<Entity> entities = new ArrayList<>();
+    private GameState gameState;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -43,12 +43,12 @@ public class Board extends Application {
         Group root = new Group();
         root.getChildren().add(canvas);
 
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, Color.GREEN);
 
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        testCreateMap();
+        gameState = new GameState("src/main/resources/levels/Level1.txt");
 
         render();
     }
@@ -59,36 +59,9 @@ public class Board extends Application {
 
     public void render() throws FileNotFoundException {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        listGrass.forEach(g -> g.render(gc));
-        entities.forEach(g -> g.render(gc));
-    }
-
-    public void testCreateMap() throws IOException {
-
-        //testloadLevel
-        char[][] map = new char[WIDTH][HEIGHT];
-        BufferedReader br = new BufferedReader(new FileReader("src/main/resources/levels/Level1.txt"));
-        String line;
-        int rowNum = 0;
-        while ((line = br.readLine()) != null) {
-            for(int i = 0; i < line.length(); i++) {
-                map[i][rowNum] = line.charAt(i);
-            }
-            rowNum++;
+        for (Entity g : gameState.getEntityList()) {
+            System.out.println(g);
         }
-
-        Entity object;
-        for (int i=0; i<WIDTH; i++) {
-            for (int j=0; j<HEIGHT; j++) {
-                object = new Grass();
-                object.setPosition(new GridPosition(i, j));
-                entities.add(object);
-                if (Character.compare(map[i][j], '#') == 0) {
-                    object = new Wall();
-                    object.setPosition(new GridPosition(i, j));
-                    entities.add(object);
-                }
-            }
-        }
+        gameState.getEntityList().forEach(g -> g.render(gc));
     }
 }
