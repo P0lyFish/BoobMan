@@ -1,6 +1,8 @@
 package main.java.backend;
 
 import javafx.scene.input.KeyEvent;
+import main.java.backend.agents.Balloon;
+import main.java.backend.agents.Oneal;
 import main.java.backend.agents.PlayerAgent;
 import main.java.backend.static_entities.Portal;
 import main.java.backend.static_entities.Wall;
@@ -46,6 +48,18 @@ public class GameState {
                     if (line.charAt(curX) == '#') {
                         entity = new Wall();
                         entity.setPosition(new GridPosition(curX, curY));
+                        entities.add(entity);
+                    }
+                    else if (line.charAt(curX) == 'p') {
+                        entity = new PlayerAgent(new GridPosition(curX, curY), DEFAULT_SPEED, DEFAULT_BLAST_RANGE);
+                        entities.add(entity);
+                    }
+                    else if (line.charAt(curX) == 'f') {
+                        entity = new Balloon(new GridPosition(curX, curY), DEFAULT_SPEED);
+                        entities.add(entity);
+                    }
+                    else if (line.charAt(curX) == 'x') {
+                        entity = new Oneal(new GridPosition(curX, curY), DEFAULT_SPEED);
                         entities.add(entity);
                     }
                 }

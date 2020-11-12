@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
 import main.java.backend.static_entities.StaticEntity;
+import main.java.graphics.Sprite;
 import main.java.utils.Direction;
 import main.java.utils.GridPosition;
 
@@ -62,18 +63,21 @@ abstract public class Agent extends Entity {
 
     public Image getCurrentTexture() {
         if (isNormal()) {
-            return new Image(String.format("src/main/resources/%s_%s_%s.png", entityType.toString(),
-                    currentDirection.toString(), movingType.toString()));
+            return Sprite.agent_sprites.get(String.format("%s_%s_%s", entityType.toString(),
+                    currentDirection.toString(), movingType.toString())).getCurrentTexture();
         }
         else {
             if (timeUntilVanish > REMAINING_TIME_MID) {
-                return new Image(String.format("src/main/resources/%s_1.png", entityType.toString()));
+                return Sprite.agent_sprites.get(String.format("%s_VANISHING_1",
+                        entityType.toString())).getCurrentTexture();
             }
             if (REMAINING_TIME_MIN <= timeUntilVanish && timeUntilVanish < REMAINING_TIME_MID) {
-                return new Image(String.format("src/main/resources/%s_2.png", entityType.toString()));
+                return Sprite.agent_sprites.get(String.format("%s_VANISHING_2",
+                        entityType.toString())).getCurrentTexture();
             }
             else {
-                return new Image(String.format("src/main/resources/%s_3.png", entityType.toString()));
+                return Sprite.agent_sprites.get(String.format("%s_VANISHING_3",
+                        entityType.toString())).getCurrentTexture();
             }
         }
     }
