@@ -32,11 +32,11 @@ public class GridPosition {
             case WEST:
                 return new GridPosition(this.getX() - speed, this.getY());
             case NORTH:
-                return new GridPosition(this.getX(), this.getY() + speed);
+                return new GridPosition(this.getX(), this.getY() - speed);
             case EAST:
                 return new GridPosition(this.getX() + speed, this.getY());
             case SOUTH:
-                return new GridPosition(this.getX(), this.getY() - speed);
+                return new GridPosition(this.getX(), this.getY() + speed);
             default:
                 throw new IllegalStateException("Unexpected value: " + dir);
         }
