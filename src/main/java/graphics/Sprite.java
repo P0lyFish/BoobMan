@@ -16,15 +16,7 @@ public class Sprite {
 
     // LAY ANH CON TU 1 ANH LON
 
-    /*
-    |--------------------------------------------------------------------------
-    | Board sprites
-    |--------------------------------------------------------------------------
-     */
-    public static Sprite grass = new Sprite(6, 0);
-    public static Sprite brick = new Sprite(7, 0);
-    public static Sprite wall = new Sprite(5, 0);
-    public static Sprite portal = new Sprite(4, 0);
+
 
     /*
     |--------------------------------------------------------------------------
@@ -32,6 +24,7 @@ public class Sprite {
     |--------------------------------------------------------------------------
      */
     public static HashMap<String, Sprite> agent_sprites = new HashMap<>();
+
     static {
         agent_sprites.put("bomberman_EAST_STEP_LEFT", new Sprite(1, 2));
         agent_sprites.put("bomberman_EAST_STEP_RIGHT", new Sprite(1, 1));
@@ -182,6 +175,24 @@ public class Sprite {
     public static Sprite mob_dead2 = new Sprite(15, 1);
     public static Sprite mob_dead3 = new Sprite(15, 2);
 
+
+
+
+    //hash map chứa static entities
+    public static HashMap<String, Sprite> static_sprites = new HashMap<>();
+    /*
+    |--------------------------------------------------------------------------
+    | Board sprites
+    |--------------------------------------------------------------------------
+     */
+
+
+    public static Sprite grass = new Sprite(6, 0);
+    public static Sprite brick = new Sprite(7, 0);
+    public static Sprite wall = new Sprite(5, 0);
+    public static Sprite portal = new Sprite(4, 0);
+
+
     /*
     |--------------------------------------------------------------------------
     | Bomb Sprites
@@ -246,6 +257,83 @@ public class Sprite {
     public static Sprite powerup_bombpass = new Sprite(5, 10);
     public static Sprite pass_flame_item = new Sprite(6, 10);
 
+    /*
+    |--------------------------------------------------------------------------
+    | Board sprites put to hashmap
+    |--------------------------------------------------------------------------
+     */
+    static {
+        static_sprites.put("grass", grass);
+        static_sprites.put("brick", brick);
+        static_sprites.put("wall", wall);
+        static_sprites.put("portal", portal);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Bomb sprites put to hashmap
+    |--------------------------------------------------------------------------
+     */
+    static {
+        static_sprites.put("bomb_0", bomb_0);
+        static_sprites.put("bomb_1", bomb_1);
+        static_sprites.put("bomb_2", bomb_2);
+    }
+    /*
+    |--------------------------------------------------------------------------
+    | FlameSegment Sprites put to hashmap
+    |--------------------------------------------------------------------------
+     */
+    static {
+        static_sprites.put("bomb_exploded0", bomb_exploded0);
+        static_sprites.put("bomb_exploded1", bomb_exploded1);
+        static_sprites.put("bomb_exploded2", bomb_exploded2);
+        static_sprites.put("explosion_vertical0", explosion_vertical0);
+        static_sprites.put("explosion_vertical1", explosion_vertical1);
+        static_sprites.put("explosion_vertical2", explosion_vertical2);
+        static_sprites.put("explosion_horizontal0", explosion_horizontal0);
+        static_sprites.put("explosion_horizontal1", explosion_horizontal1);
+        static_sprites.put("explosion_horizontal2", explosion_horizontal2);
+        static_sprites.put("explosion_horizontal_left_last0", explosion_horizontal_left_last0);
+        static_sprites.put("explosion_horizontal_left_last1", explosion_horizontal_left_last1);
+        static_sprites.put("explosion_horizontal_left_last2", explosion_horizontal_left_last2);
+        static_sprites.put("explosion_horizontal_right_last0", explosion_horizontal_right_last0);
+        static_sprites.put("explosion_horizontal_right_last1", explosion_horizontal_right_last1);
+        static_sprites.put("explosion_horizontal_right_last2", explosion_horizontal_right_last2);
+        static_sprites.put("explosion_vertical_top_last0", explosion_vertical_top_last0);
+        static_sprites.put("explosion_vertical_top_last1", explosion_vertical_top_last1);
+        static_sprites.put("explosion_vertical_top_last2", explosion_vertical_top_last2);
+        static_sprites.put("explosion_vertical_down_last0", explosion_vertical_down_last0);
+        static_sprites.put("explosion_vertical_down_last1", explosion_vertical_down_last1);
+        static_sprites.put("explosion_vertical_down_last2", explosion_vertical_down_last2);
+
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Brick FlameSegment put to hashmap
+    |--------------------------------------------------------------------------
+     */
+    static {
+        static_sprites.put("brick_exploded0",brick_exploded0);
+        static_sprites.put("brick_exploded1",brick_exploded1);
+        static_sprites.put("brick_exploded2",brick_exploded2);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Powerups
+    |--------------------------------------------------------------------------
+     */
+    static {
+        static_sprites.put("bomb_item", bomb_item);
+        static_sprites.put("flame_item", flame_item);
+        static_sprites.put("speed_item", speed_item);
+        static_sprites.put("pass_wall_item", pass_wall_item);
+        static_sprites.put("detonator_item", detonator_item);
+        static_sprites.put("powerup_bombpass", powerup_bombpass);
+        static_sprites.put("pass_flame_item", pass_flame_item);
+    }
     public Sprite(int xx, int yy) {
         SIZE = Board.DEFAULT_SIZE;
         pixels = new int[SIZE * SIZE];

@@ -6,6 +6,7 @@ import main.java.backend.GameState;
 import main.java.backend.agents.Agent;
 import main.java.backend.agents.BomberMan;
 import main.java.backend.static_entities.flames.*;
+import main.java.graphics.Sprite;
 import main.java.utils.EntityType;
 import main.java.utils.GridPosition;
 
@@ -134,16 +135,16 @@ public class Bomb extends StaticEntity {
 
     public Image getCurrentTexture() {
         if(timer <= REMAINING_TIME_MAX && timer > REMAINING_TIME_MID) {
-            return new Image(String.format("main\\resources\\sprites\\%s0.png", entityType.toString()));
+            return Sprite.static_sprites.get(String.format("%s_0", entityType.toString())).getCurrentTexture();
         }
         else if(timer > REMAINING_TIME_MIN && timer <= REMAINING_TIME_MID) {
-            return new Image(String.format("main\\resources\\sprites\\%s1.png", entityType.toString()));
+            return Sprite.static_sprites.get(String.format("%s_1", entityType.toString())).getCurrentTexture();
         }
         else if(timer > 0 && timer <= REMAINING_TIME_MIN) {
-            return new Image(String.format("main\\resources\\sprites\\%s2.png", entityType.toString()));
+            return new Image(String.format("main\\resources\\sprites\\%s_2.png", entityType.toString()));
         }
         else {
-            return new Image("main\\resources\\sprites\\grass.png");
+            return Sprite.grass.getCurrentTexture();
         }
     }
 }

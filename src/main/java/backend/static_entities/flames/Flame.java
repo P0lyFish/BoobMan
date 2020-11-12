@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
 import main.java.backend.static_entities.StaticEntity;
+import main.java.graphics.Sprite;
 import main.java.utils.EntityType;
 
 import java.io.FileInputStream;
@@ -22,38 +23,18 @@ abstract public class Flame extends StaticEntity {
     }
 
     public Image getCurrentTexture() {
-        String filePath = "";
         if(timeUntilVanish <= REMAINING_TIME_MAX && timeUntilVanish > REMAINING_TIME_MID) {
-            filePath = String.format("main\\resources\\sprites\\%s2.png", entityType.toString());
-            try {
-                return new Image(new FileInputStream(filePath));
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+            return Sprite.static_sprites.get(String.format("%s2", entityType.toString())).getCurrentTexture();
         }
         else if(timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
-            filePath = String.format("main\\resources\\sprites\\%s1.png", entityType.toString());
-            try {
-                return new Image(new FileInputStream(filePath));
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+            return Sprite.static_sprites.get(String.format("%s1", entityType.toString())).getCurrentTexture();
+
         }
         else if(timeUntilVanish > 0 && timeUntilVanish <= REMAINING_TIME_MIN) {
-            filePath = String.format("main\\resources\\sprites\\%s0.png", entityType.toString());
-            try {
-                return new Image(new FileInputStream(filePath));
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+            return Sprite.static_sprites.get(String.format("%s0", entityType.toString())).getCurrentTexture();
+
         }
-        filePath = "main\\resources\\sprites\\grass.png";
-        FileInputStream f = null;
-        try {
-            f = new FileInputStream(filePath);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return new Image(f);
+
+        return Sprite.grass.getCurrentTexture();
     }
 }

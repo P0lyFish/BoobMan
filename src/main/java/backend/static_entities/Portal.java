@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
 import main.java.backend.agents.PlayerAgent;
+import main.java.graphics.Sprite;
 import main.java.utils.EntityType;
 
 public class Portal extends StaticEntity {
@@ -26,7 +27,7 @@ public class Portal extends StaticEntity {
     }
 
     public Image getCurrentTexture() {
-        return new Image(String.format("main\\resources\\sprites\\%s.png", entityType.toString()));
+        return Sprite.portal.getCurrentTexture();
     }
 
     public void updateGameState(GameState gameState) {
