@@ -59,9 +59,6 @@ public class Board extends Application {
 
     public void render() throws FileNotFoundException {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        for (Entity g : gameState.getEntityList()) {
-            System.out.println(g);
-        }
         gameState.getEntityList().forEach(g -> g.render(gc));
     }
 }
