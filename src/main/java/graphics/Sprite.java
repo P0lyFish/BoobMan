@@ -1,5 +1,6 @@
 package main.java.graphics;
 
+import com.sun.deploy.cache.CacheEntry;
 import javafx.scene.image.*;
 import main.java.Board;
 
@@ -119,7 +120,7 @@ public class Sprite {
     | Bomb Sprites
     |--------------------------------------------------------------------------
      */
-    public static Sprite bomb = new Sprite(0, 3);
+    public static Sprite bomb_0 = new Sprite(0, 3);
     public static Sprite bomb_1 = new Sprite(1, 3);
     public static Sprite bomb_2 = new Sprite(2, 3);
 
@@ -128,31 +129,31 @@ public class Sprite {
     | FlameSegment Sprites
     |--------------------------------------------------------------------------
      */
-    public static Sprite bomb_exploded = new Sprite(0, 4);
+    public static Sprite bomb_exploded0 = new Sprite(0, 4);
     public static Sprite bomb_exploded1 = new Sprite(0, 5);
     public static Sprite bomb_exploded2 = new Sprite(0, 6);
 
-    public static Sprite explosion_vertical = new Sprite(1, 5);
+    public static Sprite explosion_vertical0 = new Sprite(1, 5);
     public static Sprite explosion_vertical1 = new Sprite(2, 5);
     public static Sprite explosion_vertical2 = new Sprite(3, 5);
 
-    public static Sprite explosion_horizontal = new Sprite(1, 7);
+    public static Sprite explosion_horizontal0 = new Sprite(1, 7);
     public static Sprite explosion_horizontal1 = new Sprite(1, 8);
     public static Sprite explosion_horizontal2 = new Sprite(1, 9);
 
-    public static Sprite explosion_horizontal_left_last = new Sprite(0, 7);
+    public static Sprite explosion_horizontal_left_last0 = new Sprite(0, 7);
     public static Sprite explosion_horizontal_left_last1 = new Sprite(0, 8);
     public static Sprite explosion_horizontal_left_last2 = new Sprite(0, 9);
 
-    public static Sprite explosion_horizontal_right_last = new Sprite(2, 7);
+    public static Sprite explosion_horizontal_right_last0 = new Sprite(2, 7);
     public static Sprite explosion_horizontal_right_last1 = new Sprite(2, 8);
     public static Sprite explosion_horizontal_right_last2 = new Sprite(2, 9);
 
-    public static Sprite explosion_vertical_top_last = new Sprite(1, 4);
+    public static Sprite explosion_vertical_top_last0 = new Sprite(1, 4);
     public static Sprite explosion_vertical_top_last1 = new Sprite(2, 4);
     public static Sprite explosion_vertical_top_last2 = new Sprite(3, 4);
 
-    public static Sprite explosion_vertical_down_last = new Sprite(1, 6);
+    public static Sprite explosion_vertical_down_last0 = new Sprite(1, 6);
     public static Sprite explosion_vertical_down_last1 = new Sprite(2, 6);
     public static Sprite explosion_vertical_down_last2 = new Sprite(3, 6);
 
@@ -161,7 +162,7 @@ public class Sprite {
     | Brick FlameSegment
     |--------------------------------------------------------------------------
      */
-    public static Sprite brick_exploded = new Sprite(7, 1);
+    public static Sprite brick_exploded0 = new Sprite(7, 1);
     public static Sprite brick_exploded1 = new Sprite(7, 2);
     public static Sprite brick_exploded2 = new Sprite(7, 3);
 
@@ -170,13 +171,13 @@ public class Sprite {
     | Powerups
     |--------------------------------------------------------------------------
      */
-    public static Sprite powerup_bombs = new Sprite(0, 10);
-    public static Sprite powerup_flames = new Sprite(1, 10);
-    public static Sprite powerup_speed = new Sprite(2, 10);
-    public static Sprite powerup_wallpass = new Sprite(3, 10);
-    public static Sprite powerup_detonator = new Sprite(4, 10);
+    public static Sprite bomb_item = new Sprite(0, 10);
+    public static Sprite flame_item = new Sprite(1, 10);
+    public static Sprite speed_item = new Sprite(2, 10);
+    public static Sprite pass_wall_item = new Sprite(3, 10);
+    public static Sprite detonator_item = new Sprite(4, 10);
     public static Sprite powerup_bombpass = new Sprite(5, 10);
-    public static Sprite powerup_flamepass = new Sprite(6, 10);
+    public static Sprite pass_flame_item = new Sprite(6, 10);
 
     public Sprite(int xx, int yy) {
         SIZE = Board.DEFAULT_SIZE;
