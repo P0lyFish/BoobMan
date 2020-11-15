@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import main.java.GUI.Taskbar;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
 import main.java.backend.agents.PlayerAgent;
@@ -39,9 +40,12 @@ public class Board extends Application {
     public void start(Stage primaryStage) throws Exception {
         canvas = new Canvas(SCALED_SIZE * WIDTH, SCALED_SIZE * HEIGHT);
         gc = canvas.getGraphicsContext2D();
-
+        canvas.setLayoutX(0);
+        canvas.setLayoutY(80.0);
+        Taskbar taskbar = new Taskbar();
+        Group group = taskbar.createTaskbar();
         Group root = new Group();
-        root.getChildren().add(canvas);
+        root.getChildren().addAll(canvas,group);
 
         Scene scene = new Scene(root, Color.GREEN);
 
