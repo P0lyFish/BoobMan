@@ -71,20 +71,20 @@ abstract public class Agent extends Entity {
     public Image getCurrentTexture() {
         if (isNormal()) {
             return Sprite.agent_sprites.get(String.format("%s_%s_%s", entityType.toString(),
-                    currentDirection.toString(), movingType.toString())).getCurrentTexture();
+                    currentDirection.toString(), movingType.toString()));
         }
         else {
             if (timeUntilVanish > REMAINING_TIME_MID) {
                 return Sprite.agent_sprites.get(String.format("%s_VANISHING_1",
-                        entityType.toString())).getCurrentTexture();
+                        entityType.toString()));
             }
             if (REMAINING_TIME_MIN <= timeUntilVanish && timeUntilVanish < REMAINING_TIME_MID) {
                 return Sprite.agent_sprites.get(String.format("%s_VANISHING_2",
-                        entityType.toString())).getCurrentTexture();
+                        entityType.toString()));
             }
             else {
                 return Sprite.agent_sprites.get(String.format("%s_VANISHING_3",
-                        entityType.toString())).getCurrentTexture();
+                        entityType.toString()));
             }
         }
     }

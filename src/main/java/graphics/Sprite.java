@@ -23,49 +23,29 @@ public class Sprite {
     | Bomber Sprites
     |--------------------------------------------------------------------------
      */
-    public static HashMap<String, Sprite> agent_sprites = new HashMap<>();
+    public static HashMap<String, Image> agent_sprites = new HashMap<>();
 
     static {
-        agent_sprites.put("bomberman_EAST_STEP_LEFT", new Sprite(1, 2));
-        agent_sprites.put("bomberman_EAST_STEP_RIGHT", new Sprite(1, 1));
-        agent_sprites.put("bomberman_EAST_STOP", new Sprite(1, 0));
+        agent_sprites.put("bomberman_EAST_STEP_LEFT", new Sprite(1, 2).getCurrentTexture());
+        agent_sprites.put("bomberman_EAST_STEP_RIGHT", new Sprite(1, 1).getCurrentTexture());
+        agent_sprites.put("bomberman_EAST_STOP", new Sprite(1, 0).getCurrentTexture());
 
-        agent_sprites.put("bomberman_NORTH_STEP_LEFT", new Sprite(0, 2));
-        agent_sprites.put("bomberman_NORTH_STEP_RIGHT", new Sprite(0, 1));
-        agent_sprites.put("bomberman_NORTH_STOP", new Sprite(0, 0));
+        agent_sprites.put("bomberman_NORTH_STEP_LEFT", new Sprite(0, 2).getCurrentTexture());
+        agent_sprites.put("bomberman_NORTH_STEP_RIGHT", new Sprite(0, 1).getCurrentTexture());
+        agent_sprites.put("bomberman_NORTH_STOP", new Sprite(0, 0).getCurrentTexture());
 
-        agent_sprites.put("bomberman_WEST_STEP_LEFT", new Sprite(3, 2));
-        agent_sprites.put("bomberman_WEST_STEP_RIGHT", new Sprite(3, 1));
-        agent_sprites.put("bomberman_WEST_STOP", new Sprite(3, 0));
+        agent_sprites.put("bomberman_WEST_STEP_LEFT", new Sprite(3, 2).getCurrentTexture());
+        agent_sprites.put("bomberman_WEST_STEP_RIGHT", new Sprite(3, 1).getCurrentTexture());
+        agent_sprites.put("bomberman_WEST_STOP", new Sprite(3, 0).getCurrentTexture());
 
-        agent_sprites.put("bomberman_SOUTH_STEP_LEFT", new Sprite(2, 2));
-        agent_sprites.put("bomberman_SOUTH_STEP_RIGHT", new Sprite(2, 1));
-        agent_sprites.put("bomberman_SOUTH_STOP", new Sprite(2, 0));
+        agent_sprites.put("bomberman_SOUTH_STEP_LEFT", new Sprite(2, 2).getCurrentTexture());
+        agent_sprites.put("bomberman_SOUTH_STEP_RIGHT", new Sprite(2, 1).getCurrentTexture());
+        agent_sprites.put("bomberman_SOUTH_STOP", new Sprite(2, 0).getCurrentTexture());
 
-        agent_sprites.put("bomberman_VANISHING_1", new Sprite(4, 2));
-        agent_sprites.put("bomberman_VANISHING_2", new Sprite(5, 2));
-        agent_sprites.put("bomberman_VANISHING_3", new Sprite(6, 2));
+        agent_sprites.put("bomberman_VANISHING_1", new Sprite(4, 2).getCurrentTexture());
+        agent_sprites.put("bomberman_VANISHING_2", new Sprite(5, 2).getCurrentTexture());
+        agent_sprites.put("bomberman_VANISHING_3", new Sprite(6, 2).getCurrentTexture());
     }
-    // public static Sprite player_up = new Sprite(0, 0);
-    // public static Sprite player_down = new Sprite(2, 0);
-    // public static Sprite player_left = new Sprite(3, 0);
-    // public static Sprite player_right = new Sprite(1, 0);
-
-    // public static Sprite player_up_1 = new Sprite(0, 1);
-    // public static Sprite player_up_2 = new Sprite(0, 2);
-
-    // public static Sprite player_down_1 = new Sprite(2, 1);
-    // public static Sprite player_down_2 = new Sprite(2, 2);
-
-    // public static Sprite player_left_1 = new Sprite(3, 1);
-    // public static Sprite player_left_2 = new Sprite(3, 2);
-
-    // public static Sprite player_right_1 = new Sprite(1, 1);
-    // public static Sprite player_right_2 = new Sprite(1, 2);
-
-    // public static Sprite player_dead1 = new Sprite(4, 2);
-    // public static Sprite player_dead2 = new Sprite(5, 2);
-    // public static Sprite player_dead3 = new Sprite(6, 2);
 
     /*
     |--------------------------------------------------------------------------
@@ -74,68 +54,49 @@ public class Sprite {
      */
     //BALLOON
     static {
-        agent_sprites.put("balloon_EAST_STEP_LEFT", new Sprite(10, 2));
-        agent_sprites.put("balloon_EAST_STEP_RIGHT", new Sprite(10, 1));
-        agent_sprites.put("balloon_EAST_STOP", new Sprite(10, 0));
+        agent_sprites.put("balloon_EAST_STEP_LEFT", new Sprite(10, 2).getCurrentTexture());
+        agent_sprites.put("balloon_EAST_STEP_RIGHT", new Sprite(10, 1).getCurrentTexture());
+        agent_sprites.put("balloon_EAST_STOP", new Sprite(10, 0).getCurrentTexture());
 
-        agent_sprites.put("balloon_NORTH_STEP_LEFT", new Sprite(10, 2));
-        agent_sprites.put("balloon_NORTH_STEP_RIGHT", new Sprite(10, 1));
-        agent_sprites.put("balloon_NORTH_STOP", new Sprite(10, 0));
+        agent_sprites.put("balloon_NORTH_STEP_LEFT", new Sprite(10, 2).getCurrentTexture());
+        agent_sprites.put("balloon_NORTH_STEP_RIGHT", new Sprite(10, 1).getCurrentTexture());
+        agent_sprites.put("balloon_NORTH_STOP", new Sprite(10, 0).getCurrentTexture());
 
-        agent_sprites.put("balloon_WEST_STEP_LEFT", new Sprite(9, 2));
-        agent_sprites.put("balloon_WEST_STEP_RIGHT", new Sprite(9, 1));
-        agent_sprites.put("balloon_WEST_STOP", new Sprite(9, 0));
+        agent_sprites.put("balloon_WEST_STEP_LEFT", new Sprite(9, 2).getCurrentTexture());
+        agent_sprites.put("balloon_WEST_STEP_RIGHT", new Sprite(9, 1).getCurrentTexture());
+        agent_sprites.put("balloon_WEST_STOP", new Sprite(9, 0).getCurrentTexture());
 
-        agent_sprites.put("balloon_SOUTH_STEP_LEFT", new Sprite(9, 2));
-        agent_sprites.put("balloon_SOUTH_STEP_RIGHT", new Sprite(9, 1));
-        agent_sprites.put("balloon_SOUTH_STOP", new Sprite(9, 0));
+        agent_sprites.put("balloon_SOUTH_STEP_LEFT", new Sprite(9, 2).getCurrentTexture());
+        agent_sprites.put("balloon_SOUTH_STEP_RIGHT", new Sprite(9, 1).getCurrentTexture());
+        agent_sprites.put("balloon_SOUTH_STOP", new Sprite(9, 0).getCurrentTexture());
 
-        agent_sprites.put("balloon_VANISHING_1", new Sprite(9, 3));
-        agent_sprites.put("balloon_VANISHING_2", new Sprite(9, 3));
-        agent_sprites.put("balloon_VANISHING_3", new Sprite(9, 3));
+        agent_sprites.put("balloon_VANISHING_1", new Sprite(9, 3).getCurrentTexture());
+        agent_sprites.put("balloon_VANISHING_2", new Sprite(9, 3).getCurrentTexture());
+        agent_sprites.put("balloon_VANISHING_3", new Sprite(9, 3).getCurrentTexture());
     }
-
-    // public static Sprite balloom_left1 = new Sprite(9, 0);
-    // public static Sprite balloom_left2 = new Sprite(9, 1);
-    // public static Sprite balloom_left3 = new Sprite(9, 2);
-
-    // public static Sprite balloom_right1 = new Sprite(10, 0);
-    // public static Sprite balloom_right2 = new Sprite(10, 1);
-    // public static Sprite balloom_right3 = new Sprite(10, 2);
-
-    // public static Sprite balloom_dead = new Sprite(9, 3);
 
     //ONEAL
     static {
-        agent_sprites.put("oneal_EAST_STEP_LEFT", new Sprite(12, 2));
-        agent_sprites.put("oneal_EAST_STEP_RIGHT", new Sprite(12, 1));
-        agent_sprites.put("oneal_EAST_STOP", new Sprite(12, 0));
+        agent_sprites.put("oneal_EAST_STEP_LEFT", new Sprite(12, 2).getCurrentTexture());
+        agent_sprites.put("oneal_EAST_STEP_RIGHT", new Sprite(12, 1).getCurrentTexture());
+        agent_sprites.put("oneal_EAST_STOP", new Sprite(12, 0).getCurrentTexture());
 
-        agent_sprites.put("oneal_NORTH_STEP_LEFT", new Sprite(12, 2));
-        agent_sprites.put("oneal_NORTH_STEP_RIGHT", new Sprite(12, 1));
-        agent_sprites.put("oneal_NORTH_STOP", new Sprite(12, 0));
+        agent_sprites.put("oneal_NORTH_STEP_LEFT", new Sprite(12, 2).getCurrentTexture());
+        agent_sprites.put("oneal_NORTH_STEP_RIGHT", new Sprite(12, 1).getCurrentTexture());
+        agent_sprites.put("oneal_NORTH_STOP", new Sprite(12, 0).getCurrentTexture());
 
-        agent_sprites.put("oneal_WEST_STEP_LEFT", new Sprite(11, 2));
-        agent_sprites.put("oneal_WEST_STEP_RIGHT", new Sprite(11, 1));
-        agent_sprites.put("oneal_WEST_STOP", new Sprite(11, 0));
+        agent_sprites.put("oneal_WEST_STEP_LEFT", new Sprite(11, 2).getCurrentTexture());
+        agent_sprites.put("oneal_WEST_STEP_RIGHT", new Sprite(11, 1).getCurrentTexture());
+        agent_sprites.put("oneal_WEST_STOP", new Sprite(11, 0).getCurrentTexture());
 
-        agent_sprites.put("oneal_SOUTH_STEP_LEFT", new Sprite(11, 2));
-        agent_sprites.put("oneal_SOUTH_STEP_RIGHT", new Sprite(11, 1));
-        agent_sprites.put("oneal_SOUTH_STOP", new Sprite(11, 0));
+        agent_sprites.put("oneal_SOUTH_STEP_LEFT", new Sprite(11, 2).getCurrentTexture());
+        agent_sprites.put("oneal_SOUTH_STEP_RIGHT", new Sprite(11, 1).getCurrentTexture());
+        agent_sprites.put("oneal_SOUTH_STOP", new Sprite(11, 0).getCurrentTexture());
 
-        agent_sprites.put("oneal_VANISHING_1", new Sprite(11, 3));
-        agent_sprites.put("oneal_VANISHING_2", new Sprite(11, 3));
-        agent_sprites.put("oneal_VANISHING_3", new Sprite(11, 3));
+        agent_sprites.put("oneal_VANISHING_1", new Sprite(11, 3).getCurrentTexture());
+        agent_sprites.put("oneal_VANISHING_2", new Sprite(11, 3).getCurrentTexture());
+        agent_sprites.put("oneal_VANISHING_3", new Sprite(11, 3).getCurrentTexture());
     }
-    public static Sprite oneal_left1 = new Sprite(11, 0);
-    public static Sprite oneal_left2 = new Sprite(11, 1);
-    public static Sprite oneal_left3 = new Sprite(11, 2);
-
-    public static Sprite oneal_right1 = new Sprite(12, 0);
-    public static Sprite oneal_right2 = new Sprite(12, 1);
-    public static Sprite oneal_right3 = new Sprite(12, 2);
-
-    public static Sprite oneal_dead = new Sprite(11, 3);
 
     //Doll
     public static Sprite doll_left1 = new Sprite(13, 0);
