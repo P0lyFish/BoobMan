@@ -67,4 +67,31 @@ public class PlayerAgent extends BomberMan {
             }
         }
     }
+
+    public void move(String status) {
+
+        if(status.compareTo("UP") == 0) {
+           float x = this.getPosition().getX();
+           float y = this.getPosition().getY();
+           this.setPosition(new GridPosition(x,y + 1));
+        }
+        if(status.compareTo("DOWN") == 0) {
+            float x = this.getPosition().getX();
+            float y = this.getPosition().getY();
+            this.setPosition(new GridPosition(x,y - 1));
+        }
+        if(status.compareTo("LEFT") == 0) {
+            float x = this.getPosition().getX();
+            float y = this.getPosition().getY();
+            this.setPosition(new GridPosition(x - 1,y));
+        }
+        if(status.compareTo("RIGHT") == 0) {
+            float x = this.getPosition().getX();
+            float y = this.getPosition().getY();
+            this.setPosition(new GridPosition(x + 1,y));
+        }
+        if(status.compareTo("NONE") == 0) {
+
+        }
+    }
 }

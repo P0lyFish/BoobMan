@@ -2,6 +2,7 @@ package main.java;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
@@ -9,8 +10,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import main.java.GUI.KeyboardHandler;
 import main.java.GUI.Taskbar;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
@@ -35,6 +38,7 @@ public class Board extends Application {
     private GraphicsContext gc;
     private Canvas canvas;
     private GameState gameState;
+    private KeyboardHandler keyboard;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -55,6 +59,18 @@ public class Board extends Application {
         gameState = new GameState("src/main/resources/levels/Level1.txt");
 
         render();
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                gameState.addPlayerInput(event);
+            }
+        });
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                gameState.addPlayerInput(event);
+            }
+        });
     }
 
     public static void main(String[] args) {
