@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 public class Wall extends StaticEntity {
     public Wall() {
         this.entityType = EntityType.wall;
+        blocked = true;
     }
 
     public void destroy() {
