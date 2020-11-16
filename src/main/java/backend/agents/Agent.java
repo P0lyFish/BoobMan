@@ -18,22 +18,22 @@ abstract public class Agent extends Entity {
         STOP, STEP_LEFT, STEP_RIGHT
     }
 
-    protected float speed;
+    protected double speed;
     protected Direction currentDirection;
     protected MovingType movingType = MovingType.STOP;
 
-    public Agent(GridPosition position, float speed) {
+    public Agent(GridPosition position, double speed) {
         super(position, true, false, true, REMAINING_TIME_MAX);
         this.speed = speed;
         int pick = new Random().nextInt(Direction.values().length);
         currentDirection = Direction.values()[pick];
     }
 
-    public void setSpeed(float speed) {
+    public void setSpeed(double speed) {
         this.speed = speed;
     }
 
-    public float getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
@@ -51,8 +51,8 @@ abstract public class Agent extends Entity {
 
         boolean validMove = true;
         for (Entity e : gameState.getEntityList()) {
-            float d = newPosition.distance(e.getPosition());
-            if (d < 0.90 && e.isBlocked()) {
+            double d = newPosition.distance(e.getPosition());
+            if (d < 1 && e.isBlocked()) {
                 // System.out.println(d);
                 // System.out.println(e.getPosition());
                 // System.out.println(newPosition);
@@ -112,7 +112,7 @@ abstract public class Agent extends Entity {
         this.move(dir, gameState);
 
         for (Entity e : gameState.getEntityList()) {
-            float d = position.distance(e.getPosition());
+            double d = position.distance(e.getPosition());
             if (d < 1 && e instanceof PlayerAgent) {
                 e.destroy();
             }

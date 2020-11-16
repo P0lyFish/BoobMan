@@ -9,7 +9,7 @@ abstract public class BomberMan extends Agent {
     protected int blastRange;
     protected int remainingBombs;
 
-    public BomberMan(GridPosition position, float speed, int blastRange) {
+    public BomberMan(GridPosition position, double speed, int blastRange) {
         super(position, speed);
         this.blastRange = blastRange;
         entityType = EntityType.bomberman;

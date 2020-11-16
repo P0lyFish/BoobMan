@@ -12,7 +12,7 @@ import java.util.Random;
 
 
 public class Balloon extends Agent {
-    public Balloon(GridPosition position, float speed) {
+    public Balloon(GridPosition position, double speed) {
         super(position, speed);
         entityType = EntityType.balloon;
     }

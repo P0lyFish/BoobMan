@@ -1,7 +1,9 @@
 package main.java.graphics;
 
 //import com.sun.deploy.cache.CacheEntry;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.image.*;
+import javafx.scene.paint.Color;
 import main.java.Board;
 
 import java.util.HashMap;
@@ -325,7 +327,15 @@ public class Sprite {
             }
         }
         Image input = new ImageView(wr).getImage();
-        return resample(input, Board.SCALED_SIZE / Board.DEFAULT_SIZE);
+        Image output = resample(input, Board.SCALED_SIZE / Board.DEFAULT_SIZE);
+
+        SnapshotParameters params = new SnapshotParameters();
+        params.setFill(Color.TRANSPARENT);
+
+        ImageView iv = new ImageView(output);
+        Image base = iv.snapshot(params, null);
+
+        return base;
     }
 
     private Image resample(Image input, int scaleFactor) {

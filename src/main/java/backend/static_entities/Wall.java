@@ -19,7 +19,7 @@ public class Wall extends StaticEntity {
     }
 
     public Image getCurrentTexture() {
-        return Sprite.wall.getCurrentTexture();
+        return Sprite.static_sprites.get("wall");
     }
 
     public void updateGameState(GameState gameState) {

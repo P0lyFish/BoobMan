@@ -11,11 +11,11 @@ import main.java.utils.EntityType;
 import main.java.utils.GridPosition;
 
 public class Bomb extends StaticEntity {
-    private float timer;
+    private double timer;
     private BomberMan bombSetter;
 
 
-    public Bomb(GridPosition position, float timer, BomberMan bombSetter) {
+    public Bomb(GridPosition position, double timer, BomberMan bombSetter) {
         blocked = true;
         destroyable = false;
         visible = true;
@@ -25,16 +25,16 @@ public class Bomb extends StaticEntity {
         this.position = position;
     }
 
-    public void decreaseTimer(float delta) {
+    public void decreaseTimer(double delta) {
         timer -= delta;
 
     }
 
     public void updateGameState(GameState gameState) {
-        decreaseTimer((float)1 / gameState.NUM_REFRESH_PER_TIME_UNIT);
+        decreaseTimer((double)1 / gameState.NUM_REFRESH_PER_TIME_UNIT);
         if(timer <= 0) {
-            float n = this.bombSetter.getBlastRange();
-            float lenStraightFlame = n-1;
+            double n = this.bombSetter.getBlastRange();
+            double lenStraightFlame = n-1;
             CenterFlame centerFlame = new CenterFlame();
             GridPosition centerFlamePosition = this.getPosition();
             centerFlame.setPosition(centerFlamePosition);

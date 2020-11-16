@@ -9,7 +9,7 @@ import main.java.utils.Direction;
 import main.java.utils.GridPosition;
 
 public class PlayerAgent extends BomberMan {
-    public PlayerAgent(GridPosition position, float speed, int blastRange) {
+    public PlayerAgent(GridPosition position, double speed, int blastRange) {
         super(position, speed, blastRange);
     }
 
@@ -19,7 +19,7 @@ public class PlayerAgent extends BomberMan {
             return;
         }
 
-        decreaseTimeUntilVanish((float)1.0 / gameState.NUM_REFRESH_PER_TIME_UNIT);
+        decreaseTimeUntilVanish((double)1.0 / gameState.NUM_REFRESH_PER_TIME_UNIT);
 
         if (!isVanishing() && position.isLatticePoint()) {
             if (gameState.inputStackIsEmpty()) {
@@ -59,7 +59,7 @@ public class PlayerAgent extends BomberMan {
         }
 
         for (Entity entity : gameState.getEntityList()) {
-            float d = this.getPosition().distance(entity.getPosition());
+            double d = this.getPosition().distance(entity.getPosition());
             if (entity != this && entity instanceof Agent && d < 1) {
                 destroy();
                 break;

@@ -1,12 +1,12 @@
 package main.java.utils;
 
 public class GridPosition {
-    static final float EPS = (float) 1e-4;
+    static final double EPS = (double) 1e-4;
 
-    private float x;
-    private float y;
+    private double x;
+    private double y;
 
-    public GridPosition(float x, float y) {
+    public GridPosition(double x, double y) {
         this.x = x;
         this.y = y;
 
@@ -16,23 +16,23 @@ public class GridPosition {
         }
     }
 
-    public float getX() {
+    public double getX() {
         return x;
     }
 
-    public void setX(float x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public float getY() {
+    public double getY() {
         return y;
     }
 
-    public void setY(float y) {
+    public void setY(double y) {
         this.y = y;
     }
     
-    public GridPosition step(Direction dir, float speed) {
+    public GridPosition step(Direction dir, double speed) {
         GridPosition newPosition;
 
         switch (dir) {
@@ -49,8 +49,8 @@ public class GridPosition {
         }
     }
 
-    public float distance(GridPosition p) {
-        return (float) Math.sqrt((x - p.getX()) * (x - p.getX()) + (y - p.getY()) * (y - p.getY()));
+    public double distance(GridPosition p) {
+        return (double) Math.sqrt((x - p.getX()) * (x - p.getX()) + (y - p.getY()) * (y - p.getY()));
     }
 
     public boolean isLatticePoint() {

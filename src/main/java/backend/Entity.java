@@ -11,9 +11,9 @@ import main.java.utils.GridPosition;
 
 
 public abstract class Entity {
-    protected static final float REMAINING_TIME_MAX = 2;
-    protected static final float REMAINING_TIME_MID = (float)1.3;
-    protected static final float REMAINING_TIME_MIN = (float)0.6;
+    protected static final double REMAINING_TIME_MAX = 2;
+    protected static final double REMAINING_TIME_MID = (double)1.3;
+    protected static final double REMAINING_TIME_MIN = (double)0.6;
 
     protected enum Status {
         normal, vanishing, vanished;
@@ -24,20 +24,20 @@ public abstract class Entity {
     protected boolean blocked;
     protected boolean destroyable;
     protected Status status = Status.normal;
-    protected float timeUntilVanish;
+    protected double timeUntilVanish;
     protected EntityType entityType;
 
     public Entity() {}
 
     public Entity(GridPosition position, boolean visible, boolean blocked,
-                  boolean destroyable, float timeUntilVanish) {
+                  boolean destroyable, double timeUntilVanish) {
         this.position = position;
         this.visible = visible;
         this.blocked = blocked;
         this.timeUntilVanish = timeUntilVanish;
     }
 
-    protected void decreaseTimeUntilVanish(float delta) {
+    protected void decreaseTimeUntilVanish(double delta) {
         if (status == Status.vanishing) {
             timeUntilVanish -= delta;
         }
@@ -104,15 +104,17 @@ public abstract class Entity {
 
     public void render(GraphicsContext gc) {
 
-        float x = position.getX();
-        float y = position.getY();
-        Image img = getCurrentTexture();
+        double x = position.getX();
+        double y = position.getY();
+        // Image img = getCurrentTexture();
 
-        SnapshotParameters params = new SnapshotParameters();
-        params.setFill(Color.TRANSPARENT);
+        // SnapshotParameters params = new SnapshotParameters();
+        // params.setFill(Color.TRANSPARENT);
 
-        ImageView iv = new ImageView(img);
-        Image base = iv.snapshot(params, null);
+        // ImageView iv = new ImageView(img);
+        // Image base = iv.snapshot(params, null);
+
+        Image base = getCurrentTexture();
 
         gc.drawImage(base, x * Board.SCALED_SIZE, y * Board.SCALED_SIZE);
     }

@@ -10,7 +10,7 @@ import main.java.utils.GridPosition;
 import java.util.Random;
 
 public class Oneal extends Agent {
-    public Oneal(GridPosition position, float speed) {
+    public Oneal(GridPosition position, double speed) {
         super(position, speed);
         entityType = EntityType.oneal;
     }
