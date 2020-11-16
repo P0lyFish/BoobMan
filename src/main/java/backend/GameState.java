@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Stack;
 
 public class GameState {
-    public final float BOMB_EXPLOSION_TIME = 2000;
+    public final float BOMB_EXPLOSION_TIME = 2;
     public final int DEFAULT_BLAST_RANGE = 2;
     public final float DEFAULT_SPEED = 1;
     public final int NUM_REFRESH_PER_TIME_UNIT = 3;
