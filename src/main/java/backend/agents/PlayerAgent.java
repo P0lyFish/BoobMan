@@ -19,6 +19,8 @@ public class PlayerAgent extends BomberMan {
             return;
         }
 
+        decreaseTimeUntilVanish((float)1 / gameState.NUM_REFRESH_PER_TIME_UNIT);
+
         if (position.isLatticePoint()) {
             if (gameState.inputStackIsEmpty()) {
                 movingType = MovingType.STOP;
