@@ -1,12 +1,19 @@
 package main.java.utils;
 
 public class GridPosition {
+    static final float EPS = (float) 1e-4;
+
     private float x;
     private float y;
 
     public GridPosition(float x, float y) {
         this.x = x;
         this.y = y;
+
+        if (isLatticePoint()) {
+            this.x = Math.round(this.x);
+            this.y = Math.round(this.y);
+        }
     }
 
     public float getX() {
@@ -47,6 +54,14 @@ public class GridPosition {
     }
 
     public boolean isLatticePoint() {
-        return x == (int)x && y == (int)y;
+        return Math.abs(x - Math.round(x)) <= EPS && Math.abs(y - Math.round(y)) <= EPS;
+    }
+
+    @Override
+    public String toString() {
+        return "GridPosition{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }
