@@ -16,28 +16,6 @@ public class Oneal extends Agent {
     }
 
     public void updateGameState(GameState gameState) {
-        if (isVanished()) {
-            gameState.removeEntity(this);
-            return;
-        }
-
-        Direction dir;
-
-        if (position.isLatticePoint()) {
-            int pick = new Random().nextInt(Direction.values().length);
-            dir = Direction.values()[pick];
-        }
-        else {
-            dir = currentDirection;
-        }
-
-        this.move(dir, gameState);
-
-        for (Entity e : gameState.getEntityList()) {
-            float d = position.distance(e.getPosition());
-            if (d < 1 && e instanceof PlayerAgent) {
-                e.destroy();
-            }
-        }
+        randomMove(gameState);
     }
 }
