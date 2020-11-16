@@ -3,7 +3,6 @@ package main.java.backend.static_entities;
 import javafx.scene.image.Image;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
-import main.java.backend.agents.Agent;
 import main.java.backend.agents.BomberMan;
 import main.java.backend.static_entities.flames.*;
 import main.java.graphics.Sprite;
@@ -11,30 +10,36 @@ import main.java.utils.EntityType;
 import main.java.utils.GridPosition;
 
 public class Bomb extends StaticEntity {
-    private double timer;
     private BomberMan bombSetter;
 
 
-    public Bomb(GridPosition position, double timer, BomberMan bombSetter) {
-        blocked = true;
+    public Bomb(GridPosition position, float timer, BomberMan bombSetter) {
+        blocked = false;
         destroyable = false;
         visible = true;
         this.entityType = EntityType.bomb;
-        this.timer = timer;
+        this.timeUntilVanish = timer;
         this.bombSetter = bombSetter;
         this.position = position;
+        status = Status.normal;
     }
 
-    public void decreaseTimer(double delta) {
-        timer -= delta;
+    public void decreaseTimer(float delta) {
+        timeUntilVanish -= delta;
 
     }
 
     public void updateGameState(GameState gameState) {
-        decreaseTimer((double)1 / gameState.NUM_REFRESH_PER_TIME_UNIT);
-        if(timer <= 0) {
-            double n = this.bombSetter.getBlastRange();
-            double lenStraightFlame = n-1;
+        timeUntilVanish -= (float)1 / gameState.NUM_REFRESH_PER_TIME_UNIT;
+        if(timeUntilVanish <= REMAINING_TIME_MAX && timeUntilVanish > REMAINING_TIME_MID) {
+            this.status = Status.normal;
+        }
+        else if(timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
+            this.status = Status.vanishing;
+        }
+        if(timeUntilVanish <= 0) {
+            float n = this.bombSetter.getBlastRange();
+            float lenStraightFlame = n-1;
             CenterFlame centerFlame = new CenterFlame();
             GridPosition centerFlamePosition = this.getPosition();
             centerFlame.setPosition(centerFlamePosition);
@@ -43,45 +48,25 @@ public class Bomb extends StaticEntity {
             boolean checkRight = true;
             boolean checkUp = true;
             boolean checkDown = true;
-            if(lenStraightFlame != 1) {
+            if(lenStraightFlame != 0) {
                 for(int i = 1;i <= lenStraightFlame;i++) {
                     HorizontalFlame horizontalFlameLeft = new HorizontalFlame();
                     HorizontalFlame horizontalFlameRight = new HorizontalFlame();
                     VerticalFlame verticalFlameUp = new VerticalFlame();
                     VerticalFlame verticalFlameDown = new VerticalFlame();
                     GridPosition infinite = new GridPosition(99999,99999);
-                    if(checkLeft) {
-                        GridPosition positionLeft = new GridPosition(this.getPosition().getX() - i, this.getPosition().getY());
-                        horizontalFlameLeft.setPosition(positionLeft);
-                    }
-                    else {
-                        horizontalFlameLeft.setPosition(infinite);
-                    }
 
-                    if(checkRight) {
-                        GridPosition positionRight = new GridPosition(this.getPosition().getX() + i, this.getPosition().getY());
-                        horizontalFlameRight.setPosition(positionRight);
-                    }
-                    else {
-                        horizontalFlameRight.setPosition(infinite);
-                    }
+                    //tạo flame với vị trí tương ứng
+                    GridPosition positionLeft = new GridPosition(this.getPosition().getX() - i, this.getPosition().getY());
+                    horizontalFlameLeft.setPosition(positionLeft);
+                    GridPosition positionRight = new GridPosition(this.getPosition().getX() + i, this.getPosition().getY());
+                    horizontalFlameRight.setPosition(positionRight);
+                    GridPosition positionUp = new GridPosition(this.getPosition().getX(), this.getPosition().getY() - i);
+                    verticalFlameUp.setPosition(positionUp);
+                    GridPosition positionDown = new GridPosition(this.getPosition().getX(), this.getPosition().getY() + i);
+                    verticalFlameDown.setPosition(positionDown);
 
-                    if(checkUp) {
-                        GridPosition positionUp = new GridPosition(this.getPosition().getX(), this.getPosition().getY() - i);
-                        verticalFlameUp.setPosition(positionUp);
-                    }
-                    else {
-                        verticalFlameUp.setPosition(infinite);
-                    }
-
-                    if(checkDown) {
-                        GridPosition positionDown = new GridPosition(this.getPosition().getX(), this.getPosition().getY() + i);
-                        verticalFlameDown.setPosition(positionDown);
-                    }
-                    else {
-                        verticalFlameDown.setPosition(infinite);
-                    }
-
+                    //kiểm tra xem vị trí đó có phù hợp ko
                     for(Entity e : gameState.getEntityList()) {
                         if(e instanceof Wall && e.getPosition().distance(horizontalFlameLeft.getPosition()) < 1) {
                             checkLeft = false;
@@ -97,10 +82,35 @@ public class Bomb extends StaticEntity {
                         }
 
                     }
-                    gameState.addEntity(horizontalFlameLeft);
-                    gameState.addEntity(horizontalFlameRight);
-                    gameState.addEntity(verticalFlameUp);
-                    gameState.addEntity(verticalFlameDown);
+                    if(checkLeft) {
+                        gameState.addEntity(horizontalFlameLeft);
+                    }
+                    else {
+                        checkLeft = false;
+                    }
+
+                    if(checkRight) {
+                        gameState.addEntity(horizontalFlameRight);
+                    }
+                    else {
+                        checkRight = false;
+                    }
+
+                    if(checkUp) {
+                        gameState.addEntity(verticalFlameUp);
+                    }
+                    else {
+                        checkUp = false;
+                    }
+
+                    if(checkDown) {
+                        gameState.addEntity(verticalFlameDown);
+                    }
+                    else {
+                        checkDown = false;
+                    }
+
+
                 }
             }
             GridPosition bombPosition = this.getPosition();
@@ -120,14 +130,14 @@ public class Bomb extends StaticEntity {
 
             if(checkUp) {
                 VerticalFlameTop verticalFlameTop = new VerticalFlameTop();
-                GridPosition lastTop = new GridPosition(bombPosition.getX(), bombPosition.getY() + n);
+                GridPosition lastTop = new GridPosition(bombPosition.getX(), bombPosition.getY() - n);
                 verticalFlameTop.setPosition(lastTop);
                 gameState.addEntity(verticalFlameTop);
             }
 
             if(checkDown) {
                 VerticalFlameDown verticalFlameDown = new VerticalFlameDown();
-                GridPosition lastDown = new GridPosition(bombPosition.getX(), bombPosition.getY() - n);
+                GridPosition lastDown = new GridPosition(bombPosition.getX(), bombPosition.getY() + n);
                 verticalFlameDown.setPosition(lastDown);
                 gameState.addEntity(verticalFlameDown);
             }
@@ -136,18 +146,12 @@ public class Bomb extends StaticEntity {
     }
 
     public Image getCurrentTexture() {
-        if(timer <= REMAINING_TIME_MAX && timer > REMAINING_TIME_MID) {
-            return Sprite.static_sprites.get(String.format("%s_0", entityType.toString()));
+        if(this.status == Status.normal) {
+            return Sprite.static_sprites.get(String.format("%s_0", entityType.toString())).getCurrentTexture();
         }
-        else if(timer > REMAINING_TIME_MIN && timer <= REMAINING_TIME_MID) {
-            return Sprite.static_sprites.get(String.format("%s_1", entityType.toString()));
+        else if(timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
+            return Sprite.static_sprites.get(String.format("%s_1", entityType.toString())).getCurrentTexture();
         }
-        else if(timer > 0 && timer <= REMAINING_TIME_MIN) {
-            return Sprite.static_sprites.get(String.format("%s_2", entityType.toString()));
-
-        }
-        else {
-            return Sprite.grass.getCurrentTexture();
-        }
+        return null;
     }
 }
