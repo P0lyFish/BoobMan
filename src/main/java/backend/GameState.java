@@ -18,19 +18,21 @@ public class GameState {
     public final float BOMB_EXPLOSION_TIME = 2000;
     public final int DEFAULT_BLAST_RANGE = 2;
     public final float DEFAULT_SPEED = 1;
+    public final int NUM_REFRESH_PER_TIME_UNIT = 3;
 
     private GameStatus status = GameStatus.PLAYING;
     private int mapID;
-    private int numRows;
-    private int numCols;
 
     private List<Entity> entities;
     private Stack<KeyEvent> playerInputStack;
+    private int refreshCounter;
 
     public GameState() {
     }
 
     public GameState(String mapPath) throws IOException {
+        playerInputStack = new Stack<>();
+
         entities = new ArrayList<>();
         try {
             File mapFile = new File(mapPath);
@@ -99,6 +101,11 @@ public class GameState {
     }
 
     public void refresh() {
+        refreshCounter += 1;
+        if (refreshCounter == NUM_REFRESH_PER_TIME_UNIT + 1) {
+            refreshCounter = 1;
+        }
+
         if (status != GameStatus.PLAYING) {
             return;
         }
@@ -112,7 +119,7 @@ public class GameState {
                 status = GameStatus.WIN;
                 break;
             }
-            if (e instanceof PlayerAgent && ((PlayerAgent) e).isVanished()) {
+            if (e instanceof PlayerAgent && e.isVanished()) {
                 status = GameStatus.LOSE;
                 break;
             }
