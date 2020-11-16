@@ -32,7 +32,7 @@ public class Bomb extends StaticEntity {
 
     public void updateGameState(GameState gameState) {
         decreaseTimer((float)1 / gameState.NUM_REFRESH_PER_TIME_UNIT);
-        if(timer < 0) {
+        if(timer <= 0) {
             float n = this.bombSetter.getBlastRange();
             float lenStraightFlame = n-1;
             CenterFlame centerFlame = new CenterFlame();
@@ -137,13 +137,14 @@ public class Bomb extends StaticEntity {
 
     public Image getCurrentTexture() {
         if(timer <= REMAINING_TIME_MAX && timer > REMAINING_TIME_MID) {
-            return Sprite.static_sprites.get(String.format("%s_0", entityType.toString())).getCurrentTexture();
+            return Sprite.static_sprites.get(String.format("%s_0", entityType.toString()));
         }
         else if(timer > REMAINING_TIME_MIN && timer <= REMAINING_TIME_MID) {
-            return Sprite.static_sprites.get(String.format("%s_1", entityType.toString())).getCurrentTexture();
+            return Sprite.static_sprites.get(String.format("%s_1", entityType.toString()));
         }
         else if(timer > 0 && timer <= REMAINING_TIME_MIN) {
-            return new Image(String.format("main\\resources\\sprites\\%s_2.png", entityType.toString()));
+            return Sprite.static_sprites.get(String.format("%s_2", entityType.toString()));
+
         }
         else {
             return Sprite.grass.getCurrentTexture();

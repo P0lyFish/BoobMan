@@ -24,14 +24,14 @@ abstract public class Flame extends StaticEntity {
 
     public Image getCurrentTexture() {
         if(timeUntilVanish <= REMAINING_TIME_MAX && timeUntilVanish > REMAINING_TIME_MID) {
-            return Sprite.static_sprites.get(String.format("%s2", entityType.toString())).getCurrentTexture();
+            return Sprite.static_sprites.get(String.format("%s2", entityType.toString()));
         }
         else if(timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
-            return Sprite.static_sprites.get(String.format("%s1", entityType.toString())).getCurrentTexture();
+            return Sprite.static_sprites.get(String.format("%s1", entityType.toString()));
 
         }
         else if(timeUntilVanish > 0 && timeUntilVanish <= REMAINING_TIME_MIN) {
-            return Sprite.static_sprites.get(String.format("%s0", entityType.toString())).getCurrentTexture();
+            return Sprite.static_sprites.get(String.format("%s0", entityType.toString()));
 
         }
 
