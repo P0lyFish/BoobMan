@@ -16,7 +16,7 @@ public class Bomb extends StaticEntity {
 
 
     public Bomb(GridPosition position, float timer, BomberMan bombSetter) {
-        blocked = true;
+        blocked = false;
         destroyable = false;
         visible = true;
         this.entityType = EntityType.bomb;
@@ -137,13 +137,13 @@ public class Bomb extends StaticEntity {
 
     public Image getCurrentTexture() {
         if(timer <= REMAINING_TIME_MAX && timer > REMAINING_TIME_MID) {
-            return Sprite.static_sprites.get(String.format("%s_0", entityType.toString()));
+            return Sprite.static_sprites.get(String.format("%s_0", entityType.toString())).getCurrentTexture();
         }
         else if(timer > REMAINING_TIME_MIN && timer <= REMAINING_TIME_MID) {
-            return Sprite.static_sprites.get(String.format("%s_1", entityType.toString()));
+            return Sprite.static_sprites.get(String.format("%s_1", entityType.toString())).getCurrentTexture();
         }
         else if(timer > 0 && timer <= REMAINING_TIME_MIN) {
-            return Sprite.static_sprites.get(String.format("%s_2", entityType.toString()));
+            return Sprite.static_sprites.get(String.format("%s_2", entityType.toString())).getCurrentTexture();
 
         }
         else {

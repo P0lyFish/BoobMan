@@ -11,27 +11,34 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 abstract public class Flame extends StaticEntity {
-    public Flame() {}
+    public Flame() {
+        timeUntilVanish = 2;
+    }
 
     public void updateGameState(GameState gameState) {
+        decreaseTimeUntilVanish((float)1 / gameState.NUM_REFRESH_PER_TIME_UNIT);
         for(Entity e : gameState.getEntityList()) {
             if(e.isDestroyable() && e.isVisible() && this.getPosition().distance(e.getPosition()) < 1) {
                 e.destroy();
             }
         }
+        if(this.timeUntilVanish <=0) {
+            this.destroy();
+        }
 
     }
 
     public Image getCurrentTexture() {
+
         if(timeUntilVanish <= REMAINING_TIME_MAX && timeUntilVanish > REMAINING_TIME_MID) {
-            return Sprite.static_sprites.get(String.format("%s2", entityType.toString()));
+            return Sprite.static_sprites.get(String.format("%s2", entityType.toString())).getCurrentTexture();
         }
         else if(timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
-            return Sprite.static_sprites.get(String.format("%s1", entityType.toString()));
+            return Sprite.static_sprites.get(String.format("%s1", entityType.toString())).getCurrentTexture();
 
         }
         else if(timeUntilVanish > 0 && timeUntilVanish <= REMAINING_TIME_MIN) {
-            return Sprite.static_sprites.get(String.format("%s0", entityType.toString()));
+            return Sprite.static_sprites.get(String.format("%s0", entityType.toString())).getCurrentTexture();
 
         }
 
