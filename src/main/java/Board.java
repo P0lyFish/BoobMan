@@ -1,6 +1,9 @@
 package main.java;
 
+import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -11,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import main.java.GUI.Taskbar;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
@@ -24,6 +28,7 @@ import main.java.utils.GridPosition;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 public class Board extends Application {
 
@@ -54,7 +59,16 @@ public class Board extends Application {
 
         gameState = new GameState("src/main/resources/levels/Level1.txt");
 
-        render();
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.0 / gameState.NUM_REFRESH_PER_TIME_UNIT), event -> {
+            gameState.refresh();
+            try {
+                render();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
     public static void main(String[] args) {
