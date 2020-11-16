@@ -70,6 +70,12 @@ public class Board extends Application {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
+            scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent event) {
+                    gameState.addPlayerInput(event);
+                }
+            });
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
