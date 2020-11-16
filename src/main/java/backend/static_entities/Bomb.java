@@ -142,6 +142,7 @@ public class Bomb extends StaticEntity {
                 gameState.addEntity(verticalFlameDown);
             }
             gameState.removeEntity(this);
+            this.bombSetter.setRemainingBombs(this.bombSetter.getRemainingBombs() + 1);
         }
     }
 
