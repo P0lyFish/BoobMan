@@ -16,11 +16,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-<<<<<<< HEAD
 import javafx.util.Duration;
-=======
 import main.java.GUI.KeyboardHandler;
->>>>>>> 680b03a83c15812485aa15bc7da7aa9c0fe476b9
 import main.java.GUI.Taskbar;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
@@ -66,7 +63,6 @@ public class Board extends Application {
 
         gameState = new GameState("src/main/resources/levels/Level1.txt");
 
-<<<<<<< HEAD
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.0 / gameState.NUM_REFRESH_PER_TIME_UNIT), event -> {
             gameState.refresh();
             try {
@@ -77,21 +73,20 @@ public class Board extends Application {
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
-=======
-        render();
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                gameState.addPlayerInput(event);
-            }
-        });
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                gameState.addPlayerInput(event);
-            }
-        });
->>>>>>> 680b03a83c15812485aa15bc7da7aa9c0fe476b9
+
+        // render();
+        // scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        //     @Override
+        //     public void handle(KeyEvent event) {
+        //         gameState.addPlayerInput(event);
+        //     }
+        // });
+        // scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+        //     @Override
+        //     public void handle(KeyEvent event) {
+        //         gameState.addPlayerInput(event);
+        //     }
+        // });
     }
 
     public static void main(String[] args) {

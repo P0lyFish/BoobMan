@@ -25,7 +25,6 @@ public class GameState {
 
     private List<Entity> entities;
     private Stack<KeyEvent> playerInputStack;
-    private int refreshCounter;
 
     public GameState() {
     }
@@ -101,11 +100,6 @@ public class GameState {
     }
 
     public void refresh() {
-        refreshCounter += 1;
-        if (refreshCounter == NUM_REFRESH_PER_TIME_UNIT + 1) {
-            refreshCounter = 1;
-        }
-
         if (status != GameStatus.PLAYING) {
             return;
         }
@@ -119,7 +113,7 @@ public class GameState {
                 status = GameStatus.WIN;
                 break;
             }
-            if (e instanceof PlayerAgent && e.isVanished()) {
+            if (e instanceof PlayerAgent && ((PlayerAgent) e).isVanished()) {
                 status = GameStatus.LOSE;
                 break;
             }
