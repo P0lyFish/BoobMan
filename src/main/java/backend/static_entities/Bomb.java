@@ -15,13 +15,14 @@ public class Bomb extends StaticEntity {
     private BomberMan bombSetter;
 
 
-    public Bomb(float timer, BomberMan bombSetter) {
+    public Bomb(GridPosition position, float timer, BomberMan bombSetter) {
         blocked = true;
         destroyable = false;
         visible = true;
         this.entityType = EntityType.bomb;
         this.timer = timer;
         this.bombSetter = bombSetter;
+        this.position = position;
     }
 
     public void decreaseTimer(float delta) {
@@ -30,6 +31,7 @@ public class Bomb extends StaticEntity {
     }
 
     public void updateGameState(GameState gameState) {
+        decreaseTimer((float)1 / gameState.NUM_REFRESH_PER_TIME_UNIT);
         if(timer < 0) {
             float n = this.bombSetter.getBlastRange();
             float lenStraightFlame = n-1;
