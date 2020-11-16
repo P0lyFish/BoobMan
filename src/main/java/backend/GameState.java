@@ -15,10 +15,11 @@ import java.util.List;
 import java.util.Stack;
 
 public class GameState {
-    public final double BOMB_EXPLOSION_TIME = 2;
+    public final double BOMB_EXPLOSION_TIME = 7;
     public final int DEFAULT_BLAST_RANGE = 2;
     public final double DEFAULT_SPEED = 1;
     public final int NUM_REFRESH_PER_TIME_UNIT = 60;
+    public final int DEFAULT_NUM_BOMBS = 1;
 
     private GameStatus status = GameStatus.PLAYING;
     private int mapID;
@@ -52,7 +53,8 @@ public class GameState {
                         entities.add(entity);
                     }
                     else if (line.charAt(curX) == 'p') {
-                        entity = new PlayerAgent(new GridPosition(curX, curY), DEFAULT_SPEED, DEFAULT_BLAST_RANGE);
+                        entity = new PlayerAgent(new GridPosition(curX, curY), DEFAULT_SPEED,
+                                DEFAULT_BLAST_RANGE, DEFAULT_NUM_BOMBS);
                         entities.add(entity);
                     }
                     else if (line.charAt(curX) == 'f') {

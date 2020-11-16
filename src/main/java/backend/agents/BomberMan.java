@@ -9,10 +9,11 @@ abstract public class BomberMan extends Agent {
     protected int blastRange;
     protected int remainingBombs;
 
-    public BomberMan(GridPosition position, double speed, int blastRange) {
+    public BomberMan(GridPosition position, double speed, int blastRange, int numBombs) {
         super(position, speed);
         this.blastRange = blastRange;
         entityType = EntityType.bomberman;
+        this.remainingBombs = numBombs;
     }
 
     public int getBlastRange() {
@@ -32,7 +33,9 @@ abstract public class BomberMan extends Agent {
     }
 
     public void setBomb(GameState gameState) {
-        remainingBombs -= 1;
-        gameState.addEntity(new Bomb(position, (float)gameState.BOMB_EXPLOSION_TIME, this));
+        if (remainingBombs > 0) {
+            remainingBombs -= 1;
+            gameState.addEntity(new Bomb(position, (float) gameState.BOMB_EXPLOSION_TIME, this));
+        }
     }
 }

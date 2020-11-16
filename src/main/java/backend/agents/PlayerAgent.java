@@ -9,8 +9,8 @@ import main.java.utils.Direction;
 import main.java.utils.GridPosition;
 
 public class PlayerAgent extends BomberMan {
-    public PlayerAgent(GridPosition position, double speed, int blastRange) {
-        super(position, speed, blastRange);
+    public PlayerAgent(GridPosition position, double speed, int blastRange, int numBombs) {
+        super(position, speed, blastRange, numBombs);
     }
 
     public void updateGameState(GameState gameState) {
@@ -61,10 +61,6 @@ public class PlayerAgent extends BomberMan {
         for (Entity entity : gameState.getEntityList()) {
             double d = this.getPosition().distance(entity.getPosition());
             if (entity != this && entity instanceof Agent && d < 1) {
-                destroy();
-                break;
-            }
-            if (entity instanceof Flame && d < 1) {
                 destroy();
                 break;
             }
