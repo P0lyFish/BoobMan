@@ -13,35 +13,39 @@ import java.io.FileNotFoundException;
 abstract public class Flame extends StaticEntity {
     public Flame() {
         timeUntilVanish = 2;
+        status = Status.normal;
     }
 
     public void updateGameState(GameState gameState) {
-        decreaseTimeUntilVanish((float)1 / gameState.NUM_REFRESH_PER_TIME_UNIT);
+        timeUntilVanish -= (float)1 / gameState.NUM_REFRESH_PER_TIME_UNIT;
         for(Entity e : gameState.getEntityList()) {
             if(e.isDestroyable() && e.isVisible() && this.getPosition().distance(e.getPosition()) < 1) {
                 e.destroy();
             }
         }
-        if(this.timeUntilVanish <=0) {
-            this.destroy();
+        if(timeUntilVanish <= REMAINING_TIME_MAX && timeUntilVanish > REMAINING_TIME_MID) {
+            this.status = Status.normal;
         }
+        else if(timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
+            this.status = Status.vanishing;
+        }
+        else{
+            this.status = Status.vanished;
+            gameState.removeEntity(this);
+        }
+//        System.out.println(this.timeUntilVanish);
+//        System.out.println(this.status.toString());
 
     }
 
     public Image getCurrentTexture() {
 
-        if(timeUntilVanish <= REMAINING_TIME_MAX && timeUntilVanish > REMAINING_TIME_MID) {
+        if(status == Status.normal) {
             return Sprite.static_sprites.get(String.format("%s2", entityType.toString())).getCurrentTexture();
         }
-        else if(timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
+        else if(status == Status.vanishing) {
             return Sprite.static_sprites.get(String.format("%s1", entityType.toString())).getCurrentTexture();
-
         }
-        else if(timeUntilVanish > 0 && timeUntilVanish <= REMAINING_TIME_MIN) {
-            return Sprite.static_sprites.get(String.format("%s0", entityType.toString())).getCurrentTexture();
-
-        }
-
-        return Sprite.grass.getCurrentTexture();
+        return Sprite.static_sprites.get(String.format("%s0", entityType.toString())).getCurrentTexture();
     }
 }
