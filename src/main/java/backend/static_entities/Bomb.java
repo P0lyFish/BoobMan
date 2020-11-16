@@ -147,10 +147,10 @@ public class Bomb extends StaticEntity {
 
     public Image getCurrentTexture() {
         if(this.status == Status.normal) {
-            return Sprite.static_sprites.get(String.format("%s_0", entityType.toString())).getCurrentTexture();
+            return Sprite.static_sprites.get(String.format("%s_0", entityType.toString()));
         }
         else if(timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
-            return Sprite.static_sprites.get(String.format("%s_1", entityType.toString())).getCurrentTexture();
+            return Sprite.static_sprites.get(String.format("%s_1", entityType.toString()));
         }
         return null;
     }

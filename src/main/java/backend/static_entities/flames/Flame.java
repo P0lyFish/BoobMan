@@ -41,11 +41,11 @@ abstract public class Flame extends StaticEntity {
     public Image getCurrentTexture() {
 
         if(status == Status.normal) {
-            return Sprite.static_sprites.get(String.format("%s2", entityType.toString())).getCurrentTexture();
+            return Sprite.static_sprites.get(String.format("%s2", entityType.toString()));
         }
         else if(status == Status.vanishing) {
-            return Sprite.static_sprites.get(String.format("%s1", entityType.toString())).getCurrentTexture();
+            return Sprite.static_sprites.get(String.format("%s1", entityType.toString()));
         }
-        return Sprite.static_sprites.get(String.format("%s0", entityType.toString())).getCurrentTexture();
+        return Sprite.static_sprites.get(String.format("%s0", entityType.toString()));
     }
 }

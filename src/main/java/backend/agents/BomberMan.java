@@ -33,6 +33,6 @@ abstract public class BomberMan extends Agent {
 
     public void setBomb(GameState gameState) {
         remainingBombs -= 1;
-        gameState.addEntity(new Bomb(position, gameState.BOMB_EXPLOSION_TIME, this));
+        gameState.addEntity(new Bomb(position, (float)gameState.BOMB_EXPLOSION_TIME, this));
     }
 }

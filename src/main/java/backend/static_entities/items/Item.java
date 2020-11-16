@@ -10,6 +10,6 @@ abstract public class Item extends Entity {
     protected final int EXTRA_FLAME = 1;
     protected final double EXTRA_SPEED = 1;
     public Image getCurrentTexture() {
-        return Sprite.static_sprites.get(String.format("%s", entityType.toString())).getCurrentTexture();
+        return Sprite.static_sprites.get(String.format("%s", entityType.toString()));
     }
 }
