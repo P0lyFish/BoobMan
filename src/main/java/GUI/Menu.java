@@ -13,14 +13,16 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-public class Menu extends Application {
+//public class Menu extends Application {
+public class Menu{
     private ImageView background;
-    private Button newGame;
+    public Button newGame;
     private Button resumeGame;
     private Button highScore;
     private Button exitGame;
-    @Override
-    public void start(Stage stage) throws Exception {
+//    @Override
+//    public void start(Stage stage) throws Exception {
+    public Scene createTaskbar() {
         String current = System.getProperty("user.dir");
         System.out.println(current);
         Image image = new Image(new File("res/nen.png").toURI().toString());
@@ -107,8 +109,9 @@ public class Menu extends Application {
 
 
         Scene scene = new Scene(group,640,560);
-        stage.setScene(scene);
-        stage.show();
+//        stage.setScene(scene);
+//        stage.show();
+        return scene;
     }
-    public static void main(String[] args) {launch(args);}
+//    public static void main(String[] args) {launch(args);}
 }

@@ -5,6 +5,7 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.java.GUI.KeyboardHandler;
+import main.java.GUI.Menu;
 import main.java.GUI.Taskbar;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
@@ -44,9 +46,12 @@ public class Board extends Application {
     private Canvas canvas;
     private GameState gameState;
     private KeyboardHandler keyboard;
+    private Menu menu;
+    private boolean running = false;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        menu = new Menu();
         canvas = new Canvas(SCALED_SIZE * WIDTH, SCALED_SIZE * HEIGHT);
         gc = canvas.getGraphicsContext2D();
         canvas.setLayoutX(0);
@@ -57,8 +62,16 @@ public class Board extends Application {
         root.getChildren().addAll(canvas,group);
 
         Scene scene = new Scene(root, Color.GREEN);
+        Scene scene1 = menu.createTaskbar();
+        primaryStage.setScene(scene1);
 
-        primaryStage.setScene(scene);
+        menu.newGame.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+//                running = true;
+                primaryStage.setScene(scene);
+            }
+        });
         primaryStage.show();
 
         gameState = new GameState("src/main/resources/levels/Level1.txt");
@@ -66,6 +79,7 @@ public class Board extends Application {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.2 / gameState.NUM_REFRESH_PER_TIME_UNIT), event -> {
             gameState.refresh();
             try {
+
                 render();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
