@@ -37,6 +37,9 @@ public class Bomb extends StaticEntity {
         else if(timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
             this.status = Status.vanishing;
         }
+        else {
+            this.status = Status.vanished;
+        }
         if(timeUntilVanish <= 0) {
             float n = this.bombSetter.getBlastRange();
             float lenStraightFlame = n-1;
@@ -84,6 +87,7 @@ public class Bomb extends StaticEntity {
                     }
                     if(checkLeft) {
                         gameState.addEntity(horizontalFlameLeft);
+
                     }
                     else {
                         checkLeft = false;
@@ -105,9 +109,24 @@ public class Bomb extends StaticEntity {
 
                     if(checkDown) {
                         gameState.addEntity(verticalFlameDown);
+
                     }
                     else {
                         checkDown = false;
+                    }
+                    for(Entity e : gameState.getEntityList()) {
+                        if(!e.isDestroyable() && e.getPosition().distance(horizontalFlameLeft.getPosition()) <=1 && e.getPosition().getX() < horizontalFlameLeft.getPosition().getX()) {
+                            checkLeft = false;
+                        }
+                        if(!e.isDestroyable() && e.getPosition().distance(horizontalFlameRight.getPosition()) <=1 && e.getPosition().getX() > horizontalFlameRight.getPosition().getX()) {
+                            checkRight = false;
+                        }
+                        if(!e.isDestroyable() && e.getPosition().distance(verticalFlameUp.getPosition()) <=1 && e.getPosition().getY() < verticalFlameUp.getPosition().getY()) {
+                            checkUp = false;
+                        }
+                        if(!e.isDestroyable() && e.getPosition().distance(verticalFlameDown.getPosition()) <=1 && e.getPosition().getY() > verticalFlameDown.getPosition().getY()) {
+                            checkDown = false;
+                        }
                     }
 
 
@@ -148,10 +167,13 @@ public class Bomb extends StaticEntity {
 
     public Image getCurrentTexture() {
         if(this.status == Status.normal) {
-            return Sprite.static_sprites.get(String.format("%s_0", entityType.toString()));
+            return Sprite.static_sprites.get(String.format("%s_2", entityType.toString()));
         }
-        else if(timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
+        else if(this.status == Status.vanishing) {
             return Sprite.static_sprites.get(String.format("%s_1", entityType.toString()));
+        }
+        else if(this.status == Status.vanished) {
+            return Sprite.static_sprites.get(String.format("%s_0", entityType.toString()));
         }
         return null;
     }
