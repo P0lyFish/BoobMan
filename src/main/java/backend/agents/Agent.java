@@ -47,6 +47,10 @@ abstract public class Agent extends Entity {
      * @return    is the movement successful
      */
     public boolean move(Direction dir, GameState gameState) {
+        if (isVanished() || isVanishing()) {
+            return false;
+        }
+
         GridPosition newPosition = position.step(dir, speed / gameState.NUM_REFRESH_PER_TIME_UNIT);
 
         boolean validMove = true;
