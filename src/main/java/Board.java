@@ -21,6 +21,7 @@ import javafx.util.Duration;
 import main.java.GUI.KeyboardHandler;
 import main.java.GUI.Menu;
 import main.java.GUI.Taskbar;
+import main.java.GUI.highScore;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
 import main.java.backend.agents.PlayerAgent;
@@ -45,17 +46,18 @@ public class Board extends Application {
     private GraphicsContext gc;
     private Canvas canvas;
     private GameState gameState;
-    private KeyboardHandler keyboard;
     private Menu menu;
     private boolean running = false;
 
+
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         menu = new Menu();
         canvas = new Canvas(SCALED_SIZE * WIDTH, SCALED_SIZE * HEIGHT);
         gc = canvas.getGraphicsContext2D();
         canvas.setLayoutX(0);
-        canvas.setLayoutY(80.0);
+        canvas.setLayoutY(106.0);
         Taskbar taskbar = new Taskbar();
         Group group = taskbar.createTaskbar();
         Group root = new Group();
@@ -79,7 +81,14 @@ public class Board extends Application {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.2 / gameState.NUM_REFRESH_PER_TIME_UNIT), event -> {
             gameState.refresh();
             try {
-
+                taskbar.quit.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        String point = taskbar.getScore();
+                        highScore.saveScore(point);
+                        System.exit(0);
+                    }
+                });
                 render();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
