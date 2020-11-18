@@ -31,15 +31,7 @@ public class Bomb extends StaticEntity {
 
     public void updateGameState(GameState gameState) {
         timeUntilVanish -= (float)1 / gameState.NUM_REFRESH_PER_TIME_UNIT;
-        if(timeUntilVanish <= REMAINING_TIME_MAX && timeUntilVanish > REMAINING_TIME_MID) {
-            this.status = Status.normal;
-        }
-        else if(timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
-            this.status = Status.vanishing;
-        }
-        else {
-            this.status = Status.vanished;
-        }
+
         if(timeUntilVanish <= 0) {
             float n = this.bombSetter.getBlastRange();
             float lenStraightFlame = n-1;
@@ -51,6 +43,20 @@ public class Bomb extends StaticEntity {
             boolean checkRight = true;
             boolean checkUp = true;
             boolean checkDown = true;
+            for(Entity e : gameState.getEntityList()) {
+                if(!e.isDestroyable() && e.getPosition().distance(centerFlamePosition) <=1 && e.getPosition().getX() < centerFlamePosition.getX()) {
+                    checkLeft = false;
+                }
+                if(!e.isDestroyable() && e.getPosition().distance(centerFlamePosition) <=1 && e.getPosition().getX() > centerFlamePosition.getX()) {
+                    checkRight = false;
+                }
+                if(!e.isDestroyable() && e.getPosition().distance(centerFlamePosition) <=1 && e.getPosition().getY() < centerFlamePosition.getY()) {
+                    checkUp = false;
+                }
+                if(!e.isDestroyable() && e.getPosition().distance(centerFlamePosition) <=1 && e.getPosition().getY() > centerFlamePosition.getY()) {
+                    checkDown = false;
+                }
+            }
             if(lenStraightFlame != 0) {
                 for(int i = 1;i <= lenStraightFlame;i++) {
                     HorizontalFlame horizontalFlameLeft = new HorizontalFlame();
@@ -166,15 +172,14 @@ public class Bomb extends StaticEntity {
     }
 
     public Image getCurrentTexture() {
-        if(this.status == Status.normal) {
+        if(timeUntilVanish <= REMAINING_TIME_MAX && timeUntilVanish > REMAINING_TIME_MID) {
             return Sprite.static_sprites.get(String.format("%s_2", entityType.toString()));
         }
-        else if(this.status == Status.vanishing) {
+        else if(timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
             return Sprite.static_sprites.get(String.format("%s_1", entityType.toString()));
         }
-        else if(this.status == Status.vanished) {
+        else {
             return Sprite.static_sprites.get(String.format("%s_0", entityType.toString()));
         }
-        return null;
     }
 }
