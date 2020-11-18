@@ -20,20 +20,24 @@ public class Menu{
     private Button resumeGame;
     private Button highScore;
     private Button exitGame;
+
 //    @Override
 //    public void start(Stage stage) throws Exception {
     public Scene createTaskbar() {
         String current = System.getProperty("user.dir");
         System.out.println(current);
-        Image image = new Image(new File("res/nen.png").toURI().toString());
 
+
+
+
+        Image image = new Image(new File("res/nen.png").toURI().toString());
         background = new ImageView();
         background.setFitHeight(560.0);
         background.setFitWidth(640.0);
         background.setPickOnBounds(true);
         background.setPreserveRatio(true);
         background.setLayoutX(0);
-        background.setLayoutY(0);
+        background.setLayoutY(26);
         background.setImage(image);
 
         newGame = new Button();
@@ -75,6 +79,8 @@ public class Menu{
         exitGame.setText("EXIT");
         exitGame.setFont(Font.font("Arial Bold",41.0));
         exitGame.setOpacity(0.7);
+
+
 
         //Handler Action
         newGame.setOnAction(new EventHandler<ActionEvent>() {
