@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import main.java.Board;
+import main.java.backend.static_entities.Bomb;
 import main.java.utils.EntityType;
 import main.java.utils.GridPosition;
 

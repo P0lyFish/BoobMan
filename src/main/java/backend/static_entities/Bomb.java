@@ -10,7 +10,7 @@ import main.java.utils.EntityType;
 import main.java.utils.GridPosition;
 
 public class Bomb extends StaticEntity {
-    private BomberMan bombSetter;
+    private final BomberMan bombSetter;
 
 
     public Bomb(GridPosition position, float timer, BomberMan bombSetter) {

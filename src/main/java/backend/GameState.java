@@ -4,6 +4,7 @@ import javafx.scene.input.KeyEvent;
 import main.java.backend.agents.Balloon;
 import main.java.backend.agents.Oneal;
 import main.java.backend.agents.PlayerAgent;
+import main.java.backend.static_entities.Bomb;
 import main.java.backend.static_entities.Brick;
 import main.java.backend.static_entities.Portal;
 import main.java.backend.static_entities.Wall;
@@ -16,11 +17,18 @@ import java.util.List;
 import java.util.Stack;
 
 public class GameState {
-    public final double BOMB_EXPLOSION_TIME = 8;
-    public final int DEFAULT_BLAST_RANGE = 1;
-    public final double DEFAULT_SPEED = 2;
-    public final int NUM_REFRESH_PER_TIME_UNIT = 60;
-    public final int DEFAULT_NUM_BOMBS = 1;
+    public static final double BOMB_EXPLOSION_TIME = 8;
+
+    public static final int DEFAULT_BLAST_RANGE = 1;
+    public static final int ENHANCED_BLAST_RANGE = 2;
+
+    public static final double DEFAULT_SPEED = 2;
+    public static final double ENHANCED_SPEED  = 2.5;
+
+    public static final int DEFAULT_NUM_BOMBS = 1;
+    public static final int ENHANCED_NUM_BOMBS = 2;
+
+    public static final int NUM_REFRESH_PER_TIME_UNIT = 60;
 
     private GameStatus status = GameStatus.PLAYING;
     private int mapID;
@@ -87,7 +95,7 @@ public class GameState {
     }
 
     public List<Entity> getEntityList() {
-         return this.entities;
+        return this.entities;
     }
 
     public void addPlayerInput(KeyEvent key) {
@@ -111,6 +119,8 @@ public class GameState {
         }
 
         for (Entity e : entities) {
+            if (e instanceof Bomb)
+                continue;
             e.updateGameState(this);
         }
 

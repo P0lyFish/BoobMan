@@ -58,12 +58,6 @@ public class PlayerAgent extends BomberMan {
             move(currentDirection, gameState);
         }
 
-        for (Entity entity : gameState.getEntityList()) {
-            double d = this.getPosition().distance(entity.getPosition());
-            if (entity != this && entity instanceof Agent && d < 1) {
-                destroy();
-                break;
-            }
-        }
+        interactWithOtherEntities(gameState);
     }
 }

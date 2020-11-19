@@ -8,6 +8,7 @@ import main.java.backend.static_entities.StaticEntity;
 import main.java.backend.static_entities.Wall;
 import main.java.graphics.Sprite;
 import main.java.utils.Direction;
+import main.java.utils.EntityType;
 import main.java.utils.GameStatus;
 import main.java.utils.GridPosition;
 
