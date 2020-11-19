@@ -3,6 +3,7 @@ package main.java.backend.static_entities.flames;
 import javafx.scene.image.Image;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
+import main.java.backend.agents.Agent;
 import main.java.backend.static_entities.StaticEntity;
 import main.java.graphics.Sprite;
 import main.java.utils.EntityType;

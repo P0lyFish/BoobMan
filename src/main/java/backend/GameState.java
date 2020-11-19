@@ -4,6 +4,7 @@ import javafx.scene.input.KeyEvent;
 import main.java.backend.agents.Balloon;
 import main.java.backend.agents.Oneal;
 import main.java.backend.agents.PlayerAgent;
+import main.java.backend.static_entities.Brick;
 import main.java.backend.static_entities.Portal;
 import main.java.backend.static_entities.Wall;
 import main.java.utils.GameStatus;
@@ -42,27 +43,30 @@ public class GameState {
             String line;
             int curY = 0;
             while ((line = reader.readLine()) != null) {
-                Entity entity;
                 for (int curX = 0; curX < line.length(); ++curX) {
-                    if (line.charAt(curX) == ' ') {
-                        continue;
+                    Entity entity = null;
+                    switch (line.charAt(curX)) {
+                        case ' ':
+                            break;
+                        case '#':
+                            entity = new Wall();
+                            entity.setPosition(new GridPosition(curX, curY));
+                            break;
+                        case 'p':
+                            entity = new PlayerAgent(new GridPosition(curX, curY), DEFAULT_SPEED,
+                                    DEFAULT_BLAST_RANGE, DEFAULT_NUM_BOMBS);
+                            break;
+                        case 'b':
+                            entity = new Balloon(new GridPosition(curX, curY), DEFAULT_SPEED);
+                            break;
+                        case 'o':
+                            entity = new Oneal(new GridPosition(curX, curY), DEFAULT_SPEED);
+                            break;
+                        case '*':
+                            entity = new Brick(new GridPosition(curX, curY));
+                            break;
                     }
-                    if (line.charAt(curX) == '#') {
-                        entity = new Wall();
-                        entity.setPosition(new GridPosition(curX, curY));
-                        entities.add(entity);
-                    }
-                    else if (line.charAt(curX) == 'p') {
-                        entity = new PlayerAgent(new GridPosition(curX, curY), DEFAULT_SPEED,
-                                DEFAULT_BLAST_RANGE, DEFAULT_NUM_BOMBS);
-                        entities.add(entity);
-                    }
-                    else if (line.charAt(curX) == 'f') {
-                        entity = new Balloon(new GridPosition(curX, curY), DEFAULT_SPEED);
-                        entities.add(entity);
-                    }
-                    else if (line.charAt(curX) == 'x') {
-                        entity = new Oneal(new GridPosition(curX, curY), DEFAULT_SPEED);
+                    if (entity != null) {
                         entities.add(entity);
                     }
                 }
@@ -83,7 +87,7 @@ public class GameState {
     }
 
     public List<Entity> getEntityList() {
-        return this.entities;
+         return this.entities;
     }
 
     public void addPlayerInput(KeyEvent key) {

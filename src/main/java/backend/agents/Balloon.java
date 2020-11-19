@@ -18,6 +18,7 @@ public class Balloon extends Agent {
     }
 
     public void updateGameState(GameState gameState) {
+        decreaseTimeUntilVanish((double)1.0 / gameState.NUM_REFRESH_PER_TIME_UNIT);
         randomMove(gameState);
     }
 }
