@@ -16,10 +16,10 @@ import java.util.Stack;
 
 public class GameState {
     public final double BOMB_EXPLOSION_TIME = 8;
-    public final int DEFAULT_BLAST_RANGE = 1;
+    public final int DEFAULT_BLAST_RANGE = 2;
     public final double DEFAULT_SPEED = 2;
     public final int NUM_REFRESH_PER_TIME_UNIT = 60;
-    public final int DEFAULT_NUM_BOMBS = 1;
+    public final int DEFAULT_NUM_BOMBS = 20;
 
     private GameStatus status = GameStatus.PLAYING;
     private int mapID;
@@ -106,9 +106,17 @@ public class GameState {
             return;
         }
 
-        for (Entity e : entities) {
-            e.updateGameState(this);
+        int n = entities.size();
+        for(int i = 0;i<n;i++) {
+            try {
+                entities.get(i).updateGameState(this);
+            }
+            catch (Exception e){
+            }
         }
+//        for (Entity e : entities) {
+//            e.updateGameState(this);
+//        }
 
         for (Entity e : entities) {
             if (e instanceof Portal && ((Portal) e).isPassed()) {

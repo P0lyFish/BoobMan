@@ -45,7 +45,7 @@ public class Board extends Application {
 
     private GraphicsContext gc;
     private Canvas canvas;
-    private GameState gameState;
+    public static GameState gameState;
     private Menu menu;
     private boolean running = false;
 

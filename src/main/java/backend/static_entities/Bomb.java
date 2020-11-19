@@ -1,6 +1,7 @@
 package main.java.backend.static_entities;
 
 import javafx.scene.image.Image;
+import main.java.Board;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
 import main.java.backend.agents.BomberMan;
@@ -10,9 +11,10 @@ import main.java.utils.EntityType;
 import main.java.utils.GridPosition;
 
 public class Bomb extends StaticEntity {
-    private BomberMan bombSetter;
-
-
+    private final BomberMan bombSetter;
+    private final int time = 150;
+    private int gameTime = 0;
+    private int bombImageId;
     public Bomb(GridPosition position, float timer, BomberMan bombSetter) {
         blocked = false;
         destroyable = false;
@@ -30,6 +32,11 @@ public class Bomb extends StaticEntity {
     }
 
     public void updateGameState(GameState gameState) {
+        gameTime++;
+        int d = gameTime % time;
+        if(d < time/3) bombImageId = 0;
+        if(time/3 <= d && d < 2*time/3) bombImageId = 1;
+        if(d >=2*time/3) bombImageId = 2;
         timeUntilVanish -= (float)1 / gameState.NUM_REFRESH_PER_TIME_UNIT;
 
         if(timeUntilVanish <= 0) {
@@ -172,14 +179,15 @@ public class Bomb extends StaticEntity {
     }
 
     public Image getCurrentTexture() {
-        if(timeUntilVanish <= REMAINING_TIME_MAX && timeUntilVanish > REMAINING_TIME_MID) {
-            return Sprite.static_sprites.get(String.format("%s_2", entityType.toString()));
-        }
-        else if(timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
-            return Sprite.static_sprites.get(String.format("%s_1", entityType.toString()));
-        }
-        else {
-            return Sprite.static_sprites.get(String.format("%s_0", entityType.toString()));
-        }
+
+        return Sprite.static_sprites.get(String.format("%s_%d", entityType.toString(), bombImageId));
+//        if(timeUntilVanish <= REMAINING_TIME_MAX && timeUntilVanish > REMAINING_TIME_MID) {
+//        }
+//        else if(timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
+//            return Sprite.static_sprites.get(String.format("%s_1", entityType.toString()));
+//        }
+//        else {
+//            return Sprite.static_sprites.get(String.format("%s_0", entityType.toString()));
+//        }
     }
 }

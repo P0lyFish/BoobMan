@@ -49,7 +49,6 @@ public class PlayerAgent extends BomberMan {
                     movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
                     break;
                 case SPACE:
-                    System.out.println(blastRange);
                     movingType = MovingType.STOP;
                     setBomb(gameState);
             }
