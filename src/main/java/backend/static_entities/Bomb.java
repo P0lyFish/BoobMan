@@ -37,7 +37,7 @@ public class Bomb extends StaticEntity {
         if(d < time/3) bombImageId = 0;
         if(time/3 <= d && d < 2*time/3) bombImageId = 1;
         if(d >=2*time/3) bombImageId = 2;
-        timeUntilVanish -= (float)1 / gameState.NUM_REFRESH_PER_TIME_UNIT;
+        timeUntilVanish -= (float)1 / GameState.NUM_REFRESH_PER_TIME_UNIT;
 
         if(timeUntilVanish <= 0) {
             float n = this.bombSetter.getBlastRange();

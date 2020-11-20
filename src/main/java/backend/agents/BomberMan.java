@@ -56,16 +56,6 @@ abstract public class BomberMan extends Agent {
                 destroy();
                 break;
             }
-
-            if (entity instanceof SpeedItem && entity.isVisible()) {
-                setSpeed(GameState.ENHANCED_SPEED);
-            }
-            if (entity instanceof FlameItem && entity.isVisible()) {
-                setBlastRange(GameState.ENHANCED_BLAST_RANGE);
-            }
-            if (entity instanceof BombItem && entity.isVisible()) {
-                setRemainingBombs(GameState.ENHANCED_NUM_BOMBS);
-            }
         }
     }
 }
