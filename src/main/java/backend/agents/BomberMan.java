@@ -48,7 +48,7 @@ abstract public class BomberMan extends Agent {
     protected void interactWithOtherEntities(GameState gameState) {
         for (Entity entity : gameState.getEntityList()) {
             double d = this.getPosition().distance(entity.getPosition());
-            if (d > 1) {
+            if (d > 0.99) {
                 continue;
             }
 
