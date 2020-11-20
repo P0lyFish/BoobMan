@@ -1,6 +1,7 @@
 package main.java.backend;
 
 import javafx.scene.input.KeyEvent;
+import main.java.backend.agents.Agent;
 import main.java.backend.agents.Balloon;
 import main.java.backend.agents.Oneal;
 import main.java.backend.agents.PlayerAgent;
@@ -162,5 +163,15 @@ public class GameState {
                 break;
             }
         }
+    }
+
+    public Agent getPlayerAgent() {
+        for (Entity e : entities) {
+            if (e instanceof PlayerAgent) {
+                return (Agent)e;
+            }
+        }
+
+        return null;
     }
 }

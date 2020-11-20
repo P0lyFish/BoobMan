@@ -16,6 +16,21 @@ public class GridPosition {
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof GridPosition)) {
+            return false;
+        }
+
+        GridPosition v = (GridPosition)obj;
+        return Math.abs(x - v.x) <= EPS && Math.abs(y - v.y) <= EPS;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int)(x + y) % 100003;
+    }
+
     public double getX() {
         return x;
     }

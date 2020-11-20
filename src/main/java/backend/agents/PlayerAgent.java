@@ -53,12 +53,12 @@ public class PlayerAgent extends BomberMan {
             List<Direction> validActions = legalActions(gameState);
             for (Direction dir : validActions) {
                 if (!movingType.equals(MovingType.STOP) && dir.equals(currentDirection)) {
-                    move(currentDirection);
+                    move(currentDirection, speed / GameState.NUM_REFRESH_PER_TIME_UNIT);
                 }
             }
         }
         else {
-            move(currentDirection);
+            move(currentDirection, speed / GameState.NUM_REFRESH_PER_TIME_UNIT);
         }
 
         interactWithOtherEntities(gameState);

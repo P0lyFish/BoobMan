@@ -11,7 +11,7 @@ import main.java.utils.EntityType;
 import main.java.utils.GridPosition;
 
 
-public abstract class Entity {
+public abstract class Entity implements Cloneable {
     protected static final double REMAINING_TIME_MAX = 1.5;
     protected static final double REMAINING_TIME_MID = (double)1.0;
     protected static final double REMAINING_TIME_MIN = (double)0.5;
@@ -27,6 +27,11 @@ public abstract class Entity {
     protected Status status = Status.normal;
     protected double timeUntilVanish;
     protected EntityType entityType;
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 
     public Entity() {}
 
@@ -106,7 +111,7 @@ public abstract class Entity {
     }
     abstract protected Image getCurrentTexture();
 
-    abstract public void updateGameState(GameState gameState);
+    abstract public void updateGameState(GameState gameState) throws CloneNotSupportedException;
 
     public void render(GraphicsContext gc) {
 
