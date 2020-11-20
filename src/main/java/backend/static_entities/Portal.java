@@ -56,9 +56,12 @@ public class Portal extends StaticEntity {
         for(Entity e : gameState.getEntityList()) {
             if(e instanceof Balloon || e instanceof Oneal) {
                 this.opened = false;
-                this.blocked = false;
                 break;
             }
+        }
+
+        if (this.opened) {
+            this.blocked = false;
         }
     }
 }
