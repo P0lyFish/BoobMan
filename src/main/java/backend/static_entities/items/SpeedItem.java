@@ -21,9 +21,10 @@ public class SpeedItem extends Item {
             if(e instanceof Brick && (e.getStatus() == Status.vanished || e.getStatus() == Status.vanishing) && e.getPosition().distance(this.getPosition()) < 0.3) {
                 this.visible = true;
             }
-            if(e instanceof BomberMan && e.getPosition().distance(this.getPosition()) < 1) {
+            if(e instanceof BomberMan && e.getPosition().distance(this.getPosition()) == 0) {
                 ((BomberMan) e).setSpeed(((BomberMan) e).getSpeed()+EXTRA_SPEED);
                 gameState.removeEntity(this);
+                break;
             }
         }
     }
