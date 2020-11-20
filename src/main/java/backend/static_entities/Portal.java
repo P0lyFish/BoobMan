@@ -8,17 +8,19 @@ import main.java.backend.agents.Oneal;
 import main.java.backend.agents.PlayerAgent;
 import main.java.graphics.Sprite;
 import main.java.utils.EntityType;
+import main.java.utils.GridPosition;
 
 public class Portal extends StaticEntity {
     private boolean passed;
     private boolean opened;
-    public Portal() {
-        this.blocked = false;
+    public Portal(GridPosition position) {
+        this.blocked = true;
         this.destroyable = false;
         this.visible = false;
         this.entityType = EntityType.portal;
         this.passed = false;
         this.opened = false;
+        this.position = position;
     }
 
     //mở khi giết hết quái
@@ -45,17 +47,18 @@ public class Portal extends StaticEntity {
             if(e instanceof Brick && (e.getStatus() == Status.vanished || e.getStatus() == Status.vanishing) && e.getPosition().distance(this.getPosition()) < 0.3) {
                 this.visible = true;
             }
-            if(e instanceof PlayerAgent && e.getPosition().distance(this.getPosition()) < 1) {
+            if(isOpened() && e instanceof PlayerAgent && e.getPosition().distance(this.getPosition()) < 1) {
                 this.passed = true;
             }
         }
         //check còn quái ko
+        this.opened = true;
         for(Entity e : gameState.getEntityList()) {
             if(e instanceof Balloon || e instanceof Oneal) {
                 this.opened = false;
+                this.blocked = false;
                 break;
             }
-            else this.opened = true;
         }
     }
 }

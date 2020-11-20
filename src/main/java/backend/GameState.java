@@ -90,6 +90,9 @@ public class GameState {
                             entity = new SpeedItem(new GridPosition(curX, curY));
                             brick = new Brick(entity.getPosition());
                             break;
+                        case 'O':
+                            entity = new Portal(new GridPosition(curX, curY));
+                            break;
                     }
                     if (entity != null) {
                         entities.add(entity);
@@ -139,11 +142,11 @@ public class GameState {
             return;
         }
         int n = entities.size();
-        for (int i = 0;i < n;i++) {
-            try{
-                entities.get(i).updateGameState(this);
+        for (Entity entity : entities) {
+            try {
+                entity.updateGameState(this);
+            } catch (Exception ignored) {
             }
-            catch (Exception e){}
         }
 //        for (Entity e : entities) {
 //            e.updateGameState(this);
