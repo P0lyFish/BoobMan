@@ -18,7 +18,7 @@ public class Balloon extends Agent {
     }
 
     public void updateGameState(GameState gameState) {
-        if (isVanished() || isVanishing()) {
+        if (isVanished()) {
             gameState.removeEntity(this);
             return;
         }

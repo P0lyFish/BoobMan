@@ -16,7 +16,7 @@ public class PlayerAgent extends BomberMan {
     }
 
     public void updateGameState(GameState gameState) {
-        if (isVanished() || isVanishing()) {
+        if (isVanished()) {
             gameState.removeEntity(this);
             return;
         }
