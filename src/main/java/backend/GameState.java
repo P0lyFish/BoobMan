@@ -8,6 +8,9 @@ import main.java.backend.static_entities.Bomb;
 import main.java.backend.static_entities.Brick;
 import main.java.backend.static_entities.Portal;
 import main.java.backend.static_entities.Wall;
+import main.java.backend.static_entities.items.BombItem;
+import main.java.backend.static_entities.items.FlameItem;
+import main.java.backend.static_entities.items.SpeedItem;
 import main.java.utils.GameStatus;
 import main.java.utils.GridPosition;
 
@@ -19,7 +22,7 @@ import java.util.Stack;
 public class GameState {
     public static final double BOMB_EXPLOSION_TIME = 8;
 
-    public static final int DEFAULT_BLAST_RANGE = 2;
+    public static final int DEFAULT_BLAST_RANGE = 1;
     public static final int ENHANCED_BLAST_RANGE = 2;
 
     public static final double DEFAULT_SPEED = 2;
@@ -41,9 +44,10 @@ public class GameState {
 
     public GameState(String mapPath) throws IOException {
         playerInputStack = new Stack<>();
-
         entities = new ArrayList<>();
+
         try {
+
             File mapFile = new File(mapPath);
             FileReader fin = new FileReader(mapFile);
             BufferedReader reader = new BufferedReader(fin);
@@ -51,6 +55,7 @@ public class GameState {
             String line;
             int curY = 0;
             while ((line = reader.readLine()) != null) {
+                Brick brick = null;
                 for (int curX = 0; curX < line.length(); ++curX) {
                     Entity entity = null;
                     switch (line.charAt(curX)) {
@@ -73,10 +78,26 @@ public class GameState {
                         case '*':
                             entity = new Brick(new GridPosition(curX, curY));
                             break;
+                        case 'B':
+                            entity = new BombItem(new GridPosition(curX, curY));
+                            brick = new Brick(entity.getPosition());
+                            break;
+                        case 'F':
+                            entity = new FlameItem(new GridPosition(curX, curY));
+                            brick = new Brick(entity.getPosition());
+                            break;
+                        case 'S':
+                            entity = new SpeedItem(new GridPosition(curX, curY));
+                            brick = new Brick(entity.getPosition());
+                            break;
                     }
                     if (entity != null) {
                         entities.add(entity);
                     }
+                    if(brick != null) {
+                        entities.add(brick);
+                    }
+
                 }
                 curY += 1;
             }

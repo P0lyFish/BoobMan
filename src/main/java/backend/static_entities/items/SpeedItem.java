@@ -6,10 +6,15 @@ import main.java.backend.GameState;
 import main.java.backend.agents.BomberMan;
 import main.java.backend.static_entities.Brick;
 import main.java.utils.EntityType;
+import main.java.utils.GridPosition;
 
 public class SpeedItem extends Item {
-    public SpeedItem() {
+    public SpeedItem(GridPosition position) {
         this.entityType = EntityType.speed_item;
+        this.visible = false;
+        this.blocked = false;
+        this.destroyable = true;
+        this.position = position;
     }
     public void updateGameState(GameState gameState) {
         for(Entity e : gameState.getEntityList()) {
@@ -18,6 +23,7 @@ public class SpeedItem extends Item {
             }
             if(e instanceof BomberMan && e.getPosition().distance(this.getPosition()) < 1) {
                 ((BomberMan) e).setSpeed(((BomberMan) e).getSpeed()+EXTRA_SPEED);
+                gameState.removeEntity(this);
             }
         }
     }

@@ -7,13 +7,16 @@ import main.java.backend.agents.BomberMan;
 import main.java.backend.agents.PlayerAgent;
 import main.java.backend.static_entities.Brick;
 import main.java.utils.EntityType;
+import main.java.utils.GridPosition;
 
 public class BombItem extends Item {
-    public BombItem() {
+    public BombItem(GridPosition position) {
         this.visible = false;
         this.blocked = false;
         this.destroyable = true;
         this.entityType = EntityType.bomb_item;
+        this.position = position;
+
     }
     public void updateGameState(GameState gameState) {
         for(Entity e : gameState.getEntityList()) {
@@ -21,8 +24,9 @@ public class BombItem extends Item {
                 this.visible = true;
             }
             if(this.visible && e instanceof BomberMan && e.getPosition().distance(this.getPosition()) < 1) {
-                BomberMan d = (BomberMan) e;
-                d.setRemainingBombs(d.getRemainingBombs() + EXTRA_BOMB);
+                int n = ((BomberMan) e).getRemainingBombs();
+                ((BomberMan) e).setRemainingBombs(n+EXTRA_BOMB);
+                gameState.removeEntity(this);
             }
         }
     }

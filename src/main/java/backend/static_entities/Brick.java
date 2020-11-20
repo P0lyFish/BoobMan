@@ -15,6 +15,13 @@ public class Brick extends StaticEntity {
         this.entityType = EntityType.brick;
     }
 
+    public Brick() {
+        destroyable = true;
+        blocked = true;
+        visible = true;
+        this.entityType = EntityType.brick;
+    }
+
     public void updateGameState(GameState gameState) {
         decreaseTimeUntilVanish((double)1.0 / gameState.NUM_REFRESH_PER_TIME_UNIT);
 

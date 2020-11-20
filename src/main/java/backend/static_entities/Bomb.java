@@ -17,7 +17,7 @@ public class Bomb extends StaticEntity {
     private final int time = 100;
     public Bomb(GridPosition position, float timer, BomberMan bombSetter) {
         blocked = false;
-        destroyable = false;
+        destroyable = true;
         visible = true;
         this.entityType = EntityType.bomb;
         this.timeUntilVanish = timer;
