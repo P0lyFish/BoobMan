@@ -49,3 +49,4 @@ abstract public class Flame extends StaticEntity {
         return Sprite.static_sprites.get(String.format("%s0", entityType.toString()));
     }
 }
+//test git
