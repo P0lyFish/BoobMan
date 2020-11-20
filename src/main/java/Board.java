@@ -78,7 +78,7 @@ public class Board extends Application {
 
         gameState = new GameState("src/main/resources/levels/Level1.txt");
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.2 / gameState.NUM_REFRESH_PER_TIME_UNIT), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.4 / gameState.NUM_REFRESH_PER_TIME_UNIT), event -> {
             gameState.refresh();
             try {
                 taskbar.quit.setOnAction(new EventHandler<ActionEvent>() {

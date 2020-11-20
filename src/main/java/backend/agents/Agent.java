@@ -8,6 +8,7 @@ import main.java.backend.static_entities.StaticEntity;
 import main.java.backend.static_entities.Wall;
 import main.java.graphics.Sprite;
 import main.java.utils.Direction;
+import main.java.utils.EntityType;
 import main.java.utils.GameStatus;
 import main.java.utils.GridPosition;
 
@@ -57,9 +58,6 @@ abstract public class Agent extends Entity {
         for (Entity e : gameState.getEntityList()) {
             double d = newPosition.distance(e.getPosition());
             if (d < 1 && e.isBlocked()) {
-                // System.out.println(d);
-                // System.out.println(e.getPosition());
-                // System.out.println(newPosition);
                 validMove = false;
             }
         }
@@ -114,6 +112,21 @@ abstract public class Agent extends Entity {
         }
 
         this.move(dir, gameState);
+
+        for (Entity e : gameState.getEntityList()) {
+            double d = position.distance(e.getPosition());
+            if (d < 1 && e instanceof PlayerAgent) {
+                e.destroy();
+            }
+        }
+    }
+
+    void standStill(GameState gameState) {
+        if (isVanished()) {
+            gameState.removeEntity(this);
+            System.out.println("fuck");
+            return;
+        }
 
         for (Entity e : gameState.getEntityList()) {
             double d = position.distance(e.getPosition());

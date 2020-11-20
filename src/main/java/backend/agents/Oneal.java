@@ -16,6 +16,7 @@ public class Oneal extends Agent {
     }
 
     public void updateGameState(GameState gameState) {
-        randomMove(gameState);
+        decreaseTimeUntilVanish((double)1.0 / gameState.NUM_REFRESH_PER_TIME_UNIT);
+        standStill(gameState);
     }
 }

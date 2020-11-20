@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import main.java.Board;
+import main.java.backend.static_entities.Bomb;
 import main.java.utils.EntityType;
 import main.java.utils.GridPosition;
 
@@ -34,6 +35,7 @@ public abstract class Entity {
         this.position = position;
         this.visible = visible;
         this.blocked = blocked;
+        this.destroyable = destroyable;
         this.timeUntilVanish = timeUntilVanish;
     }
 
@@ -45,6 +47,10 @@ public abstract class Entity {
         if (timeUntilVanish < 0) {
             status = Status.vanished;
         }
+    }
+
+    public double getTimeUntilVanish() {
+        return timeUntilVanish;
     }
 
     public Status getStatus() {

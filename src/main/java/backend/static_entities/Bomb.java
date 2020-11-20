@@ -12,9 +12,8 @@ import main.java.utils.GridPosition;
 
 public class Bomb extends StaticEntity {
     private final BomberMan bombSetter;
-    private final int time = 150;
-    private int gameTime = 0;
-    private int bombImageId;
+
+
     public Bomb(GridPosition position, float timer, BomberMan bombSetter) {
         blocked = false;
         destroyable = false;
