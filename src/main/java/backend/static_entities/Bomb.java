@@ -12,8 +12,9 @@ import main.java.utils.GridPosition;
 
 public class Bomb extends StaticEntity {
     private final BomberMan bombSetter;
-
-
+    private int gameTime = 0;
+    private int bombImageId = 0;
+    private final int time = 100;
     public Bomb(GridPosition position, float timer, BomberMan bombSetter) {
         blocked = false;
         destroyable = false;
@@ -174,6 +175,11 @@ public class Bomb extends StaticEntity {
             }
             gameState.removeEntity(this);
             this.bombSetter.setRemainingBombs(this.bombSetter.getRemainingBombs() + 1);
+        }
+
+        //set bomb to block when agent get out of bomb
+        if(this.bombSetter.getPosition().distance(this.getPosition()) >= 1) {
+            this.blocked = true;
         }
     }
 

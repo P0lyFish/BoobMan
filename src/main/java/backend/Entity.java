@@ -12,9 +12,9 @@ import main.java.utils.GridPosition;
 
 
 public abstract class Entity {
-    protected static final double REMAINING_TIME_MAX = 2;
-    protected static final double REMAINING_TIME_MID = (double)1.3;
-    protected static final double REMAINING_TIME_MIN = (double)0.6;
+    protected static final double REMAINING_TIME_MAX = 1.5;
+    protected static final double REMAINING_TIME_MID = (double)1.0;
+    protected static final double REMAINING_TIME_MIN = (double)0.5;
 
     protected enum Status {
         normal, vanishing, vanished;

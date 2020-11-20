@@ -13,7 +13,7 @@ import java.io.FileNotFoundException;
 
 abstract public class Flame extends StaticEntity {
     public Flame() {
-        timeUntilVanish = 2;
+        timeUntilVanish = 1.5;
         status = Status.normal;
     }
 

@@ -19,7 +19,7 @@ import java.util.Stack;
 public class GameState {
     public static final double BOMB_EXPLOSION_TIME = 8;
 
-    public static final int DEFAULT_BLAST_RANGE = 1;
+    public static final int DEFAULT_BLAST_RANGE = 2;
     public static final int ENHANCED_BLAST_RANGE = 2;
 
     public static final double DEFAULT_SPEED = 2;
@@ -117,11 +117,12 @@ public class GameState {
         if (status != GameStatus.PLAYING) {
             return;
         }
-
-        for (Entity e : entities) {
-            if (e instanceof Bomb)
-                continue;
-            e.updateGameState(this);
+        int n = entities.size();
+        for (int i = 0;i < n;i++) {
+            try{
+                entities.get(i).updateGameState(this);
+            }
+            catch (Exception e){}
         }
 //        for (Entity e : entities) {
 //            e.updateGameState(this);
