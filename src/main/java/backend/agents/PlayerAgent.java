@@ -8,13 +8,15 @@ import main.java.backend.static_entities.flames.Flame;
 import main.java.utils.Direction;
 import main.java.utils.GridPosition;
 
+import java.util.List;
+
 public class PlayerAgent extends BomberMan {
     public PlayerAgent(GridPosition position, double speed, int blastRange, int numBombs) {
         super(position, speed, blastRange, numBombs);
     }
 
     public void updateGameState(GameState gameState) {
-        if (isVanished()) {
+        if (isVanished() || isVanishing()) {
             gameState.removeEntity(this);
             return;
         }
@@ -29,22 +31,18 @@ public class PlayerAgent extends BomberMan {
             KeyEvent playerInput = gameState.popPlayerInputStack();
             switch (playerInput.getCode()) {
                 case LEFT:
-                    move(Direction.WEST, gameState);
                     currentDirection = Direction.WEST;
                     movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
                     break;
                 case UP:
-                    move(Direction.NORTH, gameState);
                     currentDirection = Direction.NORTH;
                     movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
                     break;
                 case RIGHT:
-                    move(Direction.EAST, gameState);
                     currentDirection = Direction.EAST;
                     movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
                     break;
                 case DOWN:
-                    move(Direction.SOUTH, gameState);
                     currentDirection = Direction.SOUTH;
                     movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
                     break;
@@ -52,9 +50,15 @@ public class PlayerAgent extends BomberMan {
                     movingType = MovingType.STOP;
                     setBomb(gameState);
             }
+            List<Direction> validActions = legalActions(gameState);
+            for (Direction dir : validActions) {
+                if (!movingType.equals(MovingType.STOP) && dir.equals(currentDirection)) {
+                    move(currentDirection);
+                }
+            }
         }
         else {
-            move(currentDirection, gameState);
+            move(currentDirection);
         }
 
         interactWithOtherEntities(gameState);

@@ -12,6 +12,8 @@ import main.java.utils.EntityType;
 import main.java.utils.GameStatus;
 import main.java.utils.GridPosition;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 abstract public class Agent extends Entity {
@@ -42,32 +44,36 @@ abstract public class Agent extends Entity {
         this.currentDirection = newDirection;
     }
 
-    /**
-     *
-     * @param dir moving direction
-     * @return    is the movement successful
-     */
-    public boolean move(Direction dir, GameState gameState) {
-        if (isVanished() || isVanishing()) {
-            return false;
+    protected List<Direction> legalActions(GameState gameState) {
+        List<Direction> legalDirs = new ArrayList<>();
+
+        if (isVanishing() || isVanished()) {
+            return legalDirs;
         }
 
-        GridPosition newPosition = position.step(dir, speed / GameState.NUM_REFRESH_PER_TIME_UNIT);
+        for (Direction dir : Direction.values()) {
+            boolean validMove = true;
+            GridPosition newPosition = position.step(dir, speed / GameState.NUM_REFRESH_PER_TIME_UNIT);
+            for (Entity e : gameState.getEntityList()) {
+                double d = newPosition.distance(e.getPosition());
+                if (d < 1 && e.isBlocked()) {
+                    validMove = false;
+                    break;
+                }
+            }
 
-        boolean validMove = true;
-        for (Entity e : gameState.getEntityList()) {
-            double d = newPosition.distance(e.getPosition());
-            if (d < 1 && e.isBlocked()) {
-                validMove = false;
+            if (validMove) {
+                legalDirs.add(dir);
             }
         }
 
-        if (validMove) {
-            this.setPosition(newPosition);
-            this.setDirection(dir);
-        }
+        return legalDirs;
+    }
 
-        return validMove;
+    public void move(Direction dir) {
+        GridPosition newPosition = position.step(dir, speed / GameState.NUM_REFRESH_PER_TIME_UNIT);
+        setPosition(newPosition);
+        setDirection(dir);
     }
 
     public Image getCurrentTexture() {
@@ -96,22 +102,18 @@ abstract public class Agent extends Entity {
     }
 
     void randomMove(GameState gameState) {
-        if (isVanished()) {
-            gameState.removeEntity(this);
-            return;
-        }
-
         Direction dir;
 
         if (position.isLatticePoint()) {
-            int pick = new Random().nextInt(Direction.values().length);
-            dir = Direction.values()[pick];
+            List<Direction> validActions = legalActions(gameState);
+            int pick = new Random().nextInt(validActions.size());
+            dir = validActions.get(pick);
         }
         else {
             dir = currentDirection;
         }
 
-        this.move(dir, gameState);
+        this.move(dir);
 
         for (Entity e : gameState.getEntityList()) {
             double d = position.distance(e.getPosition());
@@ -122,12 +124,6 @@ abstract public class Agent extends Entity {
     }
 
     void standStill(GameState gameState) {
-        if (isVanished()) {
-            gameState.removeEntity(this);
-            System.out.println("fuck");
-            return;
-        }
-
         for (Entity e : gameState.getEntityList()) {
             double d = position.distance(e.getPosition());
             if (d < 1 && e instanceof PlayerAgent) {
