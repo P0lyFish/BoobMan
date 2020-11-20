@@ -19,7 +19,7 @@ public class PlayerAgent extends BomberMan {
             return;
         }
 
-        decreaseTimeUntilVanish((double)1.0 / gameState.NUM_REFRESH_PER_TIME_UNIT);
+        decreaseTimeUntilVanish((double)1.0 / GameState.NUM_REFRESH_PER_TIME_UNIT);
 
         if (position.isLatticePoint()) {
             if (gameState.inputStackIsEmpty()) {
