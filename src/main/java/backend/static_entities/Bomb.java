@@ -12,6 +12,7 @@ import main.java.utils.GridPosition;
 
 public class Bomb extends StaticEntity {
     private final BomberMan bombSetter;
+    private float n = 0;
     private int gameTime = 0;
     private int bombImageId = 0;
     private final int time = 100;
@@ -24,6 +25,7 @@ public class Bomb extends StaticEntity {
         this.bombSetter = bombSetter;
         this.position = position;
         status = Status.normal;
+        n = this.bombSetter.getBlastRange();
     }
 
     public void decreaseTimer(float delta) {
@@ -40,7 +42,7 @@ public class Bomb extends StaticEntity {
         timeUntilVanish -= (float)1 / GameState.NUM_REFRESH_PER_TIME_UNIT;
 
         if(timeUntilVanish <= 0) {
-            float n = this.bombSetter.getBlastRange();
+
             float lenStraightFlame = n-1;
             CenterFlame centerFlame = new CenterFlame();
             GridPosition centerFlamePosition = this.getPosition();
