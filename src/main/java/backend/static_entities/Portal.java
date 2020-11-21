@@ -15,7 +15,7 @@ public class Portal extends StaticEntity {
     private boolean opened;
     public Portal(GridPosition position) {
         this.blocked = true;
-        this.destroyable = false;
+        this.destroyable = true;
         this.visible = false;
         this.entityType = EntityType.portal;
         this.passed = false;
