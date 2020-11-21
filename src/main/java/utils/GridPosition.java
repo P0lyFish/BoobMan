@@ -1,7 +1,7 @@
 package main.java.utils;
 
 public class GridPosition {
-    static final double EPS = (double) 1e-4;
+    static final double EPS = (double) 1e-2;
 
     private double x;
     private double y;
@@ -59,6 +59,8 @@ public class GridPosition {
                 return new GridPosition(this.getX() + speed, this.getY());
             case SOUTH:
                 return new GridPosition(this.getX(), this.getY() + speed);
+            case STOP:
+                return new GridPosition(this.getX(), this.getY());
             default:
                 throw new IllegalStateException("Unexpected value: " + dir);
         }

@@ -29,6 +29,7 @@ import main.java.backend.static_entities.Grass;
 import main.java.backend.static_entities.StaticEntity;
 import main.java.backend.static_entities.Wall;
 import main.java.utils.GridPosition;
+import main.java.utils.Input;
 
 
 import java.io.*;
@@ -76,9 +77,9 @@ public class Board extends Application {
         });
         primaryStage.show();
 
-        gameState = new GameState("src/main/resources/levels/Level1.txt");
+        gameState = new GameState("src/main/resources/levels/Level1.txt", new Input(scene));
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.4 / gameState.NUM_REFRESH_PER_TIME_UNIT), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.4 / GameState.NUM_REFRESH_PER_TIME_UNIT), event -> {
             gameState.refresh();
             try {
                 taskbar.quit.setOnAction(new EventHandler<ActionEvent>() {
@@ -93,12 +94,6 @@ public class Board extends Application {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-                @Override
-                public void handle(KeyEvent event) {
-                    gameState.addPlayerInput(event);
-                }
-            });
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();

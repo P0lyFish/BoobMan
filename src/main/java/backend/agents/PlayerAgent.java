@@ -7,10 +7,13 @@ import main.java.backend.GameState;
 import main.java.backend.static_entities.flames.Flame;
 import main.java.utils.Direction;
 import main.java.utils.GridPosition;
+import main.java.utils.Input;
 
 import java.util.List;
 
 public class PlayerAgent extends BomberMan {
+    Input input;
+
     public PlayerAgent(GridPosition position, double speed, int blastRange, int numBombs) {
         super(position, speed, blastRange, numBombs);
     }
@@ -24,40 +27,40 @@ public class PlayerAgent extends BomberMan {
         decreaseTimeUntilVanish((double)1.0 / GameState.NUM_REFRESH_PER_TIME_UNIT);
 
         if (position.isLatticePoint()) {
-            if (gameState.inputStackIsEmpty()) {
+            if (gameState.inputListener.isMoveLeft()) {
+                currentDirection = Direction.WEST;
+                movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
+            }
+            else if (gameState.inputListener.isMoveUp()) {
+                currentDirection = Direction.NORTH;
+                movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
+            }
+            else if (gameState.inputListener.isMoveRight()) {
+                currentDirection = Direction.EAST;
+                movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
+            }
+            else if (gameState.inputListener.isMoveDown()) {
+                currentDirection = Direction.SOUTH;
+                movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
+            }
+            else if (gameState.inputListener.isFirePrimaryWeapon()) {
                 movingType = MovingType.STOP;
-                return;
+                setBomb(gameState);
             }
-            KeyEvent playerInput = gameState.popPlayerInputStack();
-            switch (playerInput.getCode()) {
-                case LEFT:
-                    currentDirection = Direction.WEST;
-                    movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
-                    break;
-                case UP:
-                    currentDirection = Direction.NORTH;
-                    movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
-                    break;
-                case RIGHT:
-                    currentDirection = Direction.EAST;
-                    movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
-                    break;
-                case DOWN:
-                    currentDirection = Direction.SOUTH;
-                    movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
-                    break;
-                case SPACE:
-                    movingType = MovingType.STOP;
-                    setBomb(gameState);
+            else {
+                movingType = MovingType.STOP;
             }
+
             List<Direction> validActions = legalActions(gameState);
             for (Direction dir : validActions) {
                 if (!movingType.equals(MovingType.STOP) && dir.equals(currentDirection)) {
                     move(currentDirection, speed / GameState.NUM_REFRESH_PER_TIME_UNIT);
+                    break;
                 }
             }
         }
         else {
+            movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
             move(currentDirection, speed / GameState.NUM_REFRESH_PER_TIME_UNIT);
         }
 

@@ -1,5 +1,6 @@
 package main.java.backend;
 
+import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import main.java.backend.agents.Agent;
 import main.java.backend.agents.Balloon;
@@ -14,6 +15,7 @@ import main.java.backend.static_entities.items.FlameItem;
 import main.java.backend.static_entities.items.SpeedItem;
 import main.java.utils.GameStatus;
 import main.java.utils.GridPosition;
+import main.java.utils.Input;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -24,13 +26,10 @@ public class GameState {
     public static final double BOMB_EXPLOSION_TIME = 8;
 
     public static final int DEFAULT_BLAST_RANGE = 1;
-    public static final int ENHANCED_BLAST_RANGE = 2;
 
     public static final double DEFAULT_SPEED = 2;
-    public static final double ENHANCED_SPEED  = 2.5;
 
     public static final int DEFAULT_NUM_BOMBS = 1;
-    public static final int ENHANCED_NUM_BOMBS = 2;
 
     public static final int NUM_REFRESH_PER_TIME_UNIT = 60;
 
@@ -38,13 +37,13 @@ public class GameState {
     private int mapID;
 
     private List<Entity> entities;
-    private Stack<KeyEvent> playerInputStack;
+    public Input inputListener;
 
     public GameState() {
     }
 
-    public GameState(String mapPath) throws IOException {
-        playerInputStack = new Stack<>();
+    public GameState(String mapPath, Input inputListener) throws IOException {
+        this.inputListener = inputListener;
         entities = new ArrayList<>();
 
         try {
@@ -121,21 +120,6 @@ public class GameState {
 
     public List<Entity> getEntityList() {
         return this.entities;
-    }
-
-    public void addPlayerInput(KeyEvent key) {
-        while (!playerInputStack.empty()) {
-            playerInputStack.pop();
-        }
-        playerInputStack.add(key);
-    }
-
-    public boolean inputStackIsEmpty() {
-        return playerInputStack.empty();
-    }
-
-    public KeyEvent popPlayerInputStack() {
-        return playerInputStack.pop();
     }
 
     public void refresh() {
