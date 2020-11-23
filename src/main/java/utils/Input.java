@@ -25,9 +25,10 @@ public class Input implements Serializable {
     private final KeyCode downKey = KeyCode.DOWN;
     private final KeyCode leftKey = KeyCode.LEFT;
     private final KeyCode rightKey = KeyCode.RIGHT;
-    private final KeyCode primaryWeaponKey = KeyCode.SPACE;
+    private final KeyCode setBombKey = KeyCode.SPACE;
 
     Scene scene;
+    private int spaceCounter = 0;
 
     public Input(Scene scene) {
         this.scene = scene;
@@ -52,6 +53,8 @@ public class Input implements Serializable {
     private final EventHandler<KeyEvent> keyPressedEventHandler = event -> {
         // register key down
         keyboardBitSet.set(event.getCode().ordinal(), true);
+        if (event.getCode().equals(setBombKey))
+            spaceCounter += 1;
     };
 
     /**
@@ -84,7 +87,12 @@ public class Input implements Serializable {
         return keyboardBitSet.get( rightKey.ordinal()) && !keyboardBitSet.get( leftKey.ordinal());
     }
 
-    public boolean isFirePrimaryWeapon() {
-        return keyboardBitSet.get( primaryWeaponKey.ordinal());
+    public boolean isSetBomb() {
+        if (spaceCounter > 0) {
+            --spaceCounter;
+            return true;
+        }
+
+        return false;
     }
 }

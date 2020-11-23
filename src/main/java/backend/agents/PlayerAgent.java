@@ -46,7 +46,7 @@ public class PlayerAgent extends BomberMan {
                 currentDirection = Direction.SOUTH;
                 movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
             }
-            else if (gameState.inputListener.isFirePrimaryWeapon()) {
+            else if (gameState.inputListener.isSetBomb()) {
                 movingType = MovingType.STOP;
                 setBomb(gameState);
             }
