@@ -80,6 +80,13 @@ abstract public class Agent extends Entity {
         setDirection(dir);
     }
 
+    public void changeMoveType() {
+        movingTimer += 1;
+        if (movingTimer % GameState.CHANGE_MOVING_TYPE_PERIOD == 0) {
+            movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
+        }
+    }
+
     public Image getCurrentTexture() {
         if (isNormal()) {
             return Sprite.agent_sprites.get(String.format("%s_%s_%s", entityType.toString(),

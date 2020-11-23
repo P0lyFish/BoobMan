@@ -22,10 +22,8 @@ public class PlayerAgent extends BomberMan {
     }
 
     public void updateGameState(GameState gameState) {
-        movingTimer += 1;
-        if (movingTimer % GameState.CHANGE_MOVING_TYPE_PERIOD == 0) {
-            movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
-        }
+        changeMoveType();
+
         if (isVanished()) {
             gameState.removeEntity(this);
             return;
