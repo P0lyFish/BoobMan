@@ -52,4 +52,9 @@ public class SpeedItem extends Item {
         }
     }
 
+    @Override
+    public Entity getClone() {
+        return new SpeedItem(position);
+    }
+
 }

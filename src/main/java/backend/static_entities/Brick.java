@@ -1,6 +1,7 @@
 package main.java.backend.static_entities;
 
 import javafx.scene.image.Image;
+import main.java.backend.Entity;
 import main.java.backend.GameState;
 import main.java.graphics.Sprite;
 import main.java.utils.EntityType;
@@ -28,6 +29,11 @@ public class Brick extends StaticEntity {
         if (isVanished()) {
             gameState.removeEntity(this);
         }
+    }
+
+    @Override
+    public Entity getClone() {
+        return new Brick(position);
     }
 
     public Image getCurrentTexture() {

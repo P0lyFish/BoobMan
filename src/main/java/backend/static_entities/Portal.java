@@ -64,4 +64,9 @@ public class Portal extends StaticEntity {
             this.blocked = false;
         }
     }
+
+    @Override
+    public Entity getClone() {
+        return new Portal(position);
+    }
 }

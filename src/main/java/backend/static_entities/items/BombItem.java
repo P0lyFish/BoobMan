@@ -40,10 +40,11 @@ public class BombItem extends Item {
             }
         }
         for(Entity e : gameState.getEntityList()) {
-            if(this.visible && e instanceof BomberMan && e.getPosition().distance(this.getPosition()) < 1) {
+            if(e instanceof BomberMan && e.getPosition().distance(this.getPosition()) < 1) {
                 int n = ((BomberMan) e).getRemainingBombs();
                 ((BomberMan) e).setRemainingBombs(n+EXTRA_BOMB);
                 gameState.removeEntity(this);
+                System.out.println(((BomberMan) e).getRemainingBombs());
             }
         }
         decreaseTimeUntilVanish((double)1.0 / gameState.NUM_REFRESH_PER_TIME_UNIT);
@@ -51,6 +52,11 @@ public class BombItem extends Item {
         if (isVanished()) {
             gameState.removeEntity(this);
         }
+    }
+
+    @Override
+    public Entity getClone() {
+        return new BombItem(position);
     }
 
 }

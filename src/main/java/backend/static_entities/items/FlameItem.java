@@ -50,4 +50,9 @@ public class FlameItem extends Item {
             gameState.removeEntity(this);
         }
     }
+
+    @Override
+    public Entity getClone() {
+        return new FlameItem(position);
+    }
 }

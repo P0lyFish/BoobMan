@@ -102,33 +102,23 @@ public class Bomb extends StaticEntity {
                     }
                     if(checkLeft) {
                         gameState.addEntity(horizontalFlameLeft);
+                    }
 
-                    }
-                    else {
-                        checkLeft = false;
-                    }
 
                     if(checkRight) {
                         gameState.addEntity(horizontalFlameRight);
                     }
-                    else {
-                        checkRight = false;
-                    }
+
 
                     if(checkUp) {
                         gameState.addEntity(verticalFlameUp);
-                    }
-                    else {
-                        checkUp = false;
                     }
 
                     if(checkDown) {
                         gameState.addEntity(verticalFlameDown);
 
                     }
-                    else {
-                        checkDown = false;
-                    }
+
                     for(Entity e : gameState.getEntityList()) {
                         if(!e.isDestroyable() && e.getPosition().distance(horizontalFlameLeft.getPosition()) <=1 && e.getPosition().getX() < horizontalFlameLeft.getPosition().getX()) {
                             checkLeft = false;
@@ -183,6 +173,11 @@ public class Bomb extends StaticEntity {
         if(this.bombSetter.getPosition().distance(this.getPosition()) >= 1) {
             this.blocked = true;
         }
+    }
+
+    @Override
+    public Entity getClone() {
+        return new Bomb(position, (float)timeUntilVanish, bombSetter);
     }
 
     public Image getCurrentTexture() {

@@ -5,6 +5,7 @@ import main.java.backend.Entity;
 import main.java.backend.GameState;
 import main.java.graphics.Sprite;
 import main.java.utils.EntityType;
+import main.java.utils.GridPosition;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,6 +14,9 @@ public class Wall extends StaticEntity {
     public Wall() {
         this.entityType = EntityType.wall;
         blocked = true;
+    }
+    public Wall(GridPosition position) {
+        this.position = position;
     }
 
     public void destroy() {
@@ -24,5 +28,10 @@ public class Wall extends StaticEntity {
 
     public void updateGameState(GameState gameState) {
 
+    }
+
+    @Override
+    public Entity getClone() {
+        return new Wall(position);
     }
 }
