@@ -27,6 +27,7 @@ abstract public class Agent extends Entity {
     protected double speed;
     protected Direction currentDirection;
     protected MovingType movingType = MovingType.STOP;
+    protected int movingTimer = 0;
 
     public Agent(GridPosition position, double speed) {
         super(position, true, false, true, REMAINING_TIME_MAX);

@@ -22,6 +22,10 @@ public class PlayerAgent extends BomberMan {
     }
 
     public void updateGameState(GameState gameState) {
+        movingTimer += 1;
+        if (movingTimer % GameState.CHANGE_MOVING_TYPE_PERIOD == 0) {
+            movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
+        }
         if (isVanished()) {
             gameState.removeEntity(this);
             return;
@@ -63,7 +67,6 @@ public class PlayerAgent extends BomberMan {
             }
         }
         else {
-            movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
             move(currentDirection, speed / GameState.NUM_REFRESH_PER_TIME_UNIT);
         }
 
