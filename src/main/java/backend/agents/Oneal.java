@@ -15,6 +15,10 @@ public class Oneal extends Agent {
         entityType = EntityType.oneal;
     }
 
+    public Oneal getClone() {
+        return new Oneal(position, speed);
+    }
+
     public void updateGameState(GameState gameState) throws CloneNotSupportedException {
         if (isVanished()) {
             gameState.removeEntity(this);

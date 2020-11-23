@@ -1,7 +1,6 @@
 package main.java;
 
 import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -9,33 +8,19 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import main.java.GUI.KeyboardHandler;
 import main.java.GUI.Menu;
 import main.java.GUI.Taskbar;
 import main.java.GUI.highScore;
-import main.java.backend.Entity;
 import main.java.backend.GameState;
-import main.java.backend.agents.PlayerAgent;
-import main.java.backend.static_entities.Grass;
-import main.java.backend.static_entities.StaticEntity;
-import main.java.backend.static_entities.Wall;
-import main.java.utils.GridPosition;
 import main.java.utils.Input;
 
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
 
 public class Board extends Application {
 

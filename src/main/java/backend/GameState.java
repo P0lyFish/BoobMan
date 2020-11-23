@@ -20,22 +20,15 @@ import main.java.utils.Input;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
-public class GameState {
+public class GameState implements Serializable {
     public static final double BOMB_EXPLOSION_TIME = 8;
-
     public static final int DEFAULT_BLAST_RANGE = 1;
-
     public static final double DEFAULT_SPEED = 2;
-
     public static final int DEFAULT_NUM_BOMBS = 1;
-
     public static final int NUM_REFRESH_PER_TIME_UNIT = 60;
 
     private GameStatus status = GameStatus.PLAYING;
-    private int mapID;
-
     private List<Entity> entities;
     public Input inputListener;
 
@@ -123,6 +116,10 @@ public class GameState {
         return this.entities;
     }
 
+    public void setStatus(GameStatus status) {
+        this.status = status;
+    }
+
     public void refresh() {
         if (status != GameStatus.PLAYING) {
             return;
@@ -158,5 +155,15 @@ public class GameState {
         }
 
         return null;
+    }
+
+    public GameState getClone() {
+        GameState res = new GameState();
+        res.setStatus(status);
+        for (Entity e : entities) {
+            res.addEntity(e.getClone());
+        }
+
+        return res;
     }
 }

@@ -154,7 +154,7 @@ abstract public class Agent extends Entity {
 
             List<Direction> legalMoves = u.legalActions(gameState);
             for (Direction dir : legalMoves) {
-                Agent v = (Agent) u.clone();
+                Agent v = (Agent) u.getClone();
                 v.move(dir, 1);
 
                 if (!dist.containsKey(v.getPosition())) {

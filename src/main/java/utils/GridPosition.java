@@ -1,6 +1,8 @@
 package main.java.utils;
 
-public class GridPosition {
+import java.io.Serializable;
+
+public class GridPosition implements Serializable {
     static final double EPS = (double) 1e-2;
 
     private double x;

@@ -17,6 +17,10 @@ public class Balloon extends Agent {
         entityType = EntityType.balloon;
     }
 
+    public Balloon getClone() {
+        return new Balloon(position, speed);
+    }
+
     public void updateGameState(GameState gameState) {
         if (isVanished()) {
             gameState.removeEntity(this);
@@ -25,6 +29,5 @@ public class Balloon extends Agent {
 
         decreaseTimeUntilVanish((double)1.0 / GameState.NUM_REFRESH_PER_TIME_UNIT);
         randomMove(gameState);
-        standStill(gameState);
     }
 }

@@ -12,10 +12,13 @@ import main.java.utils.Input;
 import java.util.List;
 
 public class PlayerAgent extends BomberMan {
-    Input input;
-
     public PlayerAgent(GridPosition position, double speed, int blastRange, int numBombs) {
         super(position, speed, blastRange, numBombs);
+    }
+
+    @Override
+    public Entity getClone() {
+        return new PlayerAgent(position, speed, blastRange, remainingBombs);
     }
 
     public void updateGameState(GameState gameState) {

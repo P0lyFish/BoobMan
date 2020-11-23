@@ -1,12 +1,8 @@
 package main.java.backend;
 
-import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import main.java.Board;
-import main.java.backend.static_entities.Bomb;
 import main.java.utils.EntityType;
 import main.java.utils.GridPosition;
 
@@ -129,4 +125,6 @@ public abstract class Entity implements Cloneable {
 
         gc.drawImage(base, x * Board.SCALED_SIZE, y * Board.SCALED_SIZE);
     }
+
+    abstract public Entity getClone();
 }

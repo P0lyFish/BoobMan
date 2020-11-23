@@ -6,9 +6,10 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import java.io.Serializable;
 import java.util.BitSet;
 
-public class Input {
+public class Input implements Serializable {
 
     /**
      * Bitset which registers if any {@link KeyCode} keeps being pressed or if it is released.
