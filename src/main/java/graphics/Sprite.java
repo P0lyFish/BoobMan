@@ -49,6 +49,30 @@ public class Sprite {
         agent_sprites.put("bomberman_VANISHING_3", Sprite2.player_dead.getCurrentTexture());
     }
 
+    static {
+        agent_sprites.put("bomberman_EAST_STEP_LEFT__2", Sprite2.player_right_2__2.getCurrentTexture());
+        agent_sprites.put("bomberman_EAST_STEP_RIGHT__2", Sprite2.player_right_1__2.getCurrentTexture());
+        agent_sprites.put("bomberman_EAST_STOP__2", Sprite2.player_right__2.getCurrentTexture());
+
+        agent_sprites.put("bomberman_NORTH_STEP_LEFT__2", Sprite2.player_up_2__2.getCurrentTexture());
+        agent_sprites.put("bomberman_NORTH_STEP_RIGHT__2", Sprite2.player_up_1__2.getCurrentTexture());
+        agent_sprites.put("bomberman_NORTH_STOP__2", Sprite2.player_up__2.getCurrentTexture());
+
+        agent_sprites.put("bomberman_WEST_STEP_LEFT__2", Sprite2.player_left_2__2.getCurrentTexture());
+        agent_sprites.put("bomberman_WEST_STEP_RIGHT__2", Sprite2.player_left_1__2.getCurrentTexture());
+        agent_sprites.put("bomberman_WEST_STOP__2", Sprite2.player_left__2.getCurrentTexture());
+
+        agent_sprites.put("bomberman_SOUTH_STEP_LEFT__2", Sprite2.player_down_2__2.getCurrentTexture());
+        agent_sprites.put("bomberman_SOUTH_STEP_RIGHT__2", Sprite2.player_down_1__2.getCurrentTexture());
+        agent_sprites.put("bomberman_SOUTH_STOP__2", Sprite2.player_down__2.getCurrentTexture());
+
+        agent_sprites.put("bomberman_VANISHING_1__2", Sprite2.player_dead4__2.getCurrentTexture());
+        agent_sprites.put("bomberman_VANISHING_2__2", Sprite2.player_dead2__2.getCurrentTexture());
+        agent_sprites.put("bomberman_VANISHING_3__2", Sprite2.player_dead__2.getCurrentTexture());
+    }
+
+
+
     /*
     |--------------------------------------------------------------------------
     | Character
