@@ -39,13 +39,17 @@ public class Portal extends StaticEntity {
     }
 
     public Image getCurrentTexture() {
-        return Sprite.portal.getCurrentTexture();
+        if(isOpened()) {
+            return Sprite.static_sprites.get("portal2");
+        }
+        else return Sprite.static_sprites.get("portal");
     }
 
     public void updateGameState(GameState gameState) {
         for(Entity e : gameState.getEntityList()) {
             if(e instanceof Brick && (e.getStatus() == Status.vanished || e.getStatus() == Status.vanishing) && e.getPosition().distance(this.getPosition()) < 0.3) {
                 this.visible = true;
+                this.destroyable = false;
             }
             if(isOpened() && e instanceof PlayerAgent && e.getPosition().distance(this.getPosition()) < 1) {
                 this.passed = true;

@@ -26,6 +26,8 @@ public class Sprite2 {
         }
     }
 
+    public static Sprite2 portal = new Sprite2(16, 393, 789);
+    public static Sprite2 portal2 = new Sprite2(16, 409, 789);
     public static Sprite2 wall = new Sprite2(16, 737, 110);
     public static Sprite2 brick = new Sprite2(16, 721,110);
     public static Sprite2 grass = new Sprite2(16, 689, 110);
@@ -72,6 +74,92 @@ public class Sprite2 {
     public static Sprite2 bomb_item = new Sprite2(16, 16, 48);
     public static Sprite2 flame_item = new Sprite2(16, 0, 48);
     public static Sprite2 speed_item = new Sprite2(16, 48, 48);
+
+
+    //player1
+    public static Sprite2 player_up = new Sprite2(21,217, 0);
+    public static Sprite2 player_down = new Sprite2(21, 1, 0);
+    public static Sprite2 player_left = new Sprite2(21, 145, 0);
+    public static Sprite2 player_right = new Sprite2(21, 72, 0);
+
+    public static Sprite2 player_up_1 = new Sprite2(21, 240, 0);
+    public static Sprite2 player_up_2 = new Sprite2(21, 266, 0);
+
+    public static Sprite2 player_down_1 = new Sprite2(21, 26, 0);
+    public static Sprite2 player_down_2 = new Sprite2(21, 48, 0);
+
+    public static Sprite2 player_left_1 = new Sprite2(21, 168, 0);
+    public static Sprite2 player_left_2 = new Sprite2(21, 192, 0);
+
+    public static Sprite2 player_right_1 = new Sprite2(21, 97, 0);
+    public static Sprite2 player_right_2 = new Sprite2(21, 121, 0);
+
+    public static Sprite2 player_dead = new Sprite2(21, 168, 25);
+    public static Sprite2 player_dead1 = new Sprite2(21, 145, 25);
+    public static Sprite2 player_dead2 = new Sprite2(21, 121, 25);
+    public static Sprite2 player_dead3 = new Sprite2(21, 97, 25);
+    public static Sprite2 player_dead4 = new Sprite2(21, 49, 24);
+    public static Sprite2 player_dead5 = new Sprite2(21, 25, 24);
+    public static Sprite2 player_dead6 = new Sprite2(21, 1, 24);
+
+    //player__2
+    public static Sprite2 player_up__2 = new Sprite2(21,75, 244);
+    public static Sprite2 player_down__2 = new Sprite2(21, 171, 220);
+    public static Sprite2 player_left__2 = new Sprite2(21, 3, 244);
+    public static Sprite2 player_right__2 = new Sprite2(21, 241, 220);
+
+    public static Sprite2 player_up_1__2 = new Sprite2(21, 98, 244);
+    public static Sprite2 player_up_2__2 = new Sprite2(21, 124, 244);
+
+    public static Sprite2 player_down_1__2 = new Sprite2(21, 196, 220);
+    public static Sprite2 player_down_2__2 = new Sprite2(21, 218, 220);
+
+    public static Sprite2 player_left_1__2 = new Sprite2(21, 25, 244);
+    public static Sprite2 player_left_2__2 = new Sprite2(21, 50, 244);
+
+    public static Sprite2 player_right_1__2 = new Sprite2(21, 267, 220);
+    public static Sprite2 player_right_2__2 = new Sprite2(21, 290, 220);
+
+    public static Sprite2 player_dead__2 = new Sprite2(21, 146, 244);
+    public static Sprite2 player_dead1__2 = new Sprite2(21, 169, 244);
+    public static Sprite2 player_dead2__2 = new Sprite2(21, 193, 244);
+    public static Sprite2 player_dead3__2 = new Sprite2(21, 217, 244);
+    public static Sprite2 player_dead4__2 = new Sprite2(21, 242, 244);
+    public static Sprite2 player_dead5__2 = new Sprite2(21, 266, 244);
+    public static Sprite2 player_dead6__2 = new Sprite2(21, 289, 244);
+
+    //enemy
+    public static Sprite2 enemy1_1 = new Sprite2(16, 426, 215);
+    public static Sprite2 enemy1_2 = new Sprite2(16, 442, 215);
+    public static Sprite2 enemy1_3 = new Sprite2(16, 458, 215);
+
+    public static Sprite2 enemy1_dead1 = new Sprite2(16, 474, 215);
+    public static Sprite2 enemy1_dead2 = new Sprite2(16, 490, 215);
+
+
+    //enemy2
+    public static Sprite2 oneal_EAST_STEP_LEFT = new Sprite2(16, 330, 324);
+    public static Sprite2 oneal_EAST_STEP_RIGHT = new Sprite2(16, 362, 324);
+    public static Sprite2 oneal_EAST_STOP = new Sprite2(16, 346, 324);
+
+    public static Sprite2 oneal_NORTH_STEP_LEFT = new Sprite2(16, 602, 305);
+    public static Sprite2 oneal_NORTH_STEP_RIGHT = new Sprite2(16, 314, 324);
+    public static Sprite2 oneal_NORTH_STOP = new Sprite2(16, 618, 306);
+
+    public static Sprite2 oneal_WEST_STEP_LEFT = new Sprite2(16, 554, 306);
+    public static Sprite2 oneal_WEST_STEP_RIGHT = new Sprite2(16, 586, 306);
+    public static Sprite2 oneal_WEST_STOP = new Sprite2(16, 570, 306);
+
+    public static Sprite2 oneal_SOUTH_STEP_LEFT = new Sprite2(16, 378, 324);
+    public static Sprite2 oneal_SOUTH_STEP_RIGHT = new Sprite2(16, 410, 324);
+    public static Sprite2 oneal_SOUTH_STOP = new Sprite2(16, 394, 324);
+
+
+    public static Sprite2 oneal_VANISHING_1 = new Sprite2(16, 426, 323);
+    public static Sprite2 oneal_VANISHING_2 = new Sprite2(16, 442, 324);
+    public static Sprite2 oneal_VANISHING_3 = new Sprite2(16, 442, 324);
+
+
 
     public Image getCurrentTexture() {
         WritableImage wr = new WritableImage(SIZE, SIZE);

@@ -60,6 +60,7 @@ public class GameState implements Serializable {
                             entity = new PlayerAgent(new GridPosition(curX, curY), DEFAULT_SPEED,
                                     DEFAULT_BLAST_RANGE, DEFAULT_NUM_BOMBS);
                             break;
+
                         case 'b':
                             entity = new Balloon(new GridPosition(curX, curY), DEFAULT_SPEED);
                             break;
@@ -85,6 +86,7 @@ public class GameState implements Serializable {
                             entity = new Portal(new GridPosition(curX, curY));
                             brick = new Brick(entity.getPosition());
                             break;
+
                         default:
                             break;
                     }
