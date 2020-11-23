@@ -13,7 +13,7 @@ public class CenterFlame extends Flame {
     @Override
     public Entity getClone() {
         CenterFlame a = new CenterFlame();
-        a.setPosition(this.position);
+        a.setPosition(position);
         return a;
     }
 

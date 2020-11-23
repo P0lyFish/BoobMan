@@ -6,10 +6,7 @@ import main.java.backend.agents.Agent;
 import main.java.backend.agents.Balloon;
 import main.java.backend.agents.Oneal;
 import main.java.backend.agents.PlayerAgent;
-import main.java.backend.static_entities.Bomb;
-import main.java.backend.static_entities.Brick;
-import main.java.backend.static_entities.Portal;
-import main.java.backend.static_entities.Wall;
+import main.java.backend.static_entities.*;
 import main.java.backend.static_entities.items.BombItem;
 import main.java.backend.static_entities.items.FlameItem;
 import main.java.backend.static_entities.items.SpeedItem;
@@ -27,7 +24,7 @@ public class GameState implements Serializable {
     public static final double DEFAULT_SPEED = 2;
     public static final int DEFAULT_NUM_BOMBS = 1;
     public static final int NUM_REFRESH_PER_TIME_UNIT = 60;
-
+    private List<Entity> listGrass = new ArrayList<>();
     private GameStatus status = GameStatus.PLAYING;
     private List<Entity> entities;
     public Input inputListener;
@@ -51,9 +48,9 @@ public class GameState implements Serializable {
                 Brick brick = null;
                 for (int curX = 0; curX < line.length(); ++curX) {
                     Entity entity = null;
+                    Grass grass = new Grass(new GridPosition(curX, curY));
+                    listGrass.add(grass);
                     switch (line.charAt(curX)) {
-                        case ' ':
-                            break;
                         case '#':
                             entity = new Wall();
                             entity.setPosition(new GridPosition(curX, curY));
@@ -87,6 +84,8 @@ public class GameState implements Serializable {
                             entity = new Portal(new GridPosition(curX, curY));
                             brick = new Brick(entity.getPosition());
                             break;
+                        default:
+                            break;
                     }
                     if (entity != null) {
                         entities.add(entity);
@@ -115,7 +114,9 @@ public class GameState implements Serializable {
     public List<Entity> getEntityList() {
         return this.entities;
     }
-
+    public List<Entity> getListGrass() {
+        return this.listGrass;
+    }
     public void setStatus(GameStatus status) {
         this.status = status;
     }

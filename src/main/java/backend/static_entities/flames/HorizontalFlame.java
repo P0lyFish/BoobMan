@@ -10,6 +10,7 @@ public class HorizontalFlame extends Flame {
         this.entityType = EntityType.explosion_horizontal;
     }
 
+
     @Override
     public Entity getClone() {
         HorizontalFlame a = new HorizontalFlame();

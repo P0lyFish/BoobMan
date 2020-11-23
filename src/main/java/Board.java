@@ -16,16 +16,19 @@ import javafx.util.Duration;
 import main.java.GUI.Menu;
 import main.java.GUI.Taskbar;
 import main.java.GUI.highScore;
+import main.java.backend.Entity;
 import main.java.backend.GameState;
+import main.java.backend.static_entities.Grass;
 import main.java.utils.Input;
 
 
+import java.awt.*;
 import java.io.*;
 
 public class Board extends Application {
 
     public static final int WIDTH = 21;
-    public static final int HEIGHT = 15;
+    public static final int HEIGHT = 16;
     public static final int DEFAULT_SIZE = 16; // kich thuoc anh
     public static final int SCALED_SIZE = DEFAULT_SIZE * 2; // kich thuoc khi in len man hinh
 
@@ -49,7 +52,7 @@ public class Board extends Application {
         Group root = new Group();
         root.getChildren().addAll(canvas,group);
 
-        Scene scene = new Scene(root, Color.GREEN);
+        Scene scene = new Scene(root);
         Scene scene1 = menu.createTaskbar();
         primaryStage.setScene(scene1);
 
@@ -104,6 +107,12 @@ public class Board extends Application {
 
     public void render() throws FileNotFoundException {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        gameState.getEntityList().forEach(g -> g.render(gc));
+        for(Entity e : gameState.getListGrass()) {
+            e.render(gc);
+        }
+        for(Entity e : gameState.getEntityList()) {
+            e.render(gc);
+        }
+
     }
 }
