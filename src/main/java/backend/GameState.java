@@ -1,6 +1,7 @@
 package main.java.backend;
 
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import main.java.backend.agents.Agent;
 import main.java.backend.agents.Balloon;
@@ -13,6 +14,7 @@ import main.java.backend.static_entities.items.SpeedItem;
 import main.java.utils.GameStatus;
 import main.java.utils.GridPosition;
 import main.java.utils.Input;
+import main.java.utils.KeyCodeSet;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -56,9 +58,17 @@ public class GameState implements Serializable {
                             entity = new Wall();
                             entity.setPosition(new GridPosition(curX, curY));
                             break;
-                        case 'p':
+                        case '1':
+                            KeyCodeSet k = new KeyCodeSet(KeyCode.UP, KeyCode.DOWN, KeyCode.LEFT, KeyCode.RIGHT,
+                                                          KeyCode.ENTER);
                             entity = new PlayerAgent(new GridPosition(curX, curY), DEFAULT_SPEED,
-                                    DEFAULT_BLAST_RANGE, DEFAULT_NUM_BOMBS);
+                                    DEFAULT_BLAST_RANGE, DEFAULT_NUM_BOMBS, k, 0);
+                            break;
+                        case '2':
+                            KeyCodeSet k2 = new KeyCodeSet(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D,
+                                    KeyCode.SPACE);
+                            entity = new PlayerAgent(new GridPosition(curX, curY), DEFAULT_SPEED,
+                                    DEFAULT_BLAST_RANGE, DEFAULT_NUM_BOMBS, k2, 1);
                             break;
 
                         case 'b':
