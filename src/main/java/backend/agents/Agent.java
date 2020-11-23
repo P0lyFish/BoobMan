@@ -82,7 +82,7 @@ abstract public class Agent extends Entity {
 
     public void changeMoveType() {
         movingTimer += 1;
-        if (movingTimer % GameState.CHANGE_MOVING_TYPE_PERIOD == 0) {
+        if (movingTimer % GameState.CHANGE_MOVING_TYPE_PERIOD == 0 && !movingType.equals(MovingType.STOP)) {
             movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
         }
     }

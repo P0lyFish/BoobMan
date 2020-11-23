@@ -8,17 +8,23 @@ import main.java.backend.static_entities.flames.Flame;
 import main.java.utils.Direction;
 import main.java.utils.GridPosition;
 import main.java.utils.Input;
+import main.java.utils.KeyCodeSet;
 
 import java.util.List;
 
 public class PlayerAgent extends BomberMan {
-    public PlayerAgent(GridPosition position, double speed, int blastRange, int numBombs) {
+    private final KeyCodeSet keyCodeSet;
+    private final int playerID;
+    public PlayerAgent(GridPosition position, double speed, int blastRange, int numBombs, KeyCodeSet keyCodeSet,
+                       int playerID) {
         super(position, speed, blastRange, numBombs);
+        this.keyCodeSet = keyCodeSet;
+        this.playerID = playerID;
     }
 
     @Override
     public Entity getClone() {
-        return new PlayerAgent(position, speed, blastRange, remainingBombs);
+        return new PlayerAgent(position, speed, blastRange, remainingBombs, keyCodeSet, playerID);
     }
 
     public void updateGameState(GameState gameState) {
@@ -32,23 +38,23 @@ public class PlayerAgent extends BomberMan {
         decreaseTimeUntilVanish((double)1.0 / GameState.NUM_REFRESH_PER_TIME_UNIT);
 
         if (position.isLatticePoint()) {
-            if (gameState.inputListener.isMoveLeft()) {
+            if (gameState.inputListener.isMoveLeft(keyCodeSet)) {
                 currentDirection = Direction.WEST;
                 movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
             }
-            else if (gameState.inputListener.isMoveUp()) {
+            else if (gameState.inputListener.isMoveUp(keyCodeSet)) {
                 currentDirection = Direction.NORTH;
                 movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
             }
-            else if (gameState.inputListener.isMoveRight()) {
+            else if (gameState.inputListener.isMoveRight(keyCodeSet)) {
                 currentDirection = Direction.EAST;
                 movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
             }
-            else if (gameState.inputListener.isMoveDown()) {
+            else if (gameState.inputListener.isMoveDown(keyCodeSet)) {
                 currentDirection = Direction.SOUTH;
                 movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
             }
-            else if (gameState.inputListener.isSetBomb()) {
+            else if (gameState.inputListener.isSetBomb(keyCodeSet)) {
                 movingType = MovingType.STOP;
                 setBomb(gameState);
             }
