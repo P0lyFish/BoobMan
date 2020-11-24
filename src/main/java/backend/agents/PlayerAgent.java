@@ -5,10 +5,7 @@ import javafx.scene.input.KeyEvent;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
 import main.java.backend.static_entities.flames.Flame;
-import main.java.utils.Direction;
-import main.java.utils.GridPosition;
-import main.java.utils.Input;
-import main.java.utils.KeyCodeSet;
+import main.java.utils.*;
 
 import java.util.List;
 
@@ -20,6 +17,12 @@ public class PlayerAgent extends BomberMan {
         super(position, speed, blastRange, numBombs);
         this.keyCodeSet = keyCodeSet;
         this.playerID = playerID;
+        if (playerID == 1) {
+            entityType = EntityType.bomberman1;
+        }
+        else {
+            entityType = EntityType.bomberman2;
+        }
     }
 
     @Override
