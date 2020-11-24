@@ -43,7 +43,6 @@ public class Board extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        GameSound background = new GameSound();
         menu = new Menu();
         canvas = new Canvas(SCALED_SIZE * WIDTH, SCALED_SIZE * HEIGHT);
         gc = canvas.getGraphicsContext2D();
@@ -64,14 +63,12 @@ public class Board extends Application {
             public void handle(ActionEvent actionEvent) {
 //                running = true;
                 primaryStage.setScene(scene);
-
-                background.playBackgroundFx();
+                GameState.background.playBackgroundFx();
             }
         });
 
         primaryStage.show();
         primaryStage.setOnCloseRequest(event -> {
-                    background.clip.stop();
                     System.exit(0);
                 });
         gameState = new GameState("src/main/resources/levels/Level1.txt", new Input(scene));

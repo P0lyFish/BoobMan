@@ -31,7 +31,7 @@ public class GameState implements Serializable {
     private GameStatus status = GameStatus.PLAYING;
     private List<Entity> entities;
     public Input inputListener;
-
+    public static GameSound background;
     public GameState() {
     }
 
@@ -110,6 +110,7 @@ public class GameState implements Serializable {
                 }
                 curY += 1;
             }
+            background = new GameSound();
         } catch (IOException e) {
             e.printStackTrace();
             throw e;
@@ -136,8 +137,10 @@ public class GameState implements Serializable {
 
     public void refresh() {
         if (status != GameStatus.PLAYING) {
+            background.clip.stop();
             return;
         }
+
         int n = entities.size();
         for (int i = 0; i < n; i++) {
             try {
