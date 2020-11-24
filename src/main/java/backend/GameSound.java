@@ -30,7 +30,7 @@ public class GameSound extends JFrame implements Runnable {
             // Open an audio input stream.
             //tiếng bomb
             // create AudioInputStream object
-            String filePath = "src\\main\\resources\\sounds\\bomb_explode.wav";
+            String filePath = "src/main/resources/sounds/bomb_explode.wav";
             AudioInputStream audioInputStream;
             audioInputStream = AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
 
@@ -54,7 +54,7 @@ public class GameSound extends JFrame implements Runnable {
             // Open an audio input stream.
             //tiếng bomb
             // create AudioInputStream object
-            String filePath = "src\\main\\resources\\sounds\\select_menu.wav";
+            String filePath = "src/main/resources/sounds/select_menu.wav";
             AudioInputStream audioInputStream;
             audioInputStream = AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
 
@@ -76,7 +76,7 @@ public class GameSound extends JFrame implements Runnable {
     public void playMenuFx() {
         try {
             // Open an audio input stream.
-            URL url = new File("src\\main\\resources\\sounds\\background_play.wav").toURI().toURL();
+            URL url = new File("src/main/resources/sounds/background_play.wav").toURI().toURL();
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
             // Get a sound clip resource.
             menu = AudioSystem.getClip();
@@ -95,7 +95,7 @@ public class GameSound extends JFrame implements Runnable {
     }
     public void playBombermanDead() {
         try {
-            URL url = new File("src\\main\\resources\\sounds\\background_play.wav").toURI().toURL();
+            URL url = new File("src/main/resources/sounds/background_play.wav").toURI().toURL();
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
             // Get a sound clip resource.
             die = AudioSystem.getClip();
@@ -119,7 +119,7 @@ public class GameSound extends JFrame implements Runnable {
             try {
                 // Open an audio input stream.
                 //nhạc nền game play
-                URL url = new File("src\\main\\resources\\sounds\\background_play.wav").toURI().toURL();
+                URL url = new File("src/main/resources/sounds/background_play.wav").toURI().toURL();
                 AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
                 // Get a sound clip resource.
                 clip = AudioSystem.getClip();
