@@ -74,12 +74,13 @@ public class Board extends Application {
                 });
         gameState = new GameState("src/main/resources/levels/Level1.txt", new Input(scene));
 
+        Group group1 = gameOver.gameOverStatus();
+        Scene scene2 = new Scene(group1);
+
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.4 / GameState.NUM_REFRESH_PER_TIME_UNIT), event -> {
             gameState.refresh();
             try {
                 if(gameState.isLose()) {
-                    Group group1 = gameOver.gameOverStatus();
-                    Scene scene2 = new Scene(group1);
                     primaryStage.setScene(scene2);
                 }
                 taskbar.quit.setOnAction(new EventHandler<ActionEvent>() {
