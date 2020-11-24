@@ -162,6 +162,8 @@ public class GameState implements Serializable {
                 break;
             }
         }
+
+        entities.sort((Entity e1, Entity e2)->e1.getPosition().getX() < e2.getPosition().getX() ? 1 : 0);
     }
 
     public Agent getPlayerAgent(int playerID) {
