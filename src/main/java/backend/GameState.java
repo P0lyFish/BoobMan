@@ -180,4 +180,12 @@ public class GameState implements Serializable {
 
         return res;
     }
+
+    public boolean isWin() {
+        return status == GameStatus.WIN;
+    }
+
+    public boolean isLose() {
+        return status == GameStatus.LOSE;
+    }
 }

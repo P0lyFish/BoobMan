@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.java.GUI.Menu;
 import main.java.GUI.Taskbar;
+import main.java.GUI.endGame;
 import main.java.GUI.highScore;
 import main.java.backend.Entity;
 import main.java.backend.GameSound;
@@ -38,7 +39,7 @@ public class Board extends Application {
     public static GameState gameState;
     private Menu menu;
     private boolean running = false;
-
+    private endGame gameOver;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -51,6 +52,7 @@ public class Board extends Application {
         Taskbar taskbar = new Taskbar();
         Group group = taskbar.createTaskbar();
         Group root = new Group();
+        gameOver = new endGame();
         root.getChildren().addAll(canvas,group);
 
         Scene scene = new Scene(root);
@@ -77,6 +79,11 @@ public class Board extends Application {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.4 / GameState.NUM_REFRESH_PER_TIME_UNIT), event -> {
             gameState.refresh();
             try {
+                if(gameState.isLose()) {
+                    Group group1 = gameOver.gameOverStatus();
+                    Scene scene2 = new Scene(group1);
+                    primaryStage.setScene(scene2);
+                }
                 taskbar.quit.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
