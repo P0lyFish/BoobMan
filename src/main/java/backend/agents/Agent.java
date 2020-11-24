@@ -28,6 +28,7 @@ abstract public class Agent extends Entity {
     protected Direction currentDirection;
     protected MovingType movingType = MovingType.STOP;
     protected int movingTimer = 0;
+    protected MovingType currentStepType = MovingType.STEP_LEFT;
 
     public Agent(GridPosition position, double speed) {
         super(position, true, false, true, REMAINING_TIME_MAX);
@@ -74,20 +75,19 @@ abstract public class Agent extends Entity {
         return legalDirs;
     }
 
+    public MovingType getStep() {
+        movingTimer += 1;
+        if (movingTimer % GameState.CHANGE_MOVING_TYPE_PERIOD == 0) {
+            currentStepType = (currentStepType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
+        }
+
+        return currentStepType;
+    }
+
     public void move(Direction dir, double dist) {
         GridPosition newPosition = position.step(dir, dist);
         setPosition(newPosition);
         setDirection(dir);
-    }
-
-    public void changeMoveType() {
-        if (movingType.equals(MovingType.STOP)) {
-            return;
-        }
-        movingTimer += 1;
-        if (movingTimer % GameState.CHANGE_MOVING_TYPE_PERIOD == 0) {
-            movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
-        }
     }
 
     public Image getCurrentTexture() {

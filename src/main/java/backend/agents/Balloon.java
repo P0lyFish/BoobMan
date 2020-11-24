@@ -22,8 +22,6 @@ public class Balloon extends Agent {
     }
 
     public void updateGameState(GameState gameState) {
-        changeMoveType();
-
         if (isVanished()) {
             gameState.removeEntity(this);
             return;

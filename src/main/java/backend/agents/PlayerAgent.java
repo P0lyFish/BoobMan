@@ -27,9 +27,11 @@ public class PlayerAgent extends BomberMan {
         return new PlayerAgent(position, speed, blastRange, remainingBombs, keyCodeSet, playerID);
     }
 
-    public void updateGameState(GameState gameState) {
-        changeMoveType();
+    public int getPlayerID() {
+        return playerID;
+    }
 
+    public void updateGameState(GameState gameState) {
         if (isVanished()) {
             gameState.removeEntity(this);
             return;
@@ -40,19 +42,19 @@ public class PlayerAgent extends BomberMan {
         if (position.isLatticePoint()) {
             if (gameState.inputListener.isMoveLeft(keyCodeSet)) {
                 currentDirection = Direction.WEST;
-                movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
+                movingType = getStep();
             }
             else if (gameState.inputListener.isMoveUp(keyCodeSet)) {
                 currentDirection = Direction.NORTH;
-                movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
+                movingType = getStep();
             }
             else if (gameState.inputListener.isMoveRight(keyCodeSet)) {
                 currentDirection = Direction.EAST;
-                movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
+                movingType = getStep();
             }
             else if (gameState.inputListener.isMoveDown(keyCodeSet)) {
                 currentDirection = Direction.SOUTH;
-                movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
+                movingType = getStep();
             }
             else if (gameState.inputListener.isSetBomb(keyCodeSet)) {
                 movingType = MovingType.STOP;
@@ -71,6 +73,7 @@ public class PlayerAgent extends BomberMan {
             }
         }
         else {
+            movingType = getStep();
             move(currentDirection, speed / GameState.NUM_REFRESH_PER_TIME_UNIT);
         }
 
