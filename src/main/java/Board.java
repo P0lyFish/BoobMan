@@ -17,6 +17,7 @@ import main.java.GUI.Menu;
 import main.java.GUI.Taskbar;
 import main.java.GUI.highScore;
 import main.java.backend.Entity;
+import main.java.backend.GameSound;
 import main.java.backend.GameState;
 import main.java.backend.static_entities.Grass;
 import main.java.utils.Input;
@@ -41,7 +42,7 @@ public class Board extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        GameSound background = new GameSound();
         menu = new Menu();
         canvas = new Canvas(SCALED_SIZE * WIDTH, SCALED_SIZE * HEIGHT);
         gc = canvas.getGraphicsContext2D();
@@ -61,10 +62,16 @@ public class Board extends Application {
             public void handle(ActionEvent actionEvent) {
 //                running = true;
                 primaryStage.setScene(scene);
+
+                background.playBackgroundFx();
             }
         });
-        primaryStage.show();
 
+        primaryStage.show();
+        primaryStage.setOnCloseRequest(event -> {
+                    background.clip.stop();
+                    System.exit(0);
+                });
         gameState = new GameState("src/main/resources/levels/Level1.txt", new Input(scene));
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.4 / GameState.NUM_REFRESH_PER_TIME_UNIT), event -> {
@@ -75,6 +82,7 @@ public class Board extends Application {
                     public void handle(ActionEvent actionEvent) {
                         String point = taskbar.getScore();
                         highScore.saveScore(point);
+
                         System.exit(0);
                     }
                 });

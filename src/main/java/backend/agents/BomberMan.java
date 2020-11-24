@@ -52,7 +52,7 @@ abstract public class BomberMan extends Agent {
                 continue;
             }
 
-            if (entity != this && entity instanceof Agent) {
+            if (!(entity instanceof BomberMan) && entity instanceof Agent) {
                 destroy();
                 break;
             }

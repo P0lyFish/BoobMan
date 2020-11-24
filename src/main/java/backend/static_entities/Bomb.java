@@ -3,6 +3,7 @@ package main.java.backend.static_entities;
 import javafx.scene.image.Image;
 import main.java.Board;
 import main.java.backend.Entity;
+import main.java.backend.GameSound;
 import main.java.backend.GameState;
 import main.java.backend.agents.BomberMan;
 import main.java.backend.static_entities.flames.*;
@@ -26,6 +27,8 @@ public class Bomb extends StaticEntity {
         this.position = position;
         status = Status.normal;
         n = this.bombSetter.getBlastRange();
+        GameSound bomb = new GameSound();
+        bomb.playBombFx();
     }
 
     public void decreaseTimer(float delta) {
@@ -171,7 +174,22 @@ public class Bomb extends StaticEntity {
 
         //set bomb to block when agent get out of bomb
         if(this.bombSetter.getPosition().distance(this.getPosition()) >= 1) {
-            this.blocked = true;
+            boolean checkBomberman = true;
+            for(Entity e : gameState.getEntityList()) {
+                if(e instanceof BomberMan) {
+                    double distance = e.getPosition().distance(this.getPosition());
+                    if(distance < 1) {
+                        checkBomberman = true;
+                        break;
+                    }
+                    else {
+                        checkBomberman = false;
+                    }
+                }
+            }
+            if(!checkBomberman){
+                this.blocked = true;
+            }
         }
     }
 

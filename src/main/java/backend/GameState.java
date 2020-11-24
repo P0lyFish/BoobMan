@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameState implements Serializable {
-    public static final double BOMB_EXPLOSION_TIME = 8;
+    public static final double BOMB_EXPLOSION_TIME = 4.8;
     public static final int DEFAULT_BLAST_RANGE = 1;
     public static final double DEFAULT_SPEED = 2;
     public static final int DEFAULT_NUM_BOMBS = 1;
