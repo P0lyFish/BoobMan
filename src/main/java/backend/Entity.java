@@ -111,8 +111,8 @@ public abstract class Entity implements Cloneable {
 
     public void render(GraphicsContext gc) {
 
-        double x = position.getX();
-        double y = position.getY();
+        double x = getPosition().getX();
+        double y = getPosition().getY();
         // Image img = getCurrentTexture();
 
         // SnapshotParameters params = new SnapshotParameters();

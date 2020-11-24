@@ -34,6 +34,11 @@ public class PlayerAgent extends BomberMan {
         return playerID;
     }
 
+    @Override
+    public GridPosition getPosition() {
+        return new GridPosition(position.getX(), position.getY() - 0.3);
+    }
+
     public void updateGameState(GameState gameState) {
         if (isVanished()) {
             gameState.removeEntity(this);

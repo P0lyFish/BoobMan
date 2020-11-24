@@ -20,6 +20,7 @@ import main.java.GUI.highScore;
 import main.java.backend.Entity;
 import main.java.backend.GameSound;
 import main.java.backend.GameState;
+import main.java.backend.agents.Agent;
 import main.java.backend.agents.PlayerAgent;
 import main.java.backend.static_entities.Grass;
 import main.java.utils.Input;
@@ -126,13 +127,13 @@ public class Board extends Application {
         }
 
         for(Entity e : gameState.getEntityList()) {
-            if (e instanceof PlayerAgent) {
+            if (!(e instanceof Agent)) {
                 e.render(gc);
             }
         }
 
         for(Entity e : gameState.getEntityList()) {
-            if (!(e instanceof PlayerAgent)) {
+            if (e instanceof Agent) {
                 e.render(gc);
             }
         }
