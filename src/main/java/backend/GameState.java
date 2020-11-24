@@ -62,13 +62,13 @@ public class GameState implements Serializable {
                             KeyCodeSet k = new KeyCodeSet(KeyCode.UP, KeyCode.DOWN, KeyCode.LEFT, KeyCode.RIGHT,
                                                           KeyCode.ENTER);
                             entity = new PlayerAgent(new GridPosition(curX, curY), DEFAULT_SPEED,
-                                    DEFAULT_BLAST_RANGE, DEFAULT_NUM_BOMBS, k, 0);
+                                    DEFAULT_BLAST_RANGE, DEFAULT_NUM_BOMBS, k, 1);
                             break;
                         case '2':
                             KeyCodeSet k2 = new KeyCodeSet(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D,
                                     KeyCode.SPACE);
                             entity = new PlayerAgent(new GridPosition(curX, curY), DEFAULT_SPEED,
-                                    DEFAULT_BLAST_RANGE, DEFAULT_NUM_BOMBS, k2, 1);
+                                    DEFAULT_BLAST_RANGE, DEFAULT_NUM_BOMBS, k2, 2);
                             break;
 
                         case 'b':
