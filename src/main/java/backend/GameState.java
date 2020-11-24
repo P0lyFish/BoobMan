@@ -26,7 +26,7 @@ public class GameState implements Serializable {
     public static final double DEFAULT_SPEED = 2;
     public static final int DEFAULT_NUM_BOMBS = 1;
     public static final int NUM_REFRESH_PER_TIME_UNIT = 60;
-    public static final int CHANGE_MOVING_TYPE_PERIOD = 20;
+    public static final int CHANGE_MOVING_TYPE_PERIOD = 10000;
     private List<Entity> listGrass = new ArrayList<>();
     private GameStatus status = GameStatus.PLAYING;
     private List<Entity> entities;
@@ -164,9 +164,9 @@ public class GameState implements Serializable {
         }
     }
 
-    public Agent getPlayerAgent() {
+    public Agent getPlayerAgent(int playerID) {
         for (Entity e : entities) {
-            if (e instanceof PlayerAgent) {
+            if (e instanceof PlayerAgent && ((PlayerAgent)e).getPlayerID() == playerID) {
                 return (Agent)e;
             }
         }

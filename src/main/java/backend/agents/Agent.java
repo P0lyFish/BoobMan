@@ -81,8 +81,11 @@ abstract public class Agent extends Entity {
     }
 
     public void changeMoveType() {
+        if (movingType.equals(MovingType.STOP)) {
+            return;
+        }
         movingTimer += 1;
-        if (movingTimer % GameState.CHANGE_MOVING_TYPE_PERIOD == 0 && !movingType.equals(MovingType.STOP)) {
+        if (movingTimer % GameState.CHANGE_MOVING_TYPE_PERIOD == 0) {
             movingType = (movingType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
         }
     }
@@ -151,8 +154,8 @@ abstract public class Agent extends Entity {
 
         Map<GridPosition, Integer> dist = new HashMap<>();
         Queue<Agent> qu = new LinkedList<>();
-        dist.put(gameState.getPlayerAgent().getPosition(), 0);
-        qu.add(gameState.getPlayerAgent());
+        dist.put(gameState.getPlayerAgent(1).getPosition(), 0);
+        qu.add(gameState.getPlayerAgent(1));
 
         Agent nxt = null;
 
