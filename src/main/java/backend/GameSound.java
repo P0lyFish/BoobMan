@@ -95,7 +95,7 @@ public class GameSound extends JFrame implements Runnable {
     }
     public void playBombermanDead() {
         try {
-            URL url = new File("src/main/resources/sounds/background_play.wav").toURI().toURL();
+            URL url = new File("src/main/resources/sounds/yamete.wav").toURI().toURL();
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
             // Get a sound clip resource.
             die = AudioSystem.getClip();

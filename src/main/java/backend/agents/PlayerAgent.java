@@ -3,6 +3,7 @@ package main.java.backend.agents;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import main.java.backend.Entity;
+import main.java.backend.GameSound;
 import main.java.backend.GameState;
 import main.java.backend.static_entities.flames.Flame;
 import main.java.utils.*;
@@ -12,6 +13,7 @@ import java.util.List;
 public class PlayerAgent extends BomberMan {
     private final KeyCodeSet keyCodeSet;
     private final int playerID;
+    private boolean screamed = false;
     public PlayerAgent(GridPosition position, double speed, int blastRange, int numBombs, KeyCodeSet keyCodeSet,
                        int playerID) {
         super(position, speed, blastRange, numBombs);
@@ -40,12 +42,13 @@ public class PlayerAgent extends BomberMan {
     }
 
     public void updateGameState(GameState gameState) {
-        if (isVanished()) {
-            gameState.removeEntity(this);
-            return;
-        }
-
         decreaseTimeUntilVanish((double)1.0 / GameState.NUM_REFRESH_PER_TIME_UNIT);
+
+        if (isVanishing() && !screamed) {
+            GameSound gameSound = new GameSound();
+            gameSound.playBombermanDead();
+            screamed = true;
+        }
 
         if (position.isLatticePoint()) {
             if (gameState.inputListener.isMoveLeft(keyCodeSet)) {
