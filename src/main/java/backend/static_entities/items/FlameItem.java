@@ -39,7 +39,7 @@ public class FlameItem extends Item {
         }
 
         for(Entity e : gameState.getEntityList()) {
-            if(this.visible && e instanceof BomberMan && e.getPosition().distance(this.getPosition()) < 1) {
+            if(this.visible && e instanceof BomberMan && e.getPosition().distance(this.getPosition()) < 0.5) {
                 ((BomberMan) e).setBlastRange(((BomberMan) e).getBlastRange() + EXTRA_FLAME);
                 gameState.removeEntity(this);
             }

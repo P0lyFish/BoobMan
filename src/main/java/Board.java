@@ -10,8 +10,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.java.GUI.Menu;
@@ -19,16 +17,13 @@ import main.java.GUI.Taskbar;
 import main.java.GUI.endGame;
 import main.java.GUI.highScore;
 import main.java.backend.Entity;
-import main.java.backend.GameSound;
 import main.java.backend.GameState;
 import main.java.backend.agents.Agent;
-import main.java.backend.agents.PlayerAgent;
-import main.java.backend.static_entities.Grass;
+import main.java.utils.GameSound;
 import main.java.utils.GameStatus;
 import main.java.utils.Input;
 
 
-import java.awt.*;
 import java.io.*;
 
 public class Board extends Application {
@@ -67,7 +62,9 @@ public class Board extends Application {
             public void handle(ActionEvent actionEvent) {
                 multiplayer = true;
                 primaryStage.setScene(scene);
+                GameState.background = new GameSound();
                 GameState.background.playBackgroundFx();
+
             }
         });
 
@@ -76,6 +73,7 @@ public class Board extends Application {
             public void handle(ActionEvent actionEvent) {
                 gameState.removeEntity((Entity)gameState.getPlayerAgent(2));
                 primaryStage.setScene(scene);
+                GameState.background = new GameSound();
                 GameState.background.playBackgroundFx();
             }
         });
@@ -98,11 +96,13 @@ public class Board extends Application {
                             try {
                                 if(multiplayer) {
                                     gameState = new GameState("src/main/resources/levels/Level1.txt", new Input(scene));
+                                    GameState.background = new GameSound();
                                     GameState.background.playBackgroundFx();
                                     gameState.setStatus(GameStatus.PLAYING);
                                 }else {
                                     gameState = new GameState("src/main/resources/levels/Level1.txt", new Input(scene));
                                     gameState.removeEntity((Entity) gameState.getPlayerAgent(2));
+                                    GameState.background = new GameSound();
                                     GameState.background.playBackgroundFx();
                                     gameState.setStatus(GameStatus.PLAYING);
                                 }
@@ -163,7 +163,7 @@ public class Board extends Application {
         }
 
         for(Entity e : gameState.getEntityList()) {
-            if (!(e instanceof Agent)) {
+            if (!(e instanceof Agent) && e.isVisible()) {
                 e.render(gc);
             }
         }

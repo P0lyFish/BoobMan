@@ -30,6 +30,10 @@ public class Sprite2 {
     public static Sprite2 portal2 = new Sprite2(16, 409, 789);
     public static Sprite2 wall = new Sprite2(16, 737, 110);
     public static Sprite2 brick = new Sprite2(16, 721,110);
+    public static Sprite2 brick_exploded0 = new Sprite2(16, 495,159);
+    public static Sprite2 brick_exploded1 = new Sprite2(16, 543,159);
+    public static Sprite2 brick_exploded2 = new Sprite2(16, 591,159);
+
     public static Sprite2 grass = new Sprite2(16, 689, 110);
     public static Sprite2 bomb_0 = new Sprite2(16, 470, 0);
     public static Sprite2 bomb_1 = new Sprite2(16, 486, 0);

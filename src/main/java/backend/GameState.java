@@ -1,8 +1,6 @@
 package main.java.backend;
 
-import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import main.java.backend.agents.Agent;
 import main.java.backend.agents.Balloon;
 import main.java.backend.agents.Oneal;
@@ -11,10 +9,7 @@ import main.java.backend.static_entities.*;
 import main.java.backend.static_entities.items.BombItem;
 import main.java.backend.static_entities.items.FlameItem;
 import main.java.backend.static_entities.items.SpeedItem;
-import main.java.utils.GameStatus;
-import main.java.utils.GridPosition;
-import main.java.utils.Input;
-import main.java.utils.KeyCodeSet;
+import main.java.utils.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -72,10 +67,10 @@ public class GameState implements Serializable {
                             break;
 
                         case 'b':
-                            entity = new Balloon(new GridPosition(curX, curY), DEFAULT_SPEED);
+                            entity = new Balloon(new GridPosition(curX, curY), DEFAULT_SPEED*0.5);
                             break;
                         case 'o':
-                            entity = new Oneal(new GridPosition(curX, curY), DEFAULT_SPEED);
+                            entity = new Oneal(new GridPosition(curX, curY), DEFAULT_SPEED*0.5);
                             break;
                         case '*':
                             entity = new Brick(new GridPosition(curX, curY));
@@ -110,7 +105,6 @@ public class GameState implements Serializable {
                 }
                 curY += 1;
             }
-            background = new GameSound();
         } catch (IOException e) {
             e.printStackTrace();
             throw e;
@@ -138,6 +132,7 @@ public class GameState implements Serializable {
     public void refresh() {
         if (status != GameStatus.PLAYING) {
             background.clip.stop();
+            background.run = false;
             return;
         }
 

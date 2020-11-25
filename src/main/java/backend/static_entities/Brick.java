@@ -14,6 +14,7 @@ public class Brick extends StaticEntity {
         visible = true;
         this.position = position;
         this.entityType = EntityType.brick;
+        this.timeUntilVanish = REMAINING_TIME_MAX;
     }
 
     public Brick() {
@@ -21,11 +22,14 @@ public class Brick extends StaticEntity {
         blocked = true;
         visible = true;
         this.entityType = EntityType.brick;
+        this.timeUntilVanish = REMAINING_TIME_MAX;
     }
 
     public void updateGameState(GameState gameState) {
-        decreaseTimeUntilVanish((double)1.0 / gameState.NUM_REFRESH_PER_TIME_UNIT);
+        if(isVanishing()) {
 
+            decreaseTimeUntilVanish((double)1.0 / gameState.NUM_REFRESH_PER_TIME_UNIT);
+        }
         if (isVanished()) {
             gameState.removeEntity(this);
         }
@@ -37,7 +41,7 @@ public class Brick extends StaticEntity {
     }
 
     public Image getCurrentTexture() {
-        if (this.status == Status.normal) {
+        if (isNormal()) {
             return Sprite.static_sprites.get(String.format("%s", entityType.toString()));
         }
         else {

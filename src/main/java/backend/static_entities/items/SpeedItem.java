@@ -39,7 +39,7 @@ public class SpeedItem extends Item {
         }
 
         for(Entity e : gameState.getEntityList()) {
-            if(e instanceof BomberMan && e.getPosition().distance(this.getPosition()) == 0) {
+            if(e instanceof BomberMan && e.getPosition().distance(this.getPosition()) < 0.5) {
                 ((BomberMan) e).setSpeed(((BomberMan) e).getSpeed()+EXTRA_SPEED);
                 gameState.removeEntity(this);
                 break;

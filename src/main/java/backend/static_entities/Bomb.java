@@ -1,12 +1,13 @@
 package main.java.backend.static_entities;
 
 import javafx.scene.image.Image;
-import main.java.Board;
 import main.java.backend.Entity;
-import main.java.backend.GameSound;
+import main.java.utils.GameSound;
 import main.java.backend.GameState;
+import main.java.backend.agents.Agent;
 import main.java.backend.agents.BomberMan;
 import main.java.backend.static_entities.flames.*;
+import main.java.backend.static_entities.items.Item;
 import main.java.graphics.Sprite;
 import main.java.utils.EntityType;
 import main.java.utils.GridPosition;
@@ -56,16 +57,16 @@ public class Bomb extends StaticEntity {
             boolean checkUp = true;
             boolean checkDown = true;
             for(Entity e : gameState.getEntityList()) {
-                if(!e.isDestroyable() && e.getPosition().distance(centerFlamePosition) <=1 && e.getPosition().getX() < centerFlamePosition.getX()) {
+                if(!(e instanceof Item || e instanceof Bomb || e instanceof Agent || e instanceof Flame) && e.getPosition().distance(centerFlamePosition) <=1 && e.getPosition().getX() < centerFlamePosition.getX()) {
                     checkLeft = false;
                 }
-                if(!e.isDestroyable() && e.getPosition().distance(centerFlamePosition) <=1 && e.getPosition().getX() > centerFlamePosition.getX()) {
+                if(!(e instanceof Item || e instanceof Bomb || e instanceof Agent || e instanceof Flame) && e.getPosition().distance(centerFlamePosition) <=1 && e.getPosition().getX() > centerFlamePosition.getX()) {
                     checkRight = false;
                 }
-                if(!e.isDestroyable() && e.getPosition().distance(centerFlamePosition) <=1 && e.getPosition().getY() < centerFlamePosition.getY()) {
+                if(!(e instanceof Item || e instanceof Bomb || e instanceof Agent || e instanceof Flame) && e.getPosition().distance(centerFlamePosition) <=1 && e.getPosition().getY() < centerFlamePosition.getY()) {
                     checkUp = false;
                 }
-                if(!e.isDestroyable() && e.getPosition().distance(centerFlamePosition) <=1 && e.getPosition().getY() > centerFlamePosition.getY()) {
+                if(!(e instanceof Item || e instanceof Bomb || e instanceof Agent || e instanceof Flame) && e.getPosition().distance(centerFlamePosition) <=1 && e.getPosition().getY() > centerFlamePosition.getY()) {
                     checkDown = false;
                 }
             }
@@ -89,16 +90,16 @@ public class Bomb extends StaticEntity {
 
                     //kiểm tra xem vị trí đó có phù hợp ko
                     for(Entity e : gameState.getEntityList()) {
-                        if(e instanceof Wall && e.getPosition().distance(horizontalFlameLeft.getPosition()) < 1) {
+                        if(!(e instanceof Item || e instanceof Bomb || e instanceof Agent || e instanceof Flame) && e.getPosition().distance(horizontalFlameLeft.getPosition()) < 1) {
                             checkLeft = false;
                         }
-                        if(e instanceof Wall && e.getPosition().distance(horizontalFlameRight.getPosition()) < 1) {
+                        if(!(e instanceof Item || e instanceof Bomb || e instanceof Agent || e instanceof Flame) && e.getPosition().distance(horizontalFlameRight.getPosition()) < 1) {
                             checkRight = false;
                         }
-                        if(e instanceof Wall && e.getPosition().distance(verticalFlameUp.getPosition()) < 1) {
+                        if(!(e instanceof Item || e instanceof Bomb || e instanceof Agent || e instanceof Flame) && e.getPosition().distance(verticalFlameUp.getPosition()) < 1) {
                             checkUp = false;
                         }
-                        if(e instanceof Wall && e.getPosition().distance(verticalFlameDown.getPosition()) < 1) {
+                        if(!(e instanceof Item || e instanceof Bomb || e instanceof Agent || e instanceof Flame) && e.getPosition().distance(verticalFlameDown.getPosition()) < 1) {
                             checkDown = false;
                         }
 
@@ -123,16 +124,16 @@ public class Bomb extends StaticEntity {
                     }
 
                     for(Entity e : gameState.getEntityList()) {
-                        if(!e.isDestroyable() && e.getPosition().distance(horizontalFlameLeft.getPosition()) <=1 && e.getPosition().getX() < horizontalFlameLeft.getPosition().getX()) {
+                        if(!(e instanceof Item || e instanceof Bomb || e instanceof Agent || e instanceof Flame) && e.getPosition().distance(horizontalFlameLeft.getPosition()) <=1 && e.getPosition().getX() < horizontalFlameLeft.getPosition().getX()) {
                             checkLeft = false;
                         }
-                        if(!e.isDestroyable() && e.getPosition().distance(horizontalFlameRight.getPosition()) <=1 && e.getPosition().getX() > horizontalFlameRight.getPosition().getX()) {
+                        if(!(e instanceof Item || e instanceof Bomb || e instanceof Agent || e instanceof Flame) && e.getPosition().distance(horizontalFlameRight.getPosition()) <=1 && e.getPosition().getX() > horizontalFlameRight.getPosition().getX()) {
                             checkRight = false;
                         }
-                        if(!e.isDestroyable() && e.getPosition().distance(verticalFlameUp.getPosition()) <=1 && e.getPosition().getY() < verticalFlameUp.getPosition().getY()) {
+                        if(!(e instanceof Item || e instanceof Bomb || e instanceof Agent || e instanceof Flame) && e.getPosition().distance(verticalFlameUp.getPosition()) <=1 && e.getPosition().getY() < verticalFlameUp.getPosition().getY()) {
                             checkUp = false;
                         }
-                        if(!e.isDestroyable() && e.getPosition().distance(verticalFlameDown.getPosition()) <=1 && e.getPosition().getY() > verticalFlameDown.getPosition().getY()) {
+                        if(!(e instanceof Item || e instanceof Bomb || e instanceof Agent || e instanceof Flame) && e.getPosition().distance(verticalFlameDown.getPosition()) <=1 && e.getPosition().getY() > verticalFlameDown.getPosition().getY()) {
                             checkDown = false;
                         }
                     }
