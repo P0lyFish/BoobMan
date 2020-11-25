@@ -4,10 +4,14 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
+import main.java.backend.Entity;
+import main.java.backend.GameState;
+import main.java.utils.Input;
 
 import java.io.File;
 
@@ -18,6 +22,7 @@ public class endGame {
     public Button quit;
 
     public Group gameOverStatus() {
+
         backgound = new ImageView();
         backgound.setFitHeight(560.0);
         backgound.setFitWidth(640.0);
@@ -41,6 +46,13 @@ public class endGame {
         playAgain.setPrefWidth(286.0);
         playAgain.setText("PLAY AGAIN");
         playAgain.setFont(Font.font("Arial Bold",36.0));
+        playAgain.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+//                GameState gameState = new GameState("src/main/resources/levels/Level1.txt", new Input(scene));
+//                gameState.removeEntity((Entity)gameState.getPlayerAgent(2));
+            }
+        });
 
         quit = new Button();
         quit.setLayoutY(356.0);

@@ -141,29 +141,32 @@ public class GameState implements Serializable {
             return;
         }
 
-        int n = entities.size();
-        for (int i = 0; i < n; i++) {
-            try {
-                entities.get(i).updateGameState(this);
-            } catch (Exception ignored) {
+        else {
+            int n = entities.size();
+            for (int i = 0; i < n; i++) {
+                try {
+                    entities.get(i).updateGameState(this);
+                } catch (Exception ignored) {
+                }
             }
-        }
 //        for (Entity e : entities) {
 //            e.updateGameState(this);
 //        }
 
-        for (Entity e : entities) {
-            if (e instanceof Portal && ((Portal) e).isPassed()) {
-                status = GameStatus.WIN;
-                break;
+            for (Entity e : entities) {
+                if (e instanceof Portal && ((Portal) e).isPassed()) {
+                    status = GameStatus.WIN;
+                    break;
+                }
+                if (e instanceof PlayerAgent && ((PlayerAgent) e).isVanished()) {
+                    status = GameStatus.LOSE;
+                    break;
+                }
             }
-            if (e instanceof PlayerAgent && ((PlayerAgent) e).isVanished()) {
-                status = GameStatus.LOSE;
-                break;
-            }
+
+            entities.sort((Entity e1, Entity e2)->e1.getPosition().getX() < e2.getPosition().getX() ? 1 : 0);
         }
 
-        entities.sort((Entity e1, Entity e2)->e1.getPosition().getX() < e2.getPosition().getX() ? 1 : 0);
     }
 
     public Agent getPlayerAgent(int playerID) {

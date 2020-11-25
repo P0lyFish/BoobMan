@@ -16,6 +16,7 @@ import java.io.File;
 public class Taskbar {
     private Label timer;
     private Label score;
+    private Label liver;
     private ImageView background;
     public MenuBar menu;
     public Menu file, help;
@@ -40,7 +41,7 @@ public class Taskbar {
         menu.getMenus().addAll(file, help);
 
 
-        Image image = new Image(new File("res/background.png").toURI().toString());
+        Image image = new Image(new File("res/newTaskbar.png").toURI().toString());
         background = new ImageView();
         background.setLayoutY(0);
         background.setLayoutY(26);
@@ -51,22 +52,30 @@ public class Taskbar {
         background.setImage(image);
 
         timer = new Label();
-        timer.setLayoutX(234.0);
-        timer.setLayoutY(48.0);
+        timer.setLayoutX(275.0);
+        timer.setLayoutY(40.0);
         timer.setPrefHeight(35.0);
         timer.setPrefWidth(62.0);
-        timer.setText("180");
+        timer.setText("100");
         timer.setTextFill(Paint.valueOf("#fdfafa"));
         timer.setFont(Font.font("Calibri Bold",32.0));
 
         score = new Label();
-        score.setLayoutY(47.0);
-        score.setLayoutX(567.0);
+        score.setLayoutY(40.0);
+        score.setLayoutX(45.0);
         score.setPrefWidth(62.0);
-        score.setPrefHeight(22.0);
-        score.setText("100");
+        score.setPrefHeight(35.0);
+        score.setText("180");
         score.setTextFill(Paint.valueOf("#fdfafa"));
-        score.setFont(Font.font("Calibri Bold",32.0));
+        score.setFont(Font.font("Calibri Bold",35.0));
+
+        liver = new Label();
+        liver.setLayoutY(40.0);
+        liver.setLayoutX(400.0);
+        liver.setPrefWidth(28);
+        liver.setPrefHeight(30);
+        liver.setTextFill(Paint.valueOf("#fdfafa"));
+        liver.setFont(Font.font("Calibri Bold",35.0));
 
         Group group = new Group();
         group.getChildren().addAll(menu,background,timer,score);

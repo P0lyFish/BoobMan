@@ -10,6 +10,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -23,6 +24,7 @@ import main.java.backend.GameState;
 import main.java.backend.agents.Agent;
 import main.java.backend.agents.PlayerAgent;
 import main.java.backend.static_entities.Grass;
+import main.java.utils.GameStatus;
 import main.java.utils.Input;
 
 
@@ -40,8 +42,8 @@ public class Board extends Application {
     private Canvas canvas;
     public static GameState gameState;
     private Menu menu;
-    private boolean running = false;
     private endGame gameOver;
+    private boolean multiplayer = false;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -60,15 +62,23 @@ public class Board extends Application {
         Scene scene1 = menu.createTaskbar();
         primaryStage.setScene(scene1);
 
-        menu.newGame.setOnAction(new EventHandler<ActionEvent>() {
+        menu.playWithFriend.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-//                running = true;
+                multiplayer = true;
                 primaryStage.setScene(scene);
                 GameState.background.playBackgroundFx();
             }
         });
 
+        menu.newGame.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                gameState.removeEntity((Entity)gameState.getPlayerAgent(2));
+                primaryStage.setScene(scene);
+                GameState.background.playBackgroundFx();
+            }
+        });
         primaryStage.show();
         primaryStage.setOnCloseRequest(event -> {
                     System.exit(0);
@@ -82,7 +92,31 @@ public class Board extends Application {
             gameState.refresh();
             try {
                 if(gameState.isLose()) {
+                    gameOver.playAgain.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent actionEvent) {
+                            try {
+                                if(multiplayer) {
+                                    gameState = new GameState("src/main/resources/levels/Level1.txt", new Input(scene));
+                                    GameState.background.playBackgroundFx();
+                                    gameState.setStatus(GameStatus.PLAYING);
+                                }else {
+                                    gameState = new GameState("src/main/resources/levels/Level1.txt", new Input(scene));
+                                    gameState.removeEntity((Entity) gameState.getPlayerAgent(2));
+                                    GameState.background.playBackgroundFx();
+                                    gameState.setStatus(GameStatus.PLAYING);
+                                }
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            primaryStage.setScene(scene);
+                        }
+                    });
                     primaryStage.setScene(scene2);
+                }
+
+                if(gameState.isWin()){
+                    gameState = new GameState("src/main/resources/levels/Level2.txt", new Input(scene));
                 }
                 taskbar.quit.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
@@ -95,6 +129,8 @@ public class Board extends Application {
                 });
                 render();
             } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }));

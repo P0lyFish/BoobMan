@@ -17,7 +17,7 @@ import java.io.File;
 public class Menu{
     private ImageView background;
     public Button newGame;
-    private Button resumeGame;
+    public Button playWithFriend;
     private Button highScore;
     private Button exitGame;
 
@@ -50,15 +50,15 @@ public class Menu{
         newGame.setFont(Font.font("Arial Bold",32.0));
         newGame.setOpacity(0.7);
 
-        resumeGame = new Button();
-        resumeGame.setLayoutX(202.0);
-        resumeGame.setLayoutY(190.0);
-        resumeGame.setMnemonicParsing(false);
-        resumeGame.setPrefHeight(76.0);
-        resumeGame.setPrefWidth(236.0);
-        resumeGame.setText("RESUME");
-        resumeGame.setFont(Font.font("Arial Bold",30.0));
-        resumeGame.setOpacity(0.7);
+        playWithFriend = new Button();
+        playWithFriend.setLayoutX(202.0);
+        playWithFriend.setLayoutY(190.0);
+        playWithFriend.setMnemonicParsing(false);
+        playWithFriend.setPrefHeight(76.0);
+        playWithFriend.setPrefWidth(236.0);
+        playWithFriend.setText("PLAY WITH FRIEND");
+        playWithFriend.setFont(Font.font("Arial Bold",22.0));
+        playWithFriend.setOpacity(0.7);
 
         highScore = new Button();
         highScore.setLayoutX(202.0);
@@ -90,7 +90,7 @@ public class Menu{
             }
         });
 
-        resumeGame.setOnAction(new EventHandler<ActionEvent>() {
+        playWithFriend.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
 
@@ -107,11 +107,11 @@ public class Menu{
         exitGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                System.exit(0);
             }
         });
         Group group = new Group();
-        group.getChildren().addAll(background,newGame,resumeGame,highScore,exitGame);
+        group.getChildren().addAll(background,newGame,playWithFriend,highScore,exitGame);
 
 
         Scene scene = new Scene(group,640,560);
