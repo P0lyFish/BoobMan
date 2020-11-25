@@ -3,7 +3,7 @@ package main.java.backend.agents;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import main.java.backend.Entity;
-import main.java.backend.GameSound;
+import main.java.utils.GameSound;
 import main.java.backend.GameState;
 import main.java.backend.static_entities.flames.Flame;
 import main.java.utils.*;
