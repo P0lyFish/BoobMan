@@ -64,6 +64,7 @@ public class Board extends Application {
                 primaryStage.setScene(scene);
                 GameState.background = new GameSound();
                 GameState.background.playBackgroundFx();
+
             }
         });
 

@@ -12,10 +12,11 @@ public class GameSound extends JFrame implements Runnable {
     protected Clip menu;
     protected Clip die;
     private Thread thread;
-    protected boolean run = true;
+    public boolean run = true;
 
     public void playBackgroundFx() {
         if (this.thread == null) {
+            run = true;
             this.thread = new Thread(this);
             this.thread.start();
         }

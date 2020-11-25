@@ -105,7 +105,6 @@ public class GameState implements Serializable {
                 }
                 curY += 1;
             }
-            background = new GameSound();
         } catch (IOException e) {
             e.printStackTrace();
             throw e;
@@ -133,6 +132,7 @@ public class GameState implements Serializable {
     public void refresh() {
         if (status != GameStatus.PLAYING) {
             background.clip.stop();
+            background.run = false;
             return;
         }
 
