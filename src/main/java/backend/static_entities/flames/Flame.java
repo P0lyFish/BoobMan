@@ -13,32 +13,11 @@ import java.io.FileNotFoundException;
 
 abstract public class Flame extends StaticEntity {
     public Flame() {
-        this.destroyable = true;
         timeUntilVanish = 1.5;
         status = Status.normal;
+        this.visible = true;
     }
 
-    public void updateGameState(GameState gameState) {
-        timeUntilVanish -= (float)1 / gameState.NUM_REFRESH_PER_TIME_UNIT;
-        for(Entity e : gameState.getEntityList()) {
-            if(e.isDestroyable() && e.isVisible() && this.getPosition().distance(e.getPosition()) < 1) {
-                e.destroy();
-            }
-        }
-        if(timeUntilVanish <= REMAINING_TIME_MAX && timeUntilVanish > REMAINING_TIME_MID) {
-            this.status = Status.normal;
-        }
-        else if(timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
-            this.status = Status.vanishing;
-        }
-        else{
-            this.status = Status.vanished;
-            gameState.removeEntity(this);
-        }
-//        System.out.println(this.timeUntilVanish);
-//        System.out.println(this.status.toString());
-
-    }
 
     public Image getCurrentTexture() {
 

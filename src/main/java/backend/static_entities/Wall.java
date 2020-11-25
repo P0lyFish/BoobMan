@@ -14,9 +14,13 @@ public class Wall extends StaticEntity {
     public Wall() {
         this.entityType = EntityType.wall;
         blocked = true;
+        this.visible = true;
     }
     public Wall(GridPosition position) {
         this.position = position;
+        this.entityType = EntityType.wall;
+        blocked = true;
+        this.visible = true;
     }
 
     public void destroy() {

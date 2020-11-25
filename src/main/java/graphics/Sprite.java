@@ -167,81 +167,6 @@ public class Sprite {
 
     //hash map chứa static entities
     public static HashMap<String, Image> static_sprites = new HashMap<>();
-    /*
-    |--------------------------------------------------------------------------
-    | Board sprites
-    |--------------------------------------------------------------------------
-     */
-
-
-    public static Sprite brick = new Sprite(7, 0);
-    public static Sprite wall = new Sprite(5, 0);
-    public static Sprite portal = new Sprite(4, 0);
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | Bomb Sprites
-    |--------------------------------------------------------------------------
-     */
-    public static Sprite bomb_0 = new Sprite(0, 3);
-    public static Sprite bomb_1 = new Sprite(1, 3);
-    public static Sprite bomb_2 = new Sprite(2, 3);
-
-    /*
-    |--------------------------------------------------------------------------
-    | FlameSegment Sprites
-    |--------------------------------------------------------------------------
-     */
-    public static Sprite bomb_exploded0 = new Sprite(0, 4);
-    public static Sprite bomb_exploded1 = new Sprite(0, 5);
-    public static Sprite bomb_exploded2 = new Sprite(0, 6);
-
-    public static Sprite explosion_vertical0 = new Sprite(1, 5);
-    public static Sprite explosion_vertical1 = new Sprite(2, 5);
-    public static Sprite explosion_vertical2 = new Sprite(3, 5);
-
-    public static Sprite explosion_horizontal0 = new Sprite(1, 7);
-    public static Sprite explosion_horizontal1 = new Sprite(1, 8);
-    public static Sprite explosion_horizontal2 = new Sprite(1, 9);
-
-    public static Sprite explosion_horizontal_left_last0 = new Sprite(0, 7);
-    public static Sprite explosion_horizontal_left_last1 = new Sprite(0, 8);
-    public static Sprite explosion_horizontal_left_last2 = new Sprite(0, 9);
-
-    public static Sprite explosion_horizontal_right_last0 = new Sprite(2, 7);
-    public static Sprite explosion_horizontal_right_last1 = new Sprite(2, 8);
-    public static Sprite explosion_horizontal_right_last2 = new Sprite(2, 9);
-
-    public static Sprite explosion_vertical_top_last0 = new Sprite(1, 4);
-    public static Sprite explosion_vertical_top_last1 = new Sprite(2, 4);
-    public static Sprite explosion_vertical_top_last2 = new Sprite(3, 4);
-
-    public static Sprite explosion_vertical_down_last0 = new Sprite(1, 6);
-    public static Sprite explosion_vertical_down_last1 = new Sprite(2, 6);
-    public static Sprite explosion_vertical_down_last2 = new Sprite(3, 6);
-
-    /*
-    |--------------------------------------------------------------------------
-    | Brick FlameSegment
-    |--------------------------------------------------------------------------
-     */
-    public static Sprite brick_exploded0 = new Sprite(7, 1);
-    public static Sprite brick_exploded1 = new Sprite(7, 2);
-    public static Sprite brick_exploded2 = new Sprite(7, 3);
-
-    /*
-    |--------------------------------------------------------------------------
-    | Powerups
-    |--------------------------------------------------------------------------
-     */
-    public static Sprite bomb_item = new Sprite(0, 10);
-    public static Sprite flame_item = new Sprite(1, 10);
-    public static Sprite speed_item = new Sprite(2, 10);
-    public static Sprite pass_wall_item = new Sprite(3, 10);
-    public static Sprite detonator_item = new Sprite(4, 10);
-    public static Sprite powerup_bombpass = new Sprite(5, 10);
-    public static Sprite pass_flame_item = new Sprite(6, 10);
 
     /*
     |--------------------------------------------------------------------------
@@ -302,9 +227,9 @@ public class Sprite {
     |--------------------------------------------------------------------------
      */
     static {
-        static_sprites.put("brick_exploded0",brick_exploded0.getCurrentTexture());
-        static_sprites.put("brick_exploded1",brick_exploded1.getCurrentTexture());
-        static_sprites.put("brick_exploded2",brick_exploded2.getCurrentTexture());
+        static_sprites.put("brick_exploded0",Sprite2.brick_exploded0.getCurrentTexture());
+        static_sprites.put("brick_exploded1",Sprite2.brick_exploded1.getCurrentTexture());
+        static_sprites.put("brick_exploded2",Sprite2.brick_exploded2.getCurrentTexture());
     }
 
     /*

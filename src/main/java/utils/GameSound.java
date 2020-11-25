@@ -1,7 +1,4 @@
-package main.java.backend;
-
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+package main.java.utils;
 
 import java.io.*;
 import java.net.URL;
@@ -12,7 +9,6 @@ import javax.swing.*;
 // Hence, we use a Swing application.
 public class GameSound extends JFrame implements Runnable {
     public Clip clip;
-    protected Clip clipBomb;
     protected Clip menu;
     protected Clip die;
     private Thread thread;
