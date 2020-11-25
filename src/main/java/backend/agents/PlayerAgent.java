@@ -35,7 +35,7 @@ public class PlayerAgent extends BomberMan {
     }
 
     @Override
-    public GridPosition getPosition() {
+    public GridPosition getPositionForRendering() {
         return new GridPosition(position.getX(), position.getY() - 0.3);
     }
 

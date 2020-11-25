@@ -78,6 +78,10 @@ public abstract class Entity implements Cloneable {
         return this.position;
     }
 
+    public GridPosition getPositionForRendering() {
+        return getPosition();
+    }
+
     public void setPosition(GridPosition position) {
         this.position = position;
     }
@@ -111,8 +115,8 @@ public abstract class Entity implements Cloneable {
 
     public void render(GraphicsContext gc) {
 
-        double x = getPosition().getX();
-        double y = getPosition().getY();
+        double x = getPositionForRendering().getX();
+        double y = getPositionForRendering().getY();
         // Image img = getCurrentTexture();
 
         // SnapshotParameters params = new SnapshotParameters();
