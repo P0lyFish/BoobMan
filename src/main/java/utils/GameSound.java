@@ -9,9 +9,10 @@ import javax.swing.*;
 // Hence, we use a Swing application.
 public class GameSound extends JFrame implements Runnable {
     public Clip clip;
-    protected Clip menu;
-    protected Clip die;
-    private Thread thread;
+    public Clip menu;
+    public Clip die;
+    public Thread thread;
+    public Clip item;
     public boolean run = true;
 
     public void playBackgroundFx() {
@@ -70,6 +71,26 @@ public class GameSound extends JFrame implements Runnable {
         }
     }
 
+    public void playHitItemFx() {
+        try {
+            // Open an audio input stream.
+            //tiếng bomb
+            // create AudioInputStream object
+            String filePath = "src/main/resources/sounds/item.wav";
+            AudioInputStream audioInputStream;
+            audioInputStream = AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
+
+            // create clip reference
+            item = AudioSystem.getClip();
+
+            // open audioInputStream to the clip
+            item.open(audioInputStream);
+            item.start();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void playMenuFx() {
         try {
             // Open an audio input stream.

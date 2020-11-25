@@ -7,6 +7,7 @@ import main.java.backend.agents.BomberMan;
 import main.java.backend.static_entities.Brick;
 import main.java.backend.static_entities.flames.Flame;
 import main.java.utils.EntityType;
+import main.java.utils.GameSound;
 import main.java.utils.GridPosition;
 
 public class FlameItem extends Item {
@@ -42,12 +43,15 @@ public class FlameItem extends Item {
             if(this.visible && e instanceof BomberMan && e.getPosition().distance(this.getPosition()) < 0.5) {
                 ((BomberMan) e).setBlastRange(((BomberMan) e).getBlastRange() + EXTRA_FLAME);
                 gameState.removeEntity(this);
+                GameSound item = new GameSound();
+                item.playHitItemFx();
             }
         }
         decreaseTimeUntilVanish((double)1.0 / gameState.NUM_REFRESH_PER_TIME_UNIT);
 
         if (isVanished()) {
             gameState.removeEntity(this);
+
         }
     }
 
