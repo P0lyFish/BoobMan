@@ -40,7 +40,7 @@ public class BombItem extends Item {
             }
         }
         for(Entity e : gameState.getEntityList()) {
-            if(e instanceof BomberMan && e.getPosition().distance(this.getPosition())< 0.5) {
+            if(e instanceof BomberMan && e.getPosition().distance(this.getPosition()) == 0) {
                 int n = ((BomberMan) e).getRemainingBombs();
                 ((BomberMan) e).setRemainingBombs(n+EXTRA_BOMB);
                 gameState.removeEntity(this);
