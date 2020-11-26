@@ -29,5 +29,6 @@ public class Oneal extends Agent {
         // standStill(gameState);
         // randomMove(gameState);
         chasePlayer(gameState);
+        movingType = getStep();
     }
 }

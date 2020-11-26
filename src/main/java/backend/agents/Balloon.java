@@ -29,5 +29,7 @@ public class Balloon extends Agent {
 
         decreaseTimeUntilVanish((double)1.0 / GameState.NUM_REFRESH_PER_TIME_UNIT);
         randomMove(gameState);
+
+        movingType = getStep();
     }
 }

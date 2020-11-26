@@ -1,10 +1,8 @@
 package main.java.backend;
 
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.KeyCode;
-import main.java.backend.agents.Agent;
-import main.java.backend.agents.Balloon;
-import main.java.backend.agents.Oneal;
-import main.java.backend.agents.PlayerAgent;
+import main.java.backend.agents.*;
 import main.java.backend.static_entities.*;
 import main.java.backend.static_entities.items.BombItem;
 import main.java.backend.static_entities.items.FlameItem;
@@ -22,6 +20,8 @@ public class GameState implements Serializable {
     public static final int DEFAULT_NUM_BOMBS = 1;
     public static final int NUM_REFRESH_PER_TIME_UNIT = 60;
     public static final int CHANGE_MOVING_TYPE_PERIOD = 30;
+    public static final double TRACKING_RANGE = 5;
+
     private List<Entity> listGrass = new ArrayList<>();
     private GameStatus status = GameStatus.PLAYING;
     private List<Entity> entities;
@@ -71,6 +71,9 @@ public class GameState implements Serializable {
                             break;
                         case 'o':
                             entity = new Oneal(new GridPosition(curX, curY), DEFAULT_SPEED*0.5);
+                            break;
+                        case 'd':
+                            entity = new Dragon(new GridPosition(curX, curY), DEFAULT_SPEED * 0.5);
                             break;
                         case '*':
                             entity = new Brick(new GridPosition(curX, curY));
@@ -164,10 +167,10 @@ public class GameState implements Serializable {
 
     }
 
-    public Agent getPlayerAgent(int playerID) {
+    public PlayerAgent getPlayerAgent(int playerID) {
         for (Entity e : entities) {
             if (e instanceof PlayerAgent && ((PlayerAgent)e).getPlayerID() == playerID) {
-                return (Agent)e;
+                return (PlayerAgent)e;
             }
         }
 

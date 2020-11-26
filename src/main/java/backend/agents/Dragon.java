@@ -1,22 +1,21 @@
 package main.java.backend.agents;
 
-import javafx.scene.image.Image;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
 import main.java.backend.static_entities.Wall;
 import main.java.utils.Direction;
+import main.java.utils.EntityType;
 import main.java.utils.GridPosition;
 
-import java.util.List;
-
-public class Fucker extends Agent {
-    public Fucker(GridPosition position, double speed) {
+public class Dragon extends Agent {
+    public Dragon(GridPosition position, double speed) {
         super(position, speed);
+        this.entityType = EntityType.dragon;
     }
 
     @Override
     public Entity getClone() {
-        return new Fucker(this.position, this.speed);
+        return new Dragon(this.position, this.speed);
     }
 
     @Override
@@ -35,6 +34,13 @@ public class Fucker extends Agent {
 
     @Override
     public void updateGameState(GameState gameState) throws CloneNotSupportedException {
+        if (isVanished()) {
+            gameState.removeEntity(this);
+            return;
+        }
+
+        decreaseTimeUntilVanish((double)1.0 / GameState.NUM_REFRESH_PER_TIME_UNIT);
         randomMove(gameState);
+        movingType = getStep();
     }
 }

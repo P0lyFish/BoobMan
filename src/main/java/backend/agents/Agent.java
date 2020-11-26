@@ -164,6 +164,27 @@ abstract public class Agent extends Entity {
 
         Map<GridPosition, Integer> dist = new HashMap<>();
         Queue<Agent> qu = new LinkedList<>();
+
+        PlayerAgent player1 = gameState.getPlayerAgent(1);
+        PlayerAgent player2 = gameState.getPlayerAgent(2);
+
+        if (player1 == null && player2 == null) {
+            randomMove(gameState);
+            return;
+        }
+
+        if (player1 == null) {
+            player1 = player2;
+        }
+        else if (player2 != null && player1.getPosition().distance(position) > player2.getPosition().distance(position)) {
+            player1 = player2;
+        }
+
+        if (player1.getPosition().distance(position) > GameState.TRACKING_RANGE) {
+            randomMove(gameState);
+            return;
+        }
+
         dist.put(gameState.getPlayerAgent(1).getPosition(), 0);
         qu.add(gameState.getPlayerAgent(1));
 
@@ -174,6 +195,7 @@ abstract public class Agent extends Entity {
             // System.out.println(u.getPosition());
 
             List<Direction> legalMoves = u.legalActions(gameState);
+
             for (Direction dir : legalMoves) {
                 Agent v = (Agent) u.getClone();
                 v.move(dir, 1);
