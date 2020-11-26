@@ -18,7 +18,7 @@ public class Menu{
     private ImageView background;
     public Button newGame;
     public Button playWithFriend;
-    private Button highScore;
+    public Button highScore;
     private Button exitGame;
 
 //    @Override
