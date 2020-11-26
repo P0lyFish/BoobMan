@@ -12,10 +12,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import main.java.GUI.Menu;
-import main.java.GUI.Taskbar;
-import main.java.GUI.endGame;
-import main.java.GUI.highScore;
+import main.java.GUI.*;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
 import main.java.backend.agents.Agent;
@@ -39,10 +36,12 @@ public class Board extends Application {
     private Menu menu;
     private endGame gameOver;
     private boolean multiplayer = false;
+    private highScoreBoard yourHighScore;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         menu = new Menu();
+        yourHighScore = new highScoreBoard();
         canvas = new Canvas(SCALED_SIZE * WIDTH, SCALED_SIZE * HEIGHT);
         gc = canvas.getGraphicsContext2D();
         canvas.setLayoutX(0);
@@ -75,6 +74,22 @@ public class Board extends Application {
                 primaryStage.setScene(scene);
                 GameState.background = new GameSound();
                 GameState.background.playBackgroundFx();
+            }
+        });
+
+        menu.highScore.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    Stage dialog = new Stage();
+                    Group group1 = yourHighScore.createScoreBoard();
+                    Scene newScene = new Scene(group1);
+                    dialog.setScene(newScene);
+                    dialog.show();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         primaryStage.show();

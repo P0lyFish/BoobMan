@@ -41,7 +41,7 @@ public class Taskbar {
         menu.getMenus().addAll(file, help);
 
 
-        Image image = new Image(new File("res/newTaskbar.png").toURI().toString());
+        Image image = new Image(new File("res/taskbar.png").toURI().toString());
         background = new ImageView();
         background.setLayoutY(0);
         background.setLayoutY(26);
