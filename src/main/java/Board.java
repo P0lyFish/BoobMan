@@ -37,7 +37,7 @@ public class Board extends Application {
     private endGame gameOver;
     private boolean multiplayer = false;
     private highScoreBoard yourHighScore;
-
+    private int level = 1;
     @Override
     public void start(Stage primaryStage) throws Exception {
         menu = new Menu();
@@ -131,7 +131,11 @@ public class Board extends Application {
                 }
 
                 if(gameState.isWin()){
-                    gameState = new GameState("src/main/resources/levels/Level2.txt", new Input(scene));
+                    level++;
+                    gameState = new GameState(String.format("src/main/resources/levels/Level%d.txt", level),  new Input(scene));
+                    if(!multiplayer) {
+                        gameState.removeEntity(gameState.getPlayerAgent(2));
+                    }
                 }
                 taskbar.quit.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
