@@ -124,6 +124,30 @@ public class Sprite {
         agent_sprites.put("oneal_VANISHING_3", Sprite2.oneal_VANISHING_3.getCurrentTexture());
     }
 
+
+    //dragon
+    static {
+        agent_sprites.put("dragon_WEST_STEP_LEFT", Sprite2.dragon_WEST_STEP_LEFT.getCurrentTexture());
+        agent_sprites.put("dragon_WEST_STEP_RIGHT", Sprite2.dragon_WEST_STEP_RIGHT.getCurrentTexture());
+        agent_sprites.put("dragon_WEST_STOP", Sprite2.dragon_WEST_STOP.getCurrentTexture());
+
+        agent_sprites.put("dragon_NORTH_STEP_LEFT", Sprite2.dragon_NORTH_STEP_LEFT.getCurrentTexture());
+        agent_sprites.put("dragon_NORTH_STEP_RIGHT", Sprite2.dragon_NORTH_STEP_RIGHT.getCurrentTexture());
+        agent_sprites.put("dragon_NORTH_STOP", Sprite2.dragon_NORTH_STOP.getCurrentTexture());
+
+        agent_sprites.put("dragon_EAST_STEP_LEFT", Sprite2.dragon_EAST_STEP_LEFT.getCurrentTexture());
+        agent_sprites.put("dragon_EAST_STEP_RIGHT", Sprite2.dragon_EAST_STEP_RIGHT.getCurrentTexture());
+        agent_sprites.put("dragon_EAST_STOP", Sprite2.dragon_EAST_STOP.getCurrentTexture());
+
+        agent_sprites.put("dragon_SOUTH_STEP_LEFT", Sprite2.dragon_SOUTH_STEP_LEFT.getCurrentTexture());
+        agent_sprites.put("dragon_SOUTH_STEP_RIGHT", Sprite2.dragon_SOUTH_STEP_RIGHT.getCurrentTexture());
+        agent_sprites.put("dragon_SOUTH_STOP", Sprite2.dragon_SOUTH_STOP.getCurrentTexture());
+
+        agent_sprites.put("dragon_VANISHING_1", Sprite2.dragon_VANISHING_1.getCurrentTexture());
+        agent_sprites.put("dragon_VANISHING_2", Sprite2.dragon_VANISHING_2.getCurrentTexture());
+        agent_sprites.put("dragon_VANISHING_3", Sprite2.dragon_VANISHING_3.getCurrentTexture());
+
+    }
     //Doll
     public static Sprite doll_left1 = new Sprite(13, 0);
     public static Sprite doll_left2 = new Sprite(13, 1);
@@ -177,7 +201,7 @@ public class Sprite {
         static_sprites.put("grass", Sprite2.grass.getCurrentTexture());
         static_sprites.put("brick", Sprite2.brick.getCurrentTexture());
         static_sprites.put("wall", Sprite2.wall.getCurrentTexture());
-        static_sprites.put("portal", Sprite2.portal.getCurrentTexture());
+        static_sprites.put("portal1", Sprite2.portal.getCurrentTexture());
         static_sprites.put("portal2", Sprite2.portal2.getCurrentTexture());
     }
 

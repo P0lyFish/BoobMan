@@ -164,6 +164,27 @@ public class Sprite2 {
     public static Sprite2 oneal_VANISHING_3 = new Sprite2(16, 442, 324);
 
 
+    //dragon
+    public static Sprite2 dragon_WEST_STEP_LEFT = new Sprite2(16, 474, 233);
+    public static Sprite2 dragon_WEST_STEP_RIGHT = new Sprite2(16, 490, 233);
+    public static Sprite2 dragon_WEST_STOP = new Sprite2(16, 506, 233);
+
+    public static Sprite2 dragon_NORTH_STEP_LEFT = new Sprite2(16, 522, 233);
+    public static Sprite2 dragon_NORTH_STEP_RIGHT = new Sprite2(16, 538, 233);
+    public static Sprite2 dragon_NORTH_STOP = new Sprite2(16, 554, 233);
+
+    public static Sprite2 dragon_EAST_STEP_LEFT = new Sprite2(16, 571, 233);
+    public static Sprite2 dragon_EAST_STEP_RIGHT = new Sprite2(16, 586, 233);
+    public static Sprite2 dragon_EAST_STOP = new Sprite2(16, 603, 233);
+
+    public static Sprite2 dragon_SOUTH_STEP_LEFT = new Sprite2(16, 618, 233);
+    public static Sprite2 dragon_SOUTH_STEP_RIGHT = new Sprite2(16, 314, 251);
+    public static Sprite2 dragon_SOUTH_STOP = new Sprite2(16, 330, 251);
+
+    public static Sprite2 dragon_VANISHING_1 = new Sprite2(16, 346, 251);
+    public static Sprite2 dragon_VANISHING_2 = new Sprite2(16, 362, 251);
+    public static Sprite2 dragon_VANISHING_3 = new Sprite2(16, 395, 251);
+
 
     public Image getCurrentTexture() {
         WritableImage wr = new WritableImage(SIZE, SIZE);

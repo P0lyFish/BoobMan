@@ -13,6 +13,9 @@ import main.java.utils.GridPosition;
 public class Portal extends StaticEntity {
     private boolean passed;
     private boolean opened;
+    private int gameTime = 0;
+    private int portalImgId = 0;
+    private final int time = 100;
     public Portal(GridPosition position) {
         this.blocked = true;
         this.destroyable = true;
@@ -21,6 +24,7 @@ public class Portal extends StaticEntity {
         this.passed = false;
         this.opened = false;
         this.position = position;
+
     }
 
     //mở khi giết hết quái
@@ -40,9 +44,9 @@ public class Portal extends StaticEntity {
 
     public Image getCurrentTexture() {
         if(isOpened()) {
-            return Sprite.static_sprites.get("portal2");
+            return Sprite.static_sprites.get(String.format("portal%d", portalImgId));
         }
-        else return Sprite.static_sprites.get("portal");
+        else return Sprite.static_sprites.get("portal1");
     }
 
     public void updateGameState(GameState gameState) {
@@ -66,6 +70,10 @@ public class Portal extends StaticEntity {
 
         if (this.opened) {
             this.blocked = false;
+            gameTime++;
+            int d = gameTime % time;
+            if(d < time/2) portalImgId = 1;
+            else portalImgId = 2;
         }
     }
 

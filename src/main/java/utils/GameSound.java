@@ -161,10 +161,4 @@ public class GameSound extends JFrame implements Runnable {
         }
     }
 
-    public static void main(String[] args) {
-        GameSound a = new GameSound();
-        a.playBackgroundFx();
-        GameSound b = new GameSound();
-        b.playMenuSelectFx();
-    }
 }
