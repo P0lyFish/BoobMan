@@ -54,18 +54,37 @@ public class GridPosition implements Serializable {
 
         switch (dir) {
             case WEST:
-                return new GridPosition(this.getX() - speed, this.getY());
+                newPosition = new GridPosition(this.getX() - speed, this.getY());
+                if (Math.ceil(newPosition.getX()) < x) {
+                    newPosition.setX(Math.ceil(newPosition.getX()));
+                }
+                break;
             case NORTH:
-                return new GridPosition(this.getX(), this.getY() - speed);
+                newPosition = new GridPosition(this.getX(), this.getY() - speed);
+                if (Math.ceil(newPosition.getY()) < y) {
+                    newPosition.setY(Math.ceil(newPosition.getY()));
+                }
+                break;
             case EAST:
-                return new GridPosition(this.getX() + speed, this.getY());
+                newPosition = new GridPosition(this.getX() + speed, this.getY());
+                if (Math.floor(newPosition.getX()) > x) {
+                    newPosition.setX(Math.floor(newPosition.getX()));
+                }
+                break;
             case SOUTH:
-                return new GridPosition(this.getX(), this.getY() + speed);
+                newPosition = new GridPosition(this.getX(), this.getY() + speed);
+                if (Math.floor(newPosition.getY()) > y) {
+                    newPosition.setY(Math.floor(newPosition.getY()));
+                }
+                break;
             case STOP:
-                return new GridPosition(this.getX(), this.getY());
+                newPosition = new GridPosition(this.getX(), this.getY());
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + dir);
         }
+
+        return newPosition;
     }
 
     public double distance(GridPosition p) {
