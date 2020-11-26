@@ -42,7 +42,6 @@ public class PlayerAgent extends BomberMan {
     }
 
     public void updateGameState(GameState gameState) {
-        System.out.println(position);
         decreaseTimeUntilVanish((double)1.0 / GameState.NUM_REFRESH_PER_TIME_UNIT);
 
         if (isVanishing() && !screamed) {

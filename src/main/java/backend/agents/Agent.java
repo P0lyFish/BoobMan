@@ -32,9 +32,15 @@ abstract public class Agent extends Entity {
 
     public Agent(GridPosition position, double speed) {
         super(position, true, false, true, REMAINING_TIME_MAX);
-        this.speed = speed;
-        int pick = new Random().nextInt(Direction.values().length);
-        currentDirection = Direction.values()[pick];
+
+        while (true) {
+            this.speed = speed;
+            int pick = new Random().nextInt(Direction.values().length);
+            currentDirection = Direction.values()[pick];
+            if (!currentDirection.equals(Direction.STOP)) {
+                break;
+            }
+        }
     }
 
     public void setSpeed(double speed) {
@@ -49,6 +55,19 @@ abstract public class Agent extends Entity {
         this.currentDirection = newDirection;
     }
 
+    protected boolean isLegalAction(GameState gameState, Direction dir) {
+        GridPosition newPosition = position.step(dir, speed / GameState.NUM_REFRESH_PER_TIME_UNIT);
+
+        for (Entity e : gameState.getEntityList()) {
+            double d = newPosition.distance(e.getPosition());
+            if (d < 1 && e.isBlocked()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     protected List<Direction> legalActions(GameState gameState) {
         List<Direction> legalDirs = new ArrayList<>();
 
@@ -57,17 +76,7 @@ abstract public class Agent extends Entity {
         }
 
         for (Direction dir : Direction.values()) {
-            boolean validMove = true;
-            GridPosition newPosition = position.step(dir, speed / GameState.NUM_REFRESH_PER_TIME_UNIT);
-            for (Entity e : gameState.getEntityList()) {
-                double d = newPosition.distance(e.getPosition());
-                if (d < 1 && e.isBlocked()) {
-                    validMove = false;
-                    break;
-                }
-            }
-
-            if (validMove) {
+            if (isLegalAction(gameState, dir)) {
                 legalDirs.add(dir);
             }
         }
@@ -86,6 +95,7 @@ abstract public class Agent extends Entity {
 
     public void move(Direction dir, double dist) {
         GridPosition newPosition = position.step(dir, dist);
+
         setPosition(newPosition);
         setDirection(dir);
     }
