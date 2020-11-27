@@ -37,7 +37,7 @@ public class Board extends Application {
     private endGame gameOver;
     private boolean multiplayer = false;
     private highScoreBoard yourHighScore;
-    private int level = 1;
+    public static int level = 1;
     @Override
     public void start(Stage primaryStage) throws Exception {
         menu = new Menu();

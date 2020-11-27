@@ -66,9 +66,9 @@ public class Sprite {
         agent_sprites.put("bomberman2_SOUTH_STEP_RIGHT", Sprite2.player_down_1__2.getCurrentTexture());
         agent_sprites.put("bomberman2_SOUTH_STOP", Sprite2.player_down__2.getCurrentTexture());
 
-        agent_sprites.put("bomberman2_VANISHING_1", Sprite2.player_dead4__2.getCurrentTexture());
-        agent_sprites.put("bomberman2_VANISHING_2", Sprite2.player_dead2__2.getCurrentTexture());
-        agent_sprites.put("bomberman2_VANISHING_3", Sprite2.player_dead__2.getCurrentTexture());
+        agent_sprites.put("bomberman2_VANISHING_1", Sprite2.player_dead__2.getCurrentTexture());
+        agent_sprites.put("bomberman2_VANISHING_2", Sprite2.player_dead1__2.getCurrentTexture());
+        agent_sprites.put("bomberman2_VANISHING_3", Sprite2.player_dead2__2.getCurrentTexture());
     }
 
 

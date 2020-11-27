@@ -150,17 +150,27 @@ public class GameState implements Serializable {
 //        for (Entity e : entities) {
 //            e.updateGameState(this);
 //        }
-
+            boolean anyPlayer = true;
             for (Entity e : entities) {
                 if (e instanceof Portal && ((Portal) e).isPassed()) {
                     status = GameStatus.WIN;
-                    break;
-                }
-                if (e instanceof PlayerAgent && ((PlayerAgent) e).isVanished()) {
-                    status = GameStatus.LOSE;
-                    break;
+                    return;
                 }
             }
+            for (Entity e : entities) {
+                if (e instanceof PlayerAgent && ((PlayerAgent) e).isNormal()) {
+                    anyPlayer = true;
+                    break;
+                }
+                if(e instanceof PlayerAgent && e.isVanished()) {
+                    anyPlayer = false;
+                }
+            }
+
+            if(!anyPlayer) {
+                status = GameStatus.LOSE;
+            }
+
 
             entities.sort((Entity e1, Entity e2)->e1.getPosition().getX() < e2.getPosition().getX() ? 1 : 0);
         }

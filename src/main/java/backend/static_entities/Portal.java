@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
 import main.java.backend.agents.Balloon;
+import main.java.backend.agents.Dragon;
 import main.java.backend.agents.Oneal;
 import main.java.backend.agents.PlayerAgent;
 import main.java.graphics.Sprite;
@@ -51,18 +52,23 @@ public class Portal extends StaticEntity {
 
     public void updateGameState(GameState gameState) {
         for(Entity e : gameState.getEntityList()) {
-            if(e instanceof Brick && (e.getStatus() == Status.vanished || e.getStatus() == Status.vanishing) && e.getPosition().distance(this.getPosition()) < 0.3) {
+            if(e instanceof Brick && (e.getStatus() == Status.vanished || e.getStatus() == Status.vanishing) && e.getPosition().distance(this.getPosition()) == 0) {
                 this.visible = true;
                 this.destroyable = false;
+                this.opened = true;
+//                System.out.println("portal open");
+
             }
-            if(isOpened() && e instanceof PlayerAgent && e.getPosition().distance(this.getPosition()) < 1) {
+            if(isOpened() && e instanceof PlayerAgent && e.getPosition().distance(this.getPosition()) == 0) {
                 this.passed = true;
+//                System.out.println("pass");
+                break;
             }
         }
         //check còn quái ko
-        this.opened = true;
+
         for(Entity e : gameState.getEntityList()) {
-            if(e instanceof Balloon || e instanceof Oneal) {
+            if(e instanceof Balloon || e instanceof Oneal || e instanceof Dragon) {
                 this.opened = false;
                 break;
             }
