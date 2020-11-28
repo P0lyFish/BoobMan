@@ -72,6 +72,7 @@ public class Portal extends StaticEntity {
                 this.opened = false;
                 break;
             }
+            else this.opened = true;
         }
 
         if (this.opened) {

@@ -16,7 +16,7 @@ abstract public class BomberMan extends Agent {
     protected int remainingBombs;
 
     public BomberMan(GridPosition position, double speed, int blastRange, int numBombs) {
-        super(position, speed);
+        super(position, speed, 0);
         this.blastRange = blastRange;
         this.remainingBombs = numBombs;
     }

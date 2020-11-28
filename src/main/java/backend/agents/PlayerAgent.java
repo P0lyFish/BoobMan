@@ -14,9 +14,13 @@ public class PlayerAgent extends BomberMan {
     private final KeyCodeSet keyCodeSet;
     private final int playerID;
     private boolean screamed = false;
+    private int numHearts = 2;
+    private final GridPosition startPosition;
+
     public PlayerAgent(GridPosition position, double speed, int blastRange, int numBombs, KeyCodeSet keyCodeSet,
                        int playerID) {
         super(position, speed, blastRange, numBombs);
+        this.startPosition = position;
         this.keyCodeSet = keyCodeSet;
         this.playerID = playerID;
         if (playerID == 1) {
@@ -32,6 +36,21 @@ public class PlayerAgent extends BomberMan {
         return new PlayerAgent(position, speed, blastRange, remainingBombs, keyCodeSet, playerID);
     }
 
+    @Override
+    public void destroy() {
+        if (numHearts == 1) {
+            super.destroy();
+        }
+        else {
+            numHearts -= 1;
+            setPosition(startPosition);
+        }
+    }
+
+    public void addExtraLife() {
+        numHearts += 1;
+    }
+
     public int getPlayerID() {
         return playerID;
     }
@@ -43,6 +62,9 @@ public class PlayerAgent extends BomberMan {
 
     public void updateGameState(GameState gameState) {
         decreaseTimeUntilVanish((double)1.0 / GameState.NUM_REFRESH_PER_TIME_UNIT);
+        if (isVanished()) {
+            gameState.removeEntity(this);
+        }
 
         if (isVanishing() && !screamed) {
             GameSound gameSound = new GameSound();
@@ -50,6 +72,7 @@ public class PlayerAgent extends BomberMan {
             screamed = true;
         }
 
+        boolean isMove = true;
         if (position.isLatticePoint()) {
             if (gameState.inputListener.isMoveLeft(keyCodeSet)) {
                 currentDirection = Direction.WEST;
@@ -70,14 +93,16 @@ public class PlayerAgent extends BomberMan {
             else if (gameState.inputListener.isSetBomb(keyCodeSet)) {
                 movingType = MovingType.STOP;
                 setBomb(gameState);
+                isMove = false;
             }
             else {
                 movingType = MovingType.STOP;
+                isMove = false;
             }
 
             List<Direction> validActions = legalActions(gameState);
             for (Direction dir : validActions) {
-                if (!movingType.equals(MovingType.STOP) && dir.equals(currentDirection)) {
+                if (isMove && dir.equals(currentDirection)) {
                     move(currentDirection, speed / GameState.NUM_REFRESH_PER_TIME_UNIT);
                     break;
                 }

@@ -29,8 +29,10 @@ abstract public class Agent extends Entity {
     protected MovingType movingType = MovingType.STOP;
     protected int movingTimer = 0;
     protected MovingType currentStepType = MovingType.STEP_LEFT;
+    protected int currentStepPeriod = 0;
+    protected int score;
 
-    public Agent(GridPosition position, double speed) {
+    public Agent(GridPosition position, double speed, int score) {
         super(position, true, false, true, REMAINING_TIME_MAX);
 
         while (true) {
@@ -41,6 +43,8 @@ abstract public class Agent extends Entity {
                 break;
             }
         }
+
+        this.score = score;
     }
 
     public void setSpeed(double speed) {
@@ -87,7 +91,18 @@ abstract public class Agent extends Entity {
     public MovingType getStep() {
         movingTimer += 1;
         if (movingTimer % GameState.CHANGE_MOVING_TYPE_PERIOD == 0) {
-            currentStepType = (currentStepType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
+            // currentStepType = (currentStepType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
+            currentStepPeriod = (currentStepPeriod + 1) % 4;
+        }
+
+        if (currentStepPeriod % 4 == 0 || currentStepPeriod % 4 == 2) {
+            currentStepType = MovingType.STOP;
+        }
+        else if (currentStepPeriod % 4 == 1) {
+            currentStepType = MovingType.STEP_LEFT;
+        }
+        else {
+            currentStepType = MovingType.STEP_RIGHT;
         }
 
         return currentStepType;
@@ -172,6 +187,8 @@ abstract public class Agent extends Entity {
             randomMove(gameState);
             return;
         }
+        // System.out.println(player1.getPosition().distance(position));
+        // System.out.println(player2.getPosition().distance(position));
 
         if (player1 == null) {
             player1 = player2;
@@ -185,8 +202,8 @@ abstract public class Agent extends Entity {
             return;
         }
 
-        dist.put(gameState.getPlayerAgent(1).getPosition(), 0);
-        qu.add(gameState.getPlayerAgent(1));
+        dist.put(player1.getPosition(), 0);
+        qu.add(player1);
 
         Agent nxt = null;
 

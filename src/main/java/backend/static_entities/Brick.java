@@ -1,9 +1,12 @@
 package main.java.backend.static_entities;
 
 import javafx.scene.image.Image;
+import main.java.Board;
 import main.java.backend.Entity;
 import main.java.backend.GameState;
 import main.java.graphics.Sprite;
+import main.java.graphics.SpriteLv2;
+import main.java.graphics.SpriteLv3;
 import main.java.utils.EntityType;
 import main.java.utils.GridPosition;
 
@@ -41,18 +44,52 @@ public class Brick extends StaticEntity {
     }
 
     public Image getCurrentTexture() {
-        if (isNormal()) {
-            return Sprite.static_sprites.get(String.format("%s", entityType.toString()));
-        }
-        else {
-            this.entityType = EntityType.brick_exploded;
-            if (timeUntilVanish <= REMAINING_TIME_MAX && timeUntilVanish > REMAINING_TIME_MID) {
-                return Sprite.static_sprites.get(String.format("%s0", entityType.toString()));
-            } else if (timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
-                return Sprite.static_sprites.get(String.format("%s1", entityType.toString()));
-            } else {
-                return Sprite.static_sprites.get(String.format("%s2", entityType.toString()));
+        if(Board.level == 1) {
+            if (isNormal()) {
+                return Sprite.static_sprites.get(String.format("%s", entityType.toString()));
+            }
+            else {
+                this.entityType = EntityType.brick_exploded;
+                if (timeUntilVanish <= REMAINING_TIME_MAX && timeUntilVanish > REMAINING_TIME_MID) {
+                    return Sprite.static_sprites.get(String.format("%s0", entityType.toString()));
+                } else if (timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
+                    return Sprite.static_sprites.get(String.format("%s1", entityType.toString()));
+                } else {
+                    return Sprite.static_sprites.get(String.format("%s2", entityType.toString()));
+                }
             }
         }
+        if(Board.level == 2) {
+            if (isNormal()) {
+                return SpriteLv2.static_sprites.get(String.format("%s", entityType.toString()));
+            }
+            else {
+                this.entityType = EntityType.brick_exploded;
+                if (timeUntilVanish <= REMAINING_TIME_MAX && timeUntilVanish > REMAINING_TIME_MID) {
+                    return SpriteLv2.static_sprites.get(String.format("%s0", entityType.toString()));
+                } else if (timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
+                    return SpriteLv2.static_sprites.get(String.format("%s1", entityType.toString()));
+                } else {
+                    return SpriteLv2.static_sprites.get(String.format("%s2", entityType.toString()));
+                }
+            }
+        }
+        if(Board.level == 3) {
+            if (isNormal()) {
+                return SpriteLv3.static_sprites.get(String.format("%s", entityType.toString()));
+            }
+            else {
+                this.entityType = EntityType.brick_exploded;
+                if (timeUntilVanish <= REMAINING_TIME_MAX && timeUntilVanish > REMAINING_TIME_MID) {
+                    return SpriteLv3.static_sprites.get(String.format("%s0", entityType.toString()));
+                } else if (timeUntilVanish > REMAINING_TIME_MIN && timeUntilVanish <= REMAINING_TIME_MID) {
+                    return SpriteLv3.static_sprites.get(String.format("%s1", entityType.toString()));
+                } else {
+                    return SpriteLv3.static_sprites.get(String.format("%s2", entityType.toString()));
+                }
+            }
+        }
+        return null;
+
     }
 }
