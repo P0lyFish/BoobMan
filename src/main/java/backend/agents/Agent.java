@@ -88,19 +88,19 @@ abstract public class Agent extends Entity {
     public MovingType getStep() {
         movingTimer += 1;
         if (movingTimer % GameState.CHANGE_MOVING_TYPE_PERIOD == 0) {
-            currentStepType = (currentStepType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
-            // currentStepPeriod = (currentStepPeriod + 1) % 4;
+            // currentStepType = (currentStepType == MovingType.STEP_LEFT ? MovingType.STEP_RIGHT : MovingType.STEP_LEFT);
+            currentStepPeriod = (currentStepPeriod + 1) % 4;
         }
 
-        // if (currentStepPeriod % 4 == 0 || currentStepPeriod % 4 == 2) {
-        //     currentStepType = MovingType.STOP;
-        // }
-        // else if (currentStepPeriod % 4 == 1) {
-        //     currentStepType = MovingType.STEP_LEFT;
-        // }
-        // else {
-        //     currentStepType = MovingType.STEP_RIGHT;
-        // }
+        if (currentStepPeriod % 4 == 0 || currentStepPeriod % 4 == 2) {
+            currentStepType = MovingType.STOP;
+        }
+        else if (currentStepPeriod % 4 == 1) {
+            currentStepType = MovingType.STEP_LEFT;
+        }
+        else {
+            currentStepType = MovingType.STEP_RIGHT;
+        }
 
         return currentStepType;
     }

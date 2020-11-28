@@ -53,6 +53,7 @@ public class PlayerAgent extends BomberMan {
             screamed = true;
         }
 
+        boolean isMove = true;
         if (position.isLatticePoint()) {
             if (gameState.inputListener.isMoveLeft(keyCodeSet)) {
                 currentDirection = Direction.WEST;
@@ -73,14 +74,16 @@ public class PlayerAgent extends BomberMan {
             else if (gameState.inputListener.isSetBomb(keyCodeSet)) {
                 movingType = MovingType.STOP;
                 setBomb(gameState);
+                isMove = false;
             }
             else {
                 movingType = MovingType.STOP;
+                isMove = false;
             }
 
             List<Direction> validActions = legalActions(gameState);
             for (Direction dir : validActions) {
-                if (!movingType.equals(MovingType.STOP) && dir.equals(currentDirection)) {
+                if (isMove && dir.equals(currentDirection)) {
                     move(currentDirection, speed / GameState.NUM_REFRESH_PER_TIME_UNIT);
                     break;
                 }

@@ -20,7 +20,7 @@ public class GameState implements Serializable {
     public static final double DEFAULT_SPEED = 2;
     public static final int DEFAULT_NUM_BOMBS = 1;
     public static final int NUM_REFRESH_PER_TIME_UNIT = 60;
-    public static final int CHANGE_MOVING_TYPE_PERIOD = 30;
+    public static final int CHANGE_MOVING_TYPE_PERIOD = 15;
     public static final double TRACKING_RANGE = 5;
 
     private List<Entity> listGrass = new ArrayList<>();
@@ -151,7 +151,7 @@ public class GameState implements Serializable {
 //        for (Entity e : entities) {
 //            e.updateGameState(this);
 //        }
-            boolean anyPlayer = true;
+            boolean anyPlayer = false;
             for (Entity e : entities) {
                 if (e instanceof Portal && ((Portal) e).isPassed()) {
                     status = GameStatus.WIN;
@@ -163,8 +163,8 @@ public class GameState implements Serializable {
                     anyPlayer = true;
                     break;
                 }
-                if(e instanceof PlayerAgent && e.isVanished()) {
-                    anyPlayer = false;
+                if(e instanceof PlayerAgent) {
+                    anyPlayer = true;
                 }
             }
 
