@@ -7,6 +7,7 @@ import main.java.backend.agents.*;
 import main.java.backend.static_entities.*;
 import main.java.backend.static_entities.items.BombItem;
 import main.java.backend.static_entities.items.FlameItem;
+import main.java.backend.static_entities.items.LifeItem;
 import main.java.backend.static_entities.items.SpeedItem;
 import main.java.utils.*;
 
@@ -105,6 +106,10 @@ public class GameState implements Serializable {
                             break;
                         case 'S':
                             entity = new SpeedItem(new GridPosition(curX, curY));
+                            brick = new Brick(entity.getPosition());
+                            break;
+                        case 'L':
+                            entity = new LifeItem((new GridPosition(curX, curY)));
                             brick = new Brick(entity.getPosition());
                             break;
                         case 'O':

@@ -78,6 +78,7 @@ public class AllSprite {
     public static AllSprite bomb_item = new AllSprite(16, 16, 48);
     public static AllSprite flame_item = new AllSprite(16, 0, 48);
     public static AllSprite speed_item = new AllSprite(16, 48, 48);
+    public static AllSprite life_item = new AllSprite(16, 112, 48);
 
 
     //player1

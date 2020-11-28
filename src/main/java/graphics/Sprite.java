@@ -265,6 +265,8 @@ public class Sprite {
         static_sprites.put("bomb_item", AllSprite.bomb_item.getCurrentTexture());
         static_sprites.put("flame_item", AllSprite.flame_item.getCurrentTexture());
         static_sprites.put("speed_item", AllSprite.speed_item.getCurrentTexture());
+        static_sprites.put("life_item", AllSprite.life_item.getCurrentTexture());
+
 //        static_sprites.put("pass_wall_item", pass_wall_item.getCurrentTexture());
 //        static_sprites.put("detonator_item", detonator_item.getCurrentTexture());
 //        static_sprites.put("powerup_bombpass", powerup_bombpass.getCurrentTexture());
