@@ -28,47 +28,47 @@ public class Sprite {
     public static HashMap<String, Image> agent_sprites = new HashMap<>();
 
     static {
-        agent_sprites.put("bomberman1_EAST_STEP_LEFT", Sprite2.player_right_2.getCurrentTexture());
-        agent_sprites.put("bomberman1_EAST_STEP_RIGHT", Sprite2.player_right_1.getCurrentTexture());
-        agent_sprites.put("bomberman1_EAST_STOP", Sprite2.player_right.getCurrentTexture());
+        agent_sprites.put("bomberman1_EAST_STEP_LEFT", AllSprite.player_right_2.getCurrentTexture());
+        agent_sprites.put("bomberman1_EAST_STEP_RIGHT", AllSprite.player_right_1.getCurrentTexture());
+        agent_sprites.put("bomberman1_EAST_STOP", AllSprite.player_right.getCurrentTexture());
 
-        agent_sprites.put("bomberman1_NORTH_STEP_LEFT", Sprite2.player_up_2.getCurrentTexture());
-        agent_sprites.put("bomberman1_NORTH_STEP_RIGHT", Sprite2.player_up_1.getCurrentTexture());
-        agent_sprites.put("bomberman1_NORTH_STOP", Sprite2.player_up.getCurrentTexture());
+        agent_sprites.put("bomberman1_NORTH_STEP_LEFT", AllSprite.player_up_2.getCurrentTexture());
+        agent_sprites.put("bomberman1_NORTH_STEP_RIGHT", AllSprite.player_up_1.getCurrentTexture());
+        agent_sprites.put("bomberman1_NORTH_STOP", AllSprite.player_up.getCurrentTexture());
 
-        agent_sprites.put("bomberman1_WEST_STEP_LEFT", Sprite2.player_left_2.getCurrentTexture());
-        agent_sprites.put("bomberman1_WEST_STEP_RIGHT", Sprite2.player_left_1.getCurrentTexture());
-        agent_sprites.put("bomberman1_WEST_STOP", Sprite2.player_left.getCurrentTexture());
+        agent_sprites.put("bomberman1_WEST_STEP_LEFT", AllSprite.player_left_2.getCurrentTexture());
+        agent_sprites.put("bomberman1_WEST_STEP_RIGHT", AllSprite.player_left_1.getCurrentTexture());
+        agent_sprites.put("bomberman1_WEST_STOP", AllSprite.player_left.getCurrentTexture());
 
-        agent_sprites.put("bomberman1_SOUTH_STEP_LEFT", Sprite2.player_down_2.getCurrentTexture());
-        agent_sprites.put("bomberman1_SOUTH_STEP_RIGHT", Sprite2.player_down_1.getCurrentTexture());
-        agent_sprites.put("bomberman1_SOUTH_STOP", Sprite2.player_down.getCurrentTexture());
+        agent_sprites.put("bomberman1_SOUTH_STEP_LEFT", AllSprite.player_down_2.getCurrentTexture());
+        agent_sprites.put("bomberman1_SOUTH_STEP_RIGHT", AllSprite.player_down_1.getCurrentTexture());
+        agent_sprites.put("bomberman1_SOUTH_STOP", AllSprite.player_down.getCurrentTexture());
 
-        agent_sprites.put("bomberman1_VANISHING_1", Sprite2.player_dead4.getCurrentTexture());
-        agent_sprites.put("bomberman1_VANISHING_2", Sprite2.player_dead2.getCurrentTexture());
-        agent_sprites.put("bomberman1_VANISHING_3", Sprite2.player_dead.getCurrentTexture());
+        agent_sprites.put("bomberman1_VANISHING_1", AllSprite.player_dead4.getCurrentTexture());
+        agent_sprites.put("bomberman1_VANISHING_2", AllSprite.player_dead2.getCurrentTexture());
+        agent_sprites.put("bomberman1_VANISHING_3", AllSprite.player_dead.getCurrentTexture());
     }
 
     static {
-        agent_sprites.put("bomberman2_EAST_STEP_LEFT", Sprite2.player_right_2__2.getCurrentTexture());
-        agent_sprites.put("bomberman2_EAST_STEP_RIGHT", Sprite2.player_right_1__2.getCurrentTexture());
-        agent_sprites.put("bomberman2_EAST_STOP", Sprite2.player_right__2.getCurrentTexture());
+        agent_sprites.put("bomberman2_EAST_STEP_LEFT", AllSprite.player_right_2__2.getCurrentTexture());
+        agent_sprites.put("bomberman2_EAST_STEP_RIGHT", AllSprite.player_right_1__2.getCurrentTexture());
+        agent_sprites.put("bomberman2_EAST_STOP", AllSprite.player_right__2.getCurrentTexture());
 
-        agent_sprites.put("bomberman2_NORTH_STEP_LEFT", Sprite2.player_up_2__2.getCurrentTexture());
-        agent_sprites.put("bomberman2_NORTH_STEP_RIGHT", Sprite2.player_up_1__2.getCurrentTexture());
-        agent_sprites.put("bomberman2_NORTH_STOP", Sprite2.player_up__2.getCurrentTexture());
+        agent_sprites.put("bomberman2_NORTH_STEP_LEFT", AllSprite.player_up_2__2.getCurrentTexture());
+        agent_sprites.put("bomberman2_NORTH_STEP_RIGHT", AllSprite.player_up_1__2.getCurrentTexture());
+        agent_sprites.put("bomberman2_NORTH_STOP", AllSprite.player_up__2.getCurrentTexture());
 
-        agent_sprites.put("bomberman2_WEST_STEP_LEFT", Sprite2.player_left_2__2.getCurrentTexture());
-        agent_sprites.put("bomberman2_WEST_STEP_RIGHT", Sprite2.player_left_1__2.getCurrentTexture());
-        agent_sprites.put("bomberman2_WEST_STOP", Sprite2.player_left__2.getCurrentTexture());
+        agent_sprites.put("bomberman2_WEST_STEP_LEFT", AllSprite.player_left_2__2.getCurrentTexture());
+        agent_sprites.put("bomberman2_WEST_STEP_RIGHT", AllSprite.player_left_1__2.getCurrentTexture());
+        agent_sprites.put("bomberman2_WEST_STOP", AllSprite.player_left__2.getCurrentTexture());
 
-        agent_sprites.put("bomberman2_SOUTH_STEP_LEFT", Sprite2.player_down_2__2.getCurrentTexture());
-        agent_sprites.put("bomberman2_SOUTH_STEP_RIGHT", Sprite2.player_down_1__2.getCurrentTexture());
-        agent_sprites.put("bomberman2_SOUTH_STOP", Sprite2.player_down__2.getCurrentTexture());
+        agent_sprites.put("bomberman2_SOUTH_STEP_LEFT", AllSprite.player_down_2__2.getCurrentTexture());
+        agent_sprites.put("bomberman2_SOUTH_STEP_RIGHT", AllSprite.player_down_1__2.getCurrentTexture());
+        agent_sprites.put("bomberman2_SOUTH_STOP", AllSprite.player_down__2.getCurrentTexture());
 
-        agent_sprites.put("bomberman2_VANISHING_1", Sprite2.player_dead__2.getCurrentTexture());
-        agent_sprites.put("bomberman2_VANISHING_2", Sprite2.player_dead1__2.getCurrentTexture());
-        agent_sprites.put("bomberman2_VANISHING_3", Sprite2.player_dead2__2.getCurrentTexture());
+        agent_sprites.put("bomberman2_VANISHING_1", AllSprite.player_dead__2.getCurrentTexture());
+        agent_sprites.put("bomberman2_VANISHING_2", AllSprite.player_dead1__2.getCurrentTexture());
+        agent_sprites.put("bomberman2_VANISHING_3", AllSprite.player_dead2__2.getCurrentTexture());
     }
 
 
@@ -80,72 +80,72 @@ public class Sprite {
      */
     //BALLOON
     static {
-        agent_sprites.put("balloon_EAST_STEP_LEFT", Sprite2.enemy1_2.getCurrentTexture());
-        agent_sprites.put("balloon_EAST_STEP_RIGHT", Sprite2.enemy1_1.getCurrentTexture());
-        agent_sprites.put("balloon_EAST_STOP", Sprite2.enemy1_3.getCurrentTexture());
+        agent_sprites.put("balloon_EAST_STEP_LEFT", AllSprite.enemy1_2.getCurrentTexture());
+        agent_sprites.put("balloon_EAST_STEP_RIGHT", AllSprite.enemy1_1.getCurrentTexture());
+        agent_sprites.put("balloon_EAST_STOP", AllSprite.enemy1_3.getCurrentTexture());
 
-        agent_sprites.put("balloon_NORTH_STEP_LEFT", Sprite2.enemy1_2.getCurrentTexture());
-        agent_sprites.put("balloon_NORTH_STEP_RIGHT", Sprite2.enemy1_1.getCurrentTexture());
-        agent_sprites.put("balloon_NORTH_STOP", Sprite2.enemy1_3.getCurrentTexture());
+        agent_sprites.put("balloon_NORTH_STEP_LEFT", AllSprite.enemy1_2.getCurrentTexture());
+        agent_sprites.put("balloon_NORTH_STEP_RIGHT", AllSprite.enemy1_1.getCurrentTexture());
+        agent_sprites.put("balloon_NORTH_STOP", AllSprite.enemy1_3.getCurrentTexture());
 
-        agent_sprites.put("balloon_WEST_STEP_LEFT", Sprite2.enemy1_2.getCurrentTexture());
-        agent_sprites.put("balloon_WEST_STEP_RIGHT", Sprite2.enemy1_1.getCurrentTexture());
-        agent_sprites.put("balloon_WEST_STOP", Sprite2.enemy1_3.getCurrentTexture());
+        agent_sprites.put("balloon_WEST_STEP_LEFT", AllSprite.enemy1_2.getCurrentTexture());
+        agent_sprites.put("balloon_WEST_STEP_RIGHT", AllSprite.enemy1_1.getCurrentTexture());
+        agent_sprites.put("balloon_WEST_STOP", AllSprite.enemy1_3.getCurrentTexture());
 
-        agent_sprites.put("balloon_SOUTH_STEP_LEFT", Sprite2.enemy1_2.getCurrentTexture());
-        agent_sprites.put("balloon_SOUTH_STEP_RIGHT", Sprite2.enemy1_1.getCurrentTexture());
-        agent_sprites.put("balloon_SOUTH_STOP", Sprite2.enemy1_3.getCurrentTexture());
+        agent_sprites.put("balloon_SOUTH_STEP_LEFT", AllSprite.enemy1_2.getCurrentTexture());
+        agent_sprites.put("balloon_SOUTH_STEP_RIGHT", AllSprite.enemy1_1.getCurrentTexture());
+        agent_sprites.put("balloon_SOUTH_STOP", AllSprite.enemy1_3.getCurrentTexture());
 
-        agent_sprites.put("balloon_VANISHING_1", Sprite2.enemy1_dead1.getCurrentTexture());
-        agent_sprites.put("balloon_VANISHING_2", Sprite2.enemy1_dead2.getCurrentTexture());
-        agent_sprites.put("balloon_VANISHING_3", Sprite2.enemy1_dead2.getCurrentTexture());
+        agent_sprites.put("balloon_VANISHING_1", AllSprite.enemy1_dead1.getCurrentTexture());
+        agent_sprites.put("balloon_VANISHING_2", AllSprite.enemy1_dead2.getCurrentTexture());
+        agent_sprites.put("balloon_VANISHING_3", AllSprite.enemy1_dead2.getCurrentTexture());
     }
 
     //ONEAL
     static {
-        agent_sprites.put("oneal_EAST_STEP_LEFT", Sprite2.oneal_EAST_STEP_LEFT.getCurrentTexture());
-        agent_sprites.put("oneal_EAST_STEP_RIGHT", Sprite2.oneal_EAST_STEP_RIGHT.getCurrentTexture());
-        agent_sprites.put("oneal_EAST_STOP", Sprite2.oneal_EAST_STOP.getCurrentTexture());
+        agent_sprites.put("oneal_EAST_STEP_LEFT", AllSprite.oneal_EAST_STEP_LEFT.getCurrentTexture());
+        agent_sprites.put("oneal_EAST_STEP_RIGHT", AllSprite.oneal_EAST_STEP_RIGHT.getCurrentTexture());
+        agent_sprites.put("oneal_EAST_STOP", AllSprite.oneal_EAST_STOP.getCurrentTexture());
 
-        agent_sprites.put("oneal_NORTH_STEP_LEFT", Sprite2.oneal_NORTH_STEP_LEFT.getCurrentTexture());
-        agent_sprites.put("oneal_NORTH_STEP_RIGHT", Sprite2.oneal_NORTH_STEP_RIGHT.getCurrentTexture());
-        agent_sprites.put("oneal_NORTH_STOP", Sprite2.oneal_NORTH_STOP.getCurrentTexture());
+        agent_sprites.put("oneal_NORTH_STEP_LEFT", AllSprite.oneal_NORTH_STEP_LEFT.getCurrentTexture());
+        agent_sprites.put("oneal_NORTH_STEP_RIGHT", AllSprite.oneal_NORTH_STEP_RIGHT.getCurrentTexture());
+        agent_sprites.put("oneal_NORTH_STOP", AllSprite.oneal_NORTH_STOP.getCurrentTexture());
 
-        agent_sprites.put("oneal_WEST_STEP_LEFT", Sprite2.oneal_WEST_STEP_LEFT.getCurrentTexture());
-        agent_sprites.put("oneal_WEST_STEP_RIGHT", Sprite2.oneal_WEST_STEP_RIGHT.getCurrentTexture());
-        agent_sprites.put("oneal_WEST_STOP", Sprite2.oneal_WEST_STOP.getCurrentTexture());
+        agent_sprites.put("oneal_WEST_STEP_LEFT", AllSprite.oneal_WEST_STEP_LEFT.getCurrentTexture());
+        agent_sprites.put("oneal_WEST_STEP_RIGHT", AllSprite.oneal_WEST_STEP_RIGHT.getCurrentTexture());
+        agent_sprites.put("oneal_WEST_STOP", AllSprite.oneal_WEST_STOP.getCurrentTexture());
 
-        agent_sprites.put("oneal_SOUTH_STEP_LEFT", Sprite2.oneal_SOUTH_STEP_LEFT.getCurrentTexture());
-        agent_sprites.put("oneal_SOUTH_STEP_RIGHT", Sprite2.oneal_SOUTH_STEP_RIGHT.getCurrentTexture());
-        agent_sprites.put("oneal_SOUTH_STOP", Sprite2.oneal_SOUTH_STOP.getCurrentTexture());
+        agent_sprites.put("oneal_SOUTH_STEP_LEFT", AllSprite.oneal_SOUTH_STEP_LEFT.getCurrentTexture());
+        agent_sprites.put("oneal_SOUTH_STEP_RIGHT", AllSprite.oneal_SOUTH_STEP_RIGHT.getCurrentTexture());
+        agent_sprites.put("oneal_SOUTH_STOP", AllSprite.oneal_SOUTH_STOP.getCurrentTexture());
 
-        agent_sprites.put("oneal_VANISHING_1", Sprite2.oneal_VANISHING_1.getCurrentTexture());
-        agent_sprites.put("oneal_VANISHING_2", Sprite2.oneal_VANISHING_2.getCurrentTexture());
-        agent_sprites.put("oneal_VANISHING_3", Sprite2.oneal_VANISHING_3.getCurrentTexture());
+        agent_sprites.put("oneal_VANISHING_1", AllSprite.oneal_VANISHING_1.getCurrentTexture());
+        agent_sprites.put("oneal_VANISHING_2", AllSprite.oneal_VANISHING_2.getCurrentTexture());
+        agent_sprites.put("oneal_VANISHING_3", AllSprite.oneal_VANISHING_3.getCurrentTexture());
     }
 
 
     //dragon
     static {
-        agent_sprites.put("dragon_WEST_STEP_LEFT", Sprite2.dragon_WEST_STEP_LEFT.getCurrentTexture());
-        agent_sprites.put("dragon_WEST_STEP_RIGHT", Sprite2.dragon_WEST_STEP_RIGHT.getCurrentTexture());
-        agent_sprites.put("dragon_WEST_STOP", Sprite2.dragon_WEST_STOP.getCurrentTexture());
+        agent_sprites.put("dragon_WEST_STEP_LEFT", AllSprite.dragon_WEST_STEP_LEFT.getCurrentTexture());
+        agent_sprites.put("dragon_WEST_STEP_RIGHT", AllSprite.dragon_WEST_STEP_RIGHT.getCurrentTexture());
+        agent_sprites.put("dragon_WEST_STOP", AllSprite.dragon_WEST_STOP.getCurrentTexture());
 
-        agent_sprites.put("dragon_NORTH_STEP_LEFT", Sprite2.dragon_NORTH_STEP_LEFT.getCurrentTexture());
-        agent_sprites.put("dragon_NORTH_STEP_RIGHT", Sprite2.dragon_NORTH_STEP_RIGHT.getCurrentTexture());
-        agent_sprites.put("dragon_NORTH_STOP", Sprite2.dragon_NORTH_STOP.getCurrentTexture());
+        agent_sprites.put("dragon_NORTH_STEP_LEFT", AllSprite.dragon_NORTH_STEP_LEFT.getCurrentTexture());
+        agent_sprites.put("dragon_NORTH_STEP_RIGHT", AllSprite.dragon_NORTH_STEP_RIGHT.getCurrentTexture());
+        agent_sprites.put("dragon_NORTH_STOP", AllSprite.dragon_NORTH_STOP.getCurrentTexture());
 
-        agent_sprites.put("dragon_EAST_STEP_LEFT", Sprite2.dragon_EAST_STEP_LEFT.getCurrentTexture());
-        agent_sprites.put("dragon_EAST_STEP_RIGHT", Sprite2.dragon_EAST_STEP_RIGHT.getCurrentTexture());
-        agent_sprites.put("dragon_EAST_STOP", Sprite2.dragon_EAST_STOP.getCurrentTexture());
+        agent_sprites.put("dragon_EAST_STEP_LEFT", AllSprite.dragon_EAST_STEP_LEFT.getCurrentTexture());
+        agent_sprites.put("dragon_EAST_STEP_RIGHT", AllSprite.dragon_EAST_STEP_RIGHT.getCurrentTexture());
+        agent_sprites.put("dragon_EAST_STOP", AllSprite.dragon_EAST_STOP.getCurrentTexture());
 
-        agent_sprites.put("dragon_SOUTH_STEP_LEFT", Sprite2.dragon_SOUTH_STEP_LEFT.getCurrentTexture());
-        agent_sprites.put("dragon_SOUTH_STEP_RIGHT", Sprite2.dragon_SOUTH_STEP_RIGHT.getCurrentTexture());
-        agent_sprites.put("dragon_SOUTH_STOP", Sprite2.dragon_SOUTH_STOP.getCurrentTexture());
+        agent_sprites.put("dragon_SOUTH_STEP_LEFT", AllSprite.dragon_SOUTH_STEP_LEFT.getCurrentTexture());
+        agent_sprites.put("dragon_SOUTH_STEP_RIGHT", AllSprite.dragon_SOUTH_STEP_RIGHT.getCurrentTexture());
+        agent_sprites.put("dragon_SOUTH_STOP", AllSprite.dragon_SOUTH_STOP.getCurrentTexture());
 
-        agent_sprites.put("dragon_VANISHING_1", Sprite2.dragon_VANISHING_1.getCurrentTexture());
-        agent_sprites.put("dragon_VANISHING_2", Sprite2.dragon_VANISHING_2.getCurrentTexture());
-        agent_sprites.put("dragon_VANISHING_3", Sprite2.dragon_VANISHING_3.getCurrentTexture());
+        agent_sprites.put("dragon_VANISHING_1", AllSprite.dragon_VANISHING_1.getCurrentTexture());
+        agent_sprites.put("dragon_VANISHING_2", AllSprite.dragon_VANISHING_2.getCurrentTexture());
+        agent_sprites.put("dragon_VANISHING_3", AllSprite.dragon_VANISHING_3.getCurrentTexture());
 
     }
     //Doll
@@ -198,11 +198,11 @@ public class Sprite {
     |--------------------------------------------------------------------------
      */
     static {
-        static_sprites.put("grass", Sprite2.grass.getCurrentTexture());
-        static_sprites.put("brick", Sprite2.brick.getCurrentTexture());
-        static_sprites.put("wall", Sprite2.wall.getCurrentTexture());
-        static_sprites.put("portal1", Sprite2.portal.getCurrentTexture());
-        static_sprites.put("portal2", Sprite2.portal2.getCurrentTexture());
+        static_sprites.put("grass", AllSprite.grass.getCurrentTexture());
+        static_sprites.put("brick", AllSprite.brick.getCurrentTexture());
+        static_sprites.put("wall", AllSprite.wall.getCurrentTexture());
+        static_sprites.put("portal1", AllSprite.portal.getCurrentTexture());
+        static_sprites.put("portal2", AllSprite.portal2.getCurrentTexture());
     }
 
     /*
@@ -211,9 +211,9 @@ public class Sprite {
     |--------------------------------------------------------------------------
      */
     static {
-        static_sprites.put("bomb_0",Sprite2.bomb_0.getCurrentTexture());
-        static_sprites.put("bomb_1", Sprite2.bomb_1.getCurrentTexture());
-        static_sprites.put("bomb_2", Sprite2.bomb_2.getCurrentTexture());
+        static_sprites.put("bomb_0", AllSprite.bomb_0.getCurrentTexture());
+        static_sprites.put("bomb_1", AllSprite.bomb_1.getCurrentTexture());
+        static_sprites.put("bomb_2", AllSprite.bomb_2.getCurrentTexture());
     }
     /*
     |--------------------------------------------------------------------------
@@ -221,27 +221,27 @@ public class Sprite {
     |--------------------------------------------------------------------------
      */
     static {
-        static_sprites.put("bomb_exploded0", Sprite2.bomb_exploded0.getCurrentTexture());
-        static_sprites.put("bomb_exploded1", Sprite2.bomb_exploded1.getCurrentTexture());
-        static_sprites.put("bomb_exploded2", Sprite2.bomb_exploded2.getCurrentTexture());
-        static_sprites.put("explosion_vertical0", Sprite2.explosion_vertical0.getCurrentTexture());
-        static_sprites.put("explosion_vertical1", Sprite2.explosion_vertical1.getCurrentTexture());
-        static_sprites.put("explosion_vertical2", Sprite2.explosion_vertical2.getCurrentTexture());
-        static_sprites.put("explosion_horizontal0", Sprite2.explosion_horizontal0.getCurrentTexture());
-        static_sprites.put("explosion_horizontal1", Sprite2.explosion_horizontal1.getCurrentTexture());
-        static_sprites.put("explosion_horizontal2", Sprite2.explosion_horizontal2.getCurrentTexture());
-        static_sprites.put("explosion_horizontal_left_last0", Sprite2.explosion_horizontal_left_last0.getCurrentTexture());
-        static_sprites.put("explosion_horizontal_left_last1", Sprite2.explosion_horizontal_left_last1.getCurrentTexture());
-        static_sprites.put("explosion_horizontal_left_last2", Sprite2.explosion_horizontal_left_last2.getCurrentTexture());
-        static_sprites.put("explosion_horizontal_right_last0", Sprite2.explosion_horizontal_right_last0.getCurrentTexture());
-        static_sprites.put("explosion_horizontal_right_last1", Sprite2.explosion_horizontal_right_last1.getCurrentTexture());
-        static_sprites.put("explosion_horizontal_right_last2", Sprite2.explosion_horizontal_right_last2.getCurrentTexture());
-        static_sprites.put("explosion_vertical_top_last0", Sprite2.explosion_vertical_top_last0.getCurrentTexture());
-        static_sprites.put("explosion_vertical_top_last1", Sprite2.explosion_vertical_top_last1.getCurrentTexture());
-        static_sprites.put("explosion_vertical_top_last2", Sprite2.explosion_vertical_top_last2.getCurrentTexture());
-        static_sprites.put("explosion_vertical_down_last0", Sprite2.explosion_vertical_down_last0.getCurrentTexture());
-        static_sprites.put("explosion_vertical_down_last1", Sprite2.explosion_vertical_down_last1.getCurrentTexture());
-        static_sprites.put("explosion_vertical_down_last2", Sprite2.explosion_vertical_down_last2.getCurrentTexture());
+        static_sprites.put("bomb_exploded0", AllSprite.bomb_exploded0.getCurrentTexture());
+        static_sprites.put("bomb_exploded1", AllSprite.bomb_exploded1.getCurrentTexture());
+        static_sprites.put("bomb_exploded2", AllSprite.bomb_exploded2.getCurrentTexture());
+        static_sprites.put("explosion_vertical0", AllSprite.explosion_vertical0.getCurrentTexture());
+        static_sprites.put("explosion_vertical1", AllSprite.explosion_vertical1.getCurrentTexture());
+        static_sprites.put("explosion_vertical2", AllSprite.explosion_vertical2.getCurrentTexture());
+        static_sprites.put("explosion_horizontal0", AllSprite.explosion_horizontal0.getCurrentTexture());
+        static_sprites.put("explosion_horizontal1", AllSprite.explosion_horizontal1.getCurrentTexture());
+        static_sprites.put("explosion_horizontal2", AllSprite.explosion_horizontal2.getCurrentTexture());
+        static_sprites.put("explosion_horizontal_left_last0", AllSprite.explosion_horizontal_left_last0.getCurrentTexture());
+        static_sprites.put("explosion_horizontal_left_last1", AllSprite.explosion_horizontal_left_last1.getCurrentTexture());
+        static_sprites.put("explosion_horizontal_left_last2", AllSprite.explosion_horizontal_left_last2.getCurrentTexture());
+        static_sprites.put("explosion_horizontal_right_last0", AllSprite.explosion_horizontal_right_last0.getCurrentTexture());
+        static_sprites.put("explosion_horizontal_right_last1", AllSprite.explosion_horizontal_right_last1.getCurrentTexture());
+        static_sprites.put("explosion_horizontal_right_last2", AllSprite.explosion_horizontal_right_last2.getCurrentTexture());
+        static_sprites.put("explosion_vertical_top_last0", AllSprite.explosion_vertical_top_last0.getCurrentTexture());
+        static_sprites.put("explosion_vertical_top_last1", AllSprite.explosion_vertical_top_last1.getCurrentTexture());
+        static_sprites.put("explosion_vertical_top_last2", AllSprite.explosion_vertical_top_last2.getCurrentTexture());
+        static_sprites.put("explosion_vertical_down_last0", AllSprite.explosion_vertical_down_last0.getCurrentTexture());
+        static_sprites.put("explosion_vertical_down_last1", AllSprite.explosion_vertical_down_last1.getCurrentTexture());
+        static_sprites.put("explosion_vertical_down_last2", AllSprite.explosion_vertical_down_last2.getCurrentTexture());
 
     }
 
@@ -251,9 +251,9 @@ public class Sprite {
     |--------------------------------------------------------------------------
      */
     static {
-        static_sprites.put("brick_exploded0",Sprite2.brick_exploded0.getCurrentTexture());
-        static_sprites.put("brick_exploded1",Sprite2.brick_exploded1.getCurrentTexture());
-        static_sprites.put("brick_exploded2",Sprite2.brick_exploded2.getCurrentTexture());
+        static_sprites.put("brick_exploded0", AllSprite.brick_exploded0.getCurrentTexture());
+        static_sprites.put("brick_exploded1", AllSprite.brick_exploded1.getCurrentTexture());
+        static_sprites.put("brick_exploded2", AllSprite.brick_exploded2.getCurrentTexture());
     }
 
     /*
@@ -262,9 +262,9 @@ public class Sprite {
     |--------------------------------------------------------------------------
      */
     static {
-        static_sprites.put("bomb_item", Sprite2.bomb_item.getCurrentTexture());
-        static_sprites.put("flame_item", Sprite2.flame_item.getCurrentTexture());
-        static_sprites.put("speed_item", Sprite2.speed_item.getCurrentTexture());
+        static_sprites.put("bomb_item", AllSprite.bomb_item.getCurrentTexture());
+        static_sprites.put("flame_item", AllSprite.flame_item.getCurrentTexture());
+        static_sprites.put("speed_item", AllSprite.speed_item.getCurrentTexture());
 //        static_sprites.put("pass_wall_item", pass_wall_item.getCurrentTexture());
 //        static_sprites.put("detonator_item", detonator_item.getCurrentTexture());
 //        static_sprites.put("powerup_bombpass", powerup_bombpass.getCurrentTexture());

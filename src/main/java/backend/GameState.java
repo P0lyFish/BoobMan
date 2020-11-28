@@ -2,6 +2,7 @@ package main.java.backend;
 
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.KeyCode;
+import main.java.Board;
 import main.java.backend.agents.*;
 import main.java.backend.static_entities.*;
 import main.java.backend.static_entities.items.BombItem;
@@ -169,6 +170,7 @@ public class GameState implements Serializable {
 
             if(!anyPlayer) {
                 status = GameStatus.LOSE;
+                Board.level = 1;
             }
 
 
