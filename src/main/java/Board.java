@@ -44,6 +44,8 @@ public class Board extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         menu = new Menu();
+
+
         yourHighScore = new highScoreBoard();
         canvas = new Canvas(SCALED_SIZE * WIDTH, SCALED_SIZE * HEIGHT);
         gc = canvas.getGraphicsContext2D();
@@ -58,6 +60,8 @@ public class Board extends Application {
         Scene scene = new Scene(root);
         Scene scene1 = menu.createTaskbar();
         primaryStage.setScene(scene1);
+
+
 
         menu.playWithFriend.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -101,6 +105,7 @@ public class Board extends Application {
                     System.exit(0);
                 });
         gameState = new GameState("src/main/resources/levels/Level1.txt", new Input(scene));
+
 
         Group group1 = gameOver.gameOverStatus();
         Scene scene2 = new Scene(group1);
@@ -192,7 +197,9 @@ public class Board extends Application {
     }
 
     public static void main(String[] args) {
+
         launch(args);
+
     }
 
     public void render() throws FileNotFoundException {

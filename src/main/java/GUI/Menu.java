@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import main.java.utils.GameSound;
 
 import java.io.File;
 
@@ -20,14 +21,12 @@ public class Menu{
     public Button playWithFriend;
     public Button highScore;
     private Button exitGame;
-
+    public static GameSound menuSound = new GameSound();
 //    @Override
 //    public void start(Stage stage) throws Exception {
     public Scene createTaskbar() {
         String current = System.getProperty("user.dir");
         System.out.println(current);
-
-
 
 
         Image image = new Image(new File("res/nen.png").toURI().toString());
@@ -81,7 +80,6 @@ public class Menu{
         exitGame.setOpacity(0.7);
 
 
-
         //Handler Action
         newGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -115,6 +113,7 @@ public class Menu{
 
 
         Scene scene = new Scene(group,640,560);
+
 //        stage.setScene(scene);
 //        stage.show();
         return scene;

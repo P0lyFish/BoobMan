@@ -11,9 +11,11 @@ public class GameSound extends JFrame implements Runnable {
     public Clip clip;
     public Clip menu;
     public Clip die;
+    public Clip win;
     public Thread thread;
     public Clip item;
     public boolean run = true;
+    public boolean runMenu = true;
 
     public void playBackgroundFx() {
         if (this.thread == null) {
@@ -91,26 +93,6 @@ public class GameSound extends JFrame implements Runnable {
             e.printStackTrace();
         }
     }
-    public void playMenuFx() {
-        try {
-            // Open an audio input stream.
-            URL url = new File("src/main/resources/sounds/background_play.wav").toURI().toURL();
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-            // Get a sound clip resource.
-            menu = AudioSystem.getClip();
-            // Open audio clip and load samples from the audio input stream.
-            menu.open(audioIn);
-            //while (!clip.isRunning()) {
-            menu.start();
-            //}
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        }
-    }
     public void playBombermanDead() {
         try {
             URL url = new File("src/main/resources/sounds/yamete.wav").toURI().toURL();
@@ -129,7 +111,55 @@ public class GameSound extends JFrame implements Runnable {
         }
     }
 
+    public void playWin() {
+        try {
+            URL url = new File("src/main/resources/sounds/win.wav").toURI().toURL();
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+            // Get a sound clip resource.
+            win = AudioSystem.getClip();
+            win.open(audioIn);
+            win.start();
+            Thread.sleep(8500);
 
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public void playMenuBackground() {
+
+        while (runMenu) {
+            try {
+                // Open an audio input stream.
+                //nhạc nền game play
+                URL url = new File("src/main/resources/sounds/menu.wav").toURI().toURL();
+                AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+                // Get a sound clip resource.
+                menu = AudioSystem.getClip();
+                // Open audio clip and load samples from the audio input stream.
+                menu.open(audioIn);
+                //while (!clip.isRunning()) {
+                menu.start();
+                //}
+            } catch (UnsupportedAudioFileException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
+            }
+            try {
+                Thread.sleep(104000);
+            } catch (InterruptedException e) {
+            }
+
+        }
+    }
 
     @Override
     public void run() {
@@ -159,6 +189,11 @@ public class GameSound extends JFrame implements Runnable {
             }
 
         }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        GameSound a = new GameSound();
+        a.playMenuBackground();
     }
 
 }
