@@ -12,18 +12,19 @@ import java.util.Random;
 
 
 public class Balloon extends Agent {
-    public Balloon(GridPosition position, double speed) {
-        super(position, speed);
+    public Balloon(GridPosition position, double speed, int score) {
+        super(position, speed, score);
         entityType = EntityType.balloon;
     }
 
     public Balloon getClone() {
-        return new Balloon(position, speed);
+        return new Balloon(position, speed, score);
     }
 
     public void updateGameState(GameState gameState) {
         if (isVanished()) {
             gameState.removeEntity(this);
+            gameState.addScore(score);
             return;
         }
 

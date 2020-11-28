@@ -22,13 +22,26 @@ public class GameState implements Serializable {
     public static final int NUM_REFRESH_PER_TIME_UNIT = 60;
     public static final int CHANGE_MOVING_TYPE_PERIOD = 15;
     public static final double TRACKING_RANGE = 5;
+    public static final int ONEAL_SCORE = 300;
+    public static final int DRAGON_SCORE = 150;
+    public static final int BALLOON_SCORE = 100;
 
     private List<Entity> listGrass = new ArrayList<>();
     private GameStatus status = GameStatus.PLAYING;
     private List<Entity> entities;
+    private int score;
     public Input inputListener;
     public static GameSound background;
+
     public GameState() {
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void addScore(int delta) {
+        score += delta;
     }
 
     public GameState(String mapPath, Input inputListener) throws IOException {
@@ -68,13 +81,16 @@ public class GameState implements Serializable {
                             break;
 
                         case 'b':
-                            entity = new Balloon(new GridPosition(curX, curY), DEFAULT_SPEED*0.5);
+                            entity = new Balloon(new GridPosition(curX, curY), DEFAULT_SPEED*0.5,
+                                                 BALLOON_SCORE);
                             break;
                         case 'o':
-                            entity = new Oneal(new GridPosition(curX, curY), DEFAULT_SPEED*0.5);
+                            entity = new Oneal(new GridPosition(curX, curY), DEFAULT_SPEED*0.5,
+                                               ONEAL_SCORE);
                             break;
                         case 'd':
-                            entity = new Dragon(new GridPosition(curX, curY), DEFAULT_SPEED * 0.5);
+                            entity = new Dragon(new GridPosition(curX, curY), DEFAULT_SPEED * 0.5,
+                                                DRAGON_SCORE);
                             break;
                         case '*':
                             entity = new Brick(new GridPosition(curX, curY));

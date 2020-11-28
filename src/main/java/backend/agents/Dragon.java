@@ -8,14 +8,14 @@ import main.java.utils.EntityType;
 import main.java.utils.GridPosition;
 
 public class Dragon extends Agent {
-    public Dragon(GridPosition position, double speed) {
-        super(position, speed);
+    public Dragon(GridPosition position, double speed, int score) {
+        super(position, speed, score);
         this.entityType = EntityType.dragon;
     }
 
     @Override
     public Entity getClone() {
-        return new Dragon(this.position, this.speed);
+        return new Dragon(this.position, this.speed, score);
     }
 
     @Override
@@ -36,6 +36,7 @@ public class Dragon extends Agent {
     public void updateGameState(GameState gameState) throws CloneNotSupportedException {
         if (isVanished()) {
             gameState.removeEntity(this);
+            gameState.addScore(score);
             return;
         }
 

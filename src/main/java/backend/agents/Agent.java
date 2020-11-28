@@ -30,8 +30,9 @@ abstract public class Agent extends Entity {
     protected int movingTimer = 0;
     protected MovingType currentStepType = MovingType.STEP_LEFT;
     protected int currentStepPeriod = 0;
+    protected int score;
 
-    public Agent(GridPosition position, double speed) {
+    public Agent(GridPosition position, double speed, int score) {
         super(position, true, false, true, REMAINING_TIME_MAX);
 
         while (true) {
@@ -42,6 +43,8 @@ abstract public class Agent extends Entity {
                 break;
             }
         }
+
+        this.score = score;
     }
 
     public void setSpeed(double speed) {
