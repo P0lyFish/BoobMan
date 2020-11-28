@@ -157,6 +157,13 @@ public class Board extends Application {
 
                 if(gameState.isWin()){
                     level++;
+                    GameState.background.clip.stop();
+                    GameState.background.run = false;
+                    GameSound win = new GameSound();
+                    win.playWin();
+                    GameState.background = new GameSound();
+                    GameState.background.playBackgroundFx();
+
                     gameState = new GameState(String.format("src/main/resources/levels/Level%d.txt", level),  new Input(scene));
                     if(!multiplayer) {
                         gameState.removeEntity(gameState.getPlayerAgent(2));
