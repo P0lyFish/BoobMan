@@ -51,6 +51,10 @@ public class PlayerAgent extends BomberMan {
         numHearts += 1;
     }
 
+    public int getNumHearts() {
+        return numHearts;
+    }
+
     public int getPlayerID() {
         return playerID;
     }
