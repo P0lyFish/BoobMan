@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="80.0" fitWidth="672.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="560.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../res/background.png" />
+            <Image url="@../../../../res/nen.png" />
          </image>
       </ImageView>
-      <Label layoutX="234.0" layoutY="22.0" prefHeight="35.0" prefWidth="62.0" text="180" textFill="#fdfafa">
+      <ImageView fitHeight="150.0" fitWidth="560.0" layoutX="48.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../res/gamewin.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="141.0" layoutY="243.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="376.0" text="BACK TO MENU">
          <font>
-            <Font name="Calibri Bold" size="32.0" />
+            <Font name="Arial Bold" size="40.0" />
          </font>
-      </Label>
-      <Label layoutX="567.0" layoutY="21.0" prefHeight="22.0" prefWidth="62.0" text="100" textFill="#fdfafa">
+      </Button>
+      <Button layoutX="141.0" layoutY="368.0" mnemonicParsing="false" prefHeight="105.0" prefWidth="376.0" text="QUIT GAME">
          <font>
-            <Font name="Calibri Bold" size="32.0" />
+            <Font name="Arial Bold" size="49.0" />
          </font>
-      </Label>
+      </Button>
    </children>
 </AnchorPane>

@@ -38,6 +38,9 @@ public class Board extends Application {
     private boolean multiplayer = false;
     private highScoreBoard yourHighScore;
     public static int level = 1;
+    private int countTime = 180;
+    private int numOfRefresh = 0;
+    private boolean startGame = false;   // startGame = true thì mới bắt đầu tính thời gian
     @Override
     public void start(Stage primaryStage) throws Exception {
         menu = new Menu();
@@ -72,6 +75,7 @@ public class Board extends Application {
             public void handle(ActionEvent actionEvent) {
                 gameState.removeEntity((Entity)gameState.getPlayerAgent(2));
                 primaryStage.setScene(scene);
+                startGame = true;
                 GameState.background = new GameSound();
                 GameState.background.playBackgroundFx();
             }
@@ -103,8 +107,24 @@ public class Board extends Application {
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.4 / GameState.NUM_REFRESH_PER_TIME_UNIT), event -> {
             gameState.refresh();
+
+            if(startGame) {
+                numOfRefresh++; // đếm số lần refresh  150 lần refresh = 1s
+            }
+            System.out.println(numOfRefresh);
+            if(numOfRefresh % 150 == 0){
+
+                countTime--;
+                taskbar.timer.setText(String.valueOf(countTime));
+            }
+            // nếu thời gian  < 0, set gamelose
+//            if(countTime <= 0) {
+//                primaryStage.setScene(scene2);
+//            }
             try {
                 if(gameState.isLose()) {
+                    this.countTime = 180;
+                    this.numOfRefresh = 0;
                     gameOver.playAgain.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent actionEvent) {

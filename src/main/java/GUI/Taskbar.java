@@ -14,7 +14,7 @@ import javafx.scene.text.Font;
 import java.io.File;
 
 public class Taskbar {
-    private Label timer;
+    public Label timer;
     private Label score;
     private Label liver;
     private ImageView background;
