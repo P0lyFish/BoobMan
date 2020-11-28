@@ -14,9 +14,13 @@ public class PlayerAgent extends BomberMan {
     private final KeyCodeSet keyCodeSet;
     private final int playerID;
     private boolean screamed = false;
+    private int numHearts = 2;
+    private final GridPosition startPosition;
+
     public PlayerAgent(GridPosition position, double speed, int blastRange, int numBombs, KeyCodeSet keyCodeSet,
                        int playerID) {
         super(position, speed, blastRange, numBombs);
+        this.startPosition = position;
         this.keyCodeSet = keyCodeSet;
         this.playerID = playerID;
         if (playerID == 1) {
@@ -30,6 +34,21 @@ public class PlayerAgent extends BomberMan {
     @Override
     public Entity getClone() {
         return new PlayerAgent(position, speed, blastRange, remainingBombs, keyCodeSet, playerID);
+    }
+
+    @Override
+    public void destroy() {
+        if (numHearts == 1) {
+            super.destroy();
+        }
+        else {
+            numHearts -= 1;
+            setPosition(startPosition);
+        }
+    }
+
+    public void addExtraLife() {
+        numHearts += 1;
     }
 
     public int getPlayerID() {
