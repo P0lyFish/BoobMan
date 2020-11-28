@@ -43,6 +43,9 @@ public class PlayerAgent extends BomberMan {
 
     public void updateGameState(GameState gameState) {
         decreaseTimeUntilVanish((double)1.0 / GameState.NUM_REFRESH_PER_TIME_UNIT);
+        if (isVanished()) {
+            gameState.removeEntity(this);
+        }
 
         if (isVanishing() && !screamed) {
             GameSound gameSound = new GameSound();
