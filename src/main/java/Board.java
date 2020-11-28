@@ -28,7 +28,7 @@ public class Board extends Application {
     public static final int WIDTH = 21;
     public static final int HEIGHT = 16;
     public static final int DEFAULT_SIZE = 16; // kich thuoc anh
-    public static final int SCALED_SIZE = DEFAULT_SIZE * 2; // kich thuoc khi in len man hinh
+    public static final int SCALED_SIZE = DEFAULT_SIZE * 3; // kich thuoc khi in len man hinh
 
     private GraphicsContext gc;
     private Canvas canvas;
