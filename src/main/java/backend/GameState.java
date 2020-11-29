@@ -1,6 +1,5 @@
 package main.java.backend;
 
-import javafx.scene.input.Dragboard;
 import javafx.scene.input.KeyCode;
 import main.java.Board;
 import main.java.backend.agents.*;
@@ -191,7 +190,7 @@ public class GameState implements Serializable {
 
             if(!anyPlayer) {
                 status = GameStatus.LOSE;
-                Board.level = 1;
+                Board.currentLevel = 1;
             }
 
 

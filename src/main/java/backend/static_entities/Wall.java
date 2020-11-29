@@ -10,9 +10,6 @@ import main.java.graphics.SpriteLv3;
 import main.java.utils.EntityType;
 import main.java.utils.GridPosition;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 public class Wall extends StaticEntity {
     public Wall() {
         this.entityType = EntityType.wall;
@@ -30,13 +27,13 @@ public class Wall extends StaticEntity {
     }
 
     public Image getCurrentTexture() {
-        if(Board.level == 1) {
+        if(Board.currentLevel == 1) {
             return Sprite.static_sprites.get("wall");
         }
-        else if(Board.level == 2) {
+        else if(Board.currentLevel == 2) {
             return SpriteLv2.static_sprites.get("wall");
         }
-        else if(Board.level == 3) {
+        else if(Board.currentLevel == 3) {
             return SpriteLv3.static_sprites.get("wall");
         }
         return null;

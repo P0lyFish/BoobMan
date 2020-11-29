@@ -44,7 +44,7 @@ public class Brick extends StaticEntity {
     }
 
     public Image getCurrentTexture() {
-        if(Board.level == 1) {
+        if(Board.currentLevel == 1) {
             if (isNormal()) {
                 return Sprite.static_sprites.get(String.format("%s", entityType.toString()));
             }
@@ -59,7 +59,7 @@ public class Brick extends StaticEntity {
                 }
             }
         }
-        if(Board.level == 2) {
+        if(Board.currentLevel == 2) {
             if (isNormal()) {
                 return SpriteLv2.static_sprites.get(String.format("%s", entityType.toString()));
             }
@@ -74,7 +74,7 @@ public class Brick extends StaticEntity {
                 }
             }
         }
-        if(Board.level == 3) {
+        if(Board.currentLevel == 3) {
             if (isNormal()) {
                 return SpriteLv3.static_sprites.get(String.format("%s", entityType.toString()));
             }

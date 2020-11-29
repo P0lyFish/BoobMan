@@ -114,23 +114,27 @@ public class GameSound extends JFrame implements Runnable {
 
     public void playWin() {
         try {
-            URL url = new File("src/main/resources/sounds/win.wav").toURI().toURL();
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-            // Get a sound clip resource.
-            win = AudioSystem.getClip();
-            win.open(audioIn);
-            win.start();
-            Thread.sleep(8500);
+            // Open an audio input stream.
+            //tiếng bomb
+            // create AudioInputStream object
+            String filePath = "src/main/resources/sounds/win.wav";
+            AudioInputStream audioInputStream;
+            audioInputStream = AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
 
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+            // create clip reference
+            win = AudioSystem.getClip();
+
+            // open audioInputStream to the clip
+            win.open(audioInputStream);
+
+
+//            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            win.start();
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
+
     }
     public void playMenuBackground() {
             try {
@@ -162,23 +166,27 @@ public class GameSound extends JFrame implements Runnable {
 
     public void playDeVl() {
         try {
-            URL url = new File("src/main/resources/sounds/devl.wav").toURI().toURL();
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-            // Get a sound clip resource.
-            devl = AudioSystem.getClip();
-            devl.open(audioIn);
-            devl.start();
-            Thread.sleep(14000);
+            // Open an audio input stream.
+            //tiếng bomb
+            // create AudioInputStream object
+            String filePath = "src/main/resources/sounds/devl.wav";
+            AudioInputStream audioInputStream;
+            audioInputStream = AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
 
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+            // create clip reference
+            devl = AudioSystem.getClip();
+
+            // open audioInputStream to the clip
+            devl.open(audioInputStream);
+
+
+//            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            devl.start();
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     @Override

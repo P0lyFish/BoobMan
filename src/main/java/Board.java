@@ -10,8 +10,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.java.GUI.*;
@@ -23,11 +21,8 @@ import main.java.utils.GameStatus;
 import main.java.utils.Input;
 
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.*;
-import java.net.URL;
 
 public class Board extends Application {
 
@@ -44,12 +39,13 @@ public class Board extends Application {
     private winBoard winGame;
     private boolean multiplayer = false;
     private highScoreBoard yourHighScore;
-    public static int level = 3;
+    public static int currentLevel = 3;
     private int countTime = 180;
     private int numOfRefresh = 0;
     private boolean startGame = false;   // startGame = true thì mới bắt đầu tính thời gian
     private Clip clip;  // sound game menu
     private GameSound menuSound = new GameSound();
+    private boolean devlScreamed = false;
     @Override
     public void start(Stage primaryStage) throws Exception {
         menu = new Menu();
@@ -121,7 +117,7 @@ public class Board extends Application {
         primaryStage.setOnCloseRequest(event -> {
                     System.exit(0);
                 });
-        gameState = new GameState("src/main/resources/levels/Level2.txt", new Input(scene));
+        gameState = new GameState(String.format("src/main/resources/levels/Level%d.txt", currentLevel), new Input(scene));
 
 
         Group group1 = gameOver.gameOverStatus();
@@ -153,12 +149,12 @@ public class Board extends Application {
                         public void handle(ActionEvent actionEvent) {
                             try {
                                 if(multiplayer) {
-                                    gameState = new GameState("src/main/resources/levels/Level1.txt", new Input(scene));
+                                    gameState = new GameState(String.format("src/main/resources/levels/Level%d.txt", currentLevel), new Input(scene));
                                     GameState.background = new GameSound();
                                     GameState.background.playBackgroundFx();
                                     gameState.setStatus(GameStatus.PLAYING);
                                 }else {
-                                    gameState = new GameState("src/main/resources/levels/Level1.txt", new Input(scene));
+                                    gameState = new GameState(String.format("src/main/resources/levels/Level%d.txt", currentLevel), new Input(scene));
                                     gameState.removeEntity((Entity) gameState.getPlayerAgent(2));
                                     GameState.background = new GameSound();
                                     GameState.background.playBackgroundFx();
@@ -173,8 +169,8 @@ public class Board extends Application {
                     primaryStage.setScene(scene2);
                 }
 
-                if(gameState.isWin() && level != 3){
-                    level++;
+                if(gameState.isWin() && currentLevel < 3){
+                    currentLevel++;
                     GameState.background.clip.stop();
                     GameState.background.run = false;
                     GameSound win = new GameSound();
@@ -183,18 +179,26 @@ public class Board extends Application {
                     GameState.background.playBackgroundFx();
                     this.countTime = 188;
                     this.numOfRefresh = 0;
-                    gameState = new GameState(String.format("src/main/resources/levels/Level%d.txt", level),  new Input(scene));
+                    gameState = new GameState(String.format("src/main/resources/levels/Level%d.txt", currentLevel),  new Input(scene));
                     if(!multiplayer) {
                         gameState.removeEntity(gameState.getPlayerAgent(2));
                     }
-                } else if(gameState.isWin() && level == 3) {
+                } else if(gameState.isWin() && currentLevel == 3) {
                     winGame.backToMenu.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent actionEvent) {
                             primaryStage.setScene(scene);
+
                         }
                     });
+                    if(!devlScreamed) {
+                        GameSound devl = new GameSound();
+                        devl.playDeVl();
+                        devlScreamed = true;
+                    }
+
                     primaryStage.setScene(scene3);
+
                 }
                 taskbar.quit.setOnAction(new EventHandler<ActionEvent>() {
                     @Override

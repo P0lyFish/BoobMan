@@ -17,13 +17,13 @@ public class Grass extends Entity {
 
     @Override
     protected Image getCurrentTexture() {
-        if(Board.level == 1) {
+        if(Board.currentLevel == 1) {
             return Sprite.static_sprites.get("grass");
         }
-        else if(Board.level == 2) {
+        else if(Board.currentLevel == 2) {
             return SpriteLv2.static_sprites.get("grass");
         }
-        else if(Board.level == 3) {
+        else if(Board.currentLevel == 3) {
             return SpriteLv3.static_sprites.get("grass");
         }
         return null;
