@@ -41,9 +41,10 @@ public class Board extends Application {
     public static GameState gameState;
     private Menu menu;
     private endGame gameOver;
+    private winBoard winGame;
     private boolean multiplayer = false;
     private highScoreBoard yourHighScore;
-    public static int level = 1;
+    public static int level = 3;
     private int countTime = 180;
     private int numOfRefresh = 0;
     private boolean startGame = false;   // startGame = true thì mới bắt đầu tính thời gian
@@ -63,6 +64,7 @@ public class Board extends Application {
         Group group = taskbar.createTaskbar();
         Group root = new Group();
         gameOver = new endGame();
+        winGame = new winBoard();
         root.getChildren().addAll(canvas,group);
 
         Scene scene = new Scene(root);
@@ -119,12 +121,13 @@ public class Board extends Application {
         primaryStage.setOnCloseRequest(event -> {
                     System.exit(0);
                 });
-        gameState = new GameState("src/main/resources/levels/Level1.txt", new Input(scene));
+        gameState = new GameState("src/main/resources/levels/Level2.txt", new Input(scene));
 
 
         Group group1 = gameOver.gameOverStatus();
         Scene scene2 = new Scene(group1);
-
+        Group group2 = winGame.createWinBoard();
+        Scene scene3 = new Scene(group2);
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.4 / GameState.NUM_REFRESH_PER_TIME_UNIT), event -> {
             gameState.refresh();
@@ -170,30 +173,28 @@ public class Board extends Application {
                     primaryStage.setScene(scene2);
                 }
 
-                if(gameState.isWin()){
-                    if(level < 3) {
-                        level++;
-                        this.countTime = 180;
-                        this.numOfRefresh = 0;
-                        GameState.background.clip.stop();
-                        GameState.background.run = false;
-                        GameSound win = new GameSound();
-                        win.playWin();
-                        GameState.background = new GameSound();
-                        GameState.background.playBackgroundFx();
-
-                        gameState = new GameState(String.format("src/main/resources/levels/Level%d.txt", level), new Input(scene));
-                        if (!multiplayer) {
-                            gameState.removeEntity(gameState.getPlayerAgent(2));
+                if(gameState.isWin() && level != 3){
+                    level++;
+                    GameState.background.clip.stop();
+                    GameState.background.run = false;
+                    GameSound win = new GameSound();
+                    win.playWin();
+                    GameState.background = new GameSound();
+                    GameState.background.playBackgroundFx();
+                    this.countTime = 188;
+                    this.numOfRefresh = 0;
+                    gameState = new GameState(String.format("src/main/resources/levels/Level%d.txt", level),  new Input(scene));
+                    if(!multiplayer) {
+                        gameState.removeEntity(gameState.getPlayerAgent(2));
+                    }
+                } else if(gameState.isWin() && level == 3) {
+                    winGame.backToMenu.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent actionEvent) {
+                            primaryStage.setScene(scene);
                         }
-                    }
-                    else {
-                        GameState.background.clip.stop();
-                        GameState.background.run = false;
-                        GameSound winAll = new GameSound();
-                        winAll.playDeVl();
-                        System.exit(0);
-                    }
+                    });
+                    primaryStage.setScene(scene3);
                 }
                 taskbar.quit.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
