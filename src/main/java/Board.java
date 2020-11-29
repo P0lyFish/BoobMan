@@ -48,7 +48,7 @@ public class Board extends Application {
     private int numOfRefresh = 0;
     private boolean startGame = false;   // startGame = true thì mới bắt đầu tính thời gian
     private Clip clip;  // sound game menu
-
+    private GameSound menuSound = new GameSound();
     @Override
     public void start(Stage primaryStage) throws Exception {
         menu = new Menu();
@@ -68,19 +68,19 @@ public class Board extends Application {
         Scene scene = new Scene(root);
         Scene scene1 = menu.createTaskbar();
         primaryStage.setScene(scene1);
-
-        URL url = new File("src/main/resources/sounds/menu.wav").toURI().toURL();
-        AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-        clip = AudioSystem.getClip();
-        clip.open(audioIn);
-        clip.start();
+        menuSound.playMenuBackground();
+//        URL url = new File("src/main/resources/sounds/menu.wav").toURI().toURL();
+//        AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+//        clip = AudioSystem.getClip();
+//        clip.open(audioIn);
+//        clip.start();
 
 
         menu.playWithFriend.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 multiplayer = true;
-                clip.stop();
+                menuSound.menu.stop();
                 primaryStage.setScene(scene);
                 GameState.background = new GameSound();
                 GameState.background.playBackgroundFx();
@@ -94,7 +94,7 @@ public class Board extends Application {
                 gameState.removeEntity((Entity)gameState.getPlayerAgent(2));
                 primaryStage.setScene(scene);
                 startGame = true;
-                clip.stop();
+                menuSound.menu.stop();
                 GameState.background = new GameSound();
                 GameState.background.playBackgroundFx();
             }
@@ -131,7 +131,7 @@ public class Board extends Application {
             if(startGame) {
                 numOfRefresh++; // đếm số lần refresh  150 lần refresh = 1s
             }
-            System.out.println(numOfRefresh);
+//            System.out.println(numOfRefresh);
             if(numOfRefresh % 150 == 0){
 
                 countTime--;
@@ -171,19 +171,28 @@ public class Board extends Application {
                 }
 
                 if(gameState.isWin()){
-                    level++;
-                    this.countTime = 180;
-                    this.numOfRefresh = 0;
-                    GameState.background.clip.stop();
-                    GameState.background.run = false;
-                    GameSound win = new GameSound();
-                    win.playWin();
-                    GameState.background = new GameSound();
-                    GameState.background.playBackgroundFx();
+                    if(level < 3) {
+                        level++;
+                        this.countTime = 180;
+                        this.numOfRefresh = 0;
+                        GameState.background.clip.stop();
+                        GameState.background.run = false;
+                        GameSound win = new GameSound();
+                        win.playWin();
+                        GameState.background = new GameSound();
+                        GameState.background.playBackgroundFx();
 
-                    gameState = new GameState(String.format("src/main/resources/levels/Level%d.txt", level),  new Input(scene));
-                    if(!multiplayer) {
-                        gameState.removeEntity(gameState.getPlayerAgent(2));
+                        gameState = new GameState(String.format("src/main/resources/levels/Level%d.txt", level), new Input(scene));
+                        if (!multiplayer) {
+                            gameState.removeEntity(gameState.getPlayerAgent(2));
+                        }
+                    }
+                    else {
+                        GameState.background.clip.stop();
+                        GameState.background.run = false;
+                        GameSound winAll = new GameSound();
+                        winAll.playDeVl();
+                        System.exit(0);
                     }
                 }
                 taskbar.quit.setOnAction(new EventHandler<ActionEvent>() {

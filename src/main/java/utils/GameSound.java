@@ -14,6 +14,7 @@ public class GameSound extends JFrame implements Runnable {
     public Clip win;
     public Thread thread;
     public Clip item;
+    public Clip devl;
     public boolean run = true;
     public boolean runMenu = true;
 
@@ -132,8 +133,6 @@ public class GameSound extends JFrame implements Runnable {
         }
     }
     public void playMenuBackground() {
-
-        while (runMenu) {
             try {
                 // Open an audio input stream.
                 //nhạc nền game play
@@ -145,6 +144,7 @@ public class GameSound extends JFrame implements Runnable {
                 menu.open(audioIn);
                 //while (!clip.isRunning()) {
                 menu.start();
+                menu.loop(Clip.LOOP_CONTINUOUSLY);
                 //}
             } catch (UnsupportedAudioFileException e) {
                 e.printStackTrace();
@@ -153,11 +153,31 @@ public class GameSound extends JFrame implements Runnable {
             } catch (LineUnavailableException e) {
                 e.printStackTrace();
             }
-            try {
-                Thread.sleep(104000);
-            } catch (InterruptedException e) {
-            }
+//            try {
+//                Thread.sleep(104000);
+//            } catch (InterruptedException e) {
+//            }
 
+    }
+
+    public void playDeVl() {
+        try {
+            URL url = new File("src/main/resources/sounds/devl.wav").toURI().toURL();
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+            // Get a sound clip resource.
+            devl = AudioSystem.getClip();
+            devl.open(audioIn);
+            devl.start();
+            Thread.sleep(14000);
+
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
