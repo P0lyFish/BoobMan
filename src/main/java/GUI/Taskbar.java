@@ -61,13 +61,13 @@ public class Taskbar {
         timer.setFont(Font.font("Calibri Bold",32.0));
 
         score = new Label();
-        score.setLayoutY(40.0);
-        score.setLayoutX(45.0);
-        score.setPrefWidth(62.0);
+        score.setLayoutY(38.0);
+        score.setLayoutX(56.0);
+        score.setPrefWidth(174.0);
         score.setPrefHeight(35.0);
         score.setText("180");
         score.setTextFill(Paint.valueOf("#fdfafa"));
-        score.setFont(Font.font("Calibri Bold",35.0));
+        score.setFont(Font.font("Calibri Bold",39.0));
 
         liver = new Label();
         liver.setLayoutY(40.0);
