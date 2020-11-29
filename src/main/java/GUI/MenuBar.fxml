@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="566.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.GUI.MenuBar">
    <children>
@@ -27,8 +28,13 @@
       </MenuBar>
       <ImageView fitHeight="80.0" fitWidth="672.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../res/background.png" />
+            <Image url="@../../../../res/taskbar.png" />
          </image>
       </ImageView>
+      <Label layoutX="56.0" layoutY="43.0" prefHeight="34.0" prefWidth="174.0" text="180" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="39.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
