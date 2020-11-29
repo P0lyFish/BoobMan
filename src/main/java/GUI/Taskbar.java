@@ -15,8 +15,8 @@ import java.io.File;
 
 public class Taskbar {
     public Label timer;
-    private Label score;
-    private Label liver;
+    public Label score;
+    public Label liver;
     private ImageView background;
     public MenuBar menu;
     public Menu file, help;
@@ -71,14 +71,14 @@ public class Taskbar {
 
         liver = new Label();
         liver.setLayoutY(40.0);
-        liver.setLayoutX(400.0);
+        liver.setLayoutX(401.0);
         liver.setPrefWidth(28);
-        liver.setPrefHeight(30);
+        liver.setPrefHeight(33);
         liver.setTextFill(Paint.valueOf("#fdfafa"));
         liver.setFont(Font.font("Calibri Bold",35.0));
-
+        liver.setText("2");
         Group group = new Group();
-        group.getChildren().addAll(menu,background,timer,score);
+        group.getChildren().addAll(menu,background,timer,score,liver);
 
         return group;
     }

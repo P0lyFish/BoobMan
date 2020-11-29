@@ -10,6 +10,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.java.GUI.*;
@@ -21,7 +23,11 @@ import main.java.utils.GameStatus;
 import main.java.utils.Input;
 
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.io.*;
+import java.net.URL;
 
 public class Board extends Application {
 
@@ -41,6 +47,8 @@ public class Board extends Application {
     private int countTime = 180;
     private int numOfRefresh = 0;
     private boolean startGame = false;   // startGame = true thì mới bắt đầu tính thời gian
+    private Clip clip;  // sound game menu
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         menu = new Menu();
@@ -61,12 +69,18 @@ public class Board extends Application {
         Scene scene1 = menu.createTaskbar();
         primaryStage.setScene(scene1);
 
+        URL url = new File("src/main/resources/sounds/menu.wav").toURI().toURL();
+        AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+        clip = AudioSystem.getClip();
+        clip.open(audioIn);
+        clip.start();
 
 
         menu.playWithFriend.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 multiplayer = true;
+                clip.stop();
                 primaryStage.setScene(scene);
                 GameState.background = new GameSound();
                 GameState.background.playBackgroundFx();
@@ -80,6 +94,7 @@ public class Board extends Application {
                 gameState.removeEntity((Entity)gameState.getPlayerAgent(2));
                 primaryStage.setScene(scene);
                 startGame = true;
+                clip.stop();
                 GameState.background = new GameSound();
                 GameState.background.playBackgroundFx();
             }
@@ -110,9 +125,9 @@ public class Board extends Application {
         Group group1 = gameOver.gameOverStatus();
         Scene scene2 = new Scene(group1);
 
+
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.4 / GameState.NUM_REFRESH_PER_TIME_UNIT), event -> {
             gameState.refresh();
-
             if(startGame) {
                 numOfRefresh++; // đếm số lần refresh  150 lần refresh = 1s
             }
@@ -122,10 +137,10 @@ public class Board extends Application {
                 countTime--;
                 taskbar.timer.setText(String.valueOf(countTime));
             }
-            // nếu thời gian  < 0, set gamelose
-//            if(countTime <= 0) {
-//                primaryStage.setScene(scene2);
-//            }
+            taskbar.score.setText(String.valueOf(gameState.getScore()));
+            if(!gameState.isLose()){
+                taskbar.liver.setText(String.valueOf(gameState.getPlayerAgent(1).getNumHearts()));
+            }
             try {
                 if(gameState.isLose()) {
                     this.countTime = 180;
@@ -157,6 +172,8 @@ public class Board extends Application {
 
                 if(gameState.isWin()){
                     level++;
+                    this.countTime = 180;
+                    this.numOfRefresh = 0;
                     GameState.background.clip.stop();
                     GameState.background.run = false;
                     GameSound win = new GameSound();

@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import main.java.utils.GameSound;
@@ -21,7 +23,9 @@ public class Menu{
     public Button playWithFriend;
     public Button highScore;
     private Button exitGame;
-    public static GameSound menuSound = new GameSound();
+
+    public  GameSound menuSound = new GameSound();
+    public boolean playSound = true;
 //    @Override
 //    public void start(Stage stage) throws Exception {
     public Scene createTaskbar() {
@@ -79,7 +83,9 @@ public class Menu{
         exitGame.setFont(Font.font("Arial Bold",41.0));
         exitGame.setOpacity(0.7);
 
-
+//        Media media = new Media(new File("src/main/resources/sounds/menu.wav").toURI().toString());
+//        mediaPlayer = new MediaPlayer(media);
+//        mediaPlayer.setAutoPlay(playSound);
         //Handler Action
         newGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
