@@ -39,9 +39,9 @@ public class Board extends Application {
     private winBoard winGame;
     private boolean multiplayer = false;
     private highScoreBoard yourHighScore;
-    public static int currentLevel = 3;
+    public static int currentLevel = 1;
     private int countTime = 180;
-    private int numOfRefresh = 0;
+    private int numOfRefresh = 1;
     private boolean startGame = false;   // startGame = true thì mới bắt đầu tính thời gian
     private Clip clip;  // sound game menu
     private GameSound menuSound = new GameSound();
@@ -128,12 +128,11 @@ public class Board extends Application {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.4 / GameState.NUM_REFRESH_PER_TIME_UNIT), event -> {
             gameState.refresh();
             if(startGame) {
-                numOfRefresh++; // đếm số lần refresh  150 lần refresh = 1s
+                numOfRefresh += 1; // đếm số lần refresh  150 lần refresh = 1s
             }
 //            System.out.println(numOfRefresh);
             if(numOfRefresh % 150 == 0){
-
-                countTime--;
+                countTime -= 1;
                 taskbar.timer.setText(String.valueOf(countTime));
             }
             taskbar.score.setText(String.valueOf(gameState.getScore()));

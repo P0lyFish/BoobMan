@@ -33,6 +33,11 @@ public class Dragon extends Agent {
     }
 
     @Override
+    public GridPosition getPositionForRendering() {
+        return new GridPosition(position.getX(), position.getY() - 0.3);
+    }
+
+    @Override
     public void updateGameState(GameState gameState) throws CloneNotSupportedException {
         if (isVanished()) {
             gameState.removeEntity(this);
